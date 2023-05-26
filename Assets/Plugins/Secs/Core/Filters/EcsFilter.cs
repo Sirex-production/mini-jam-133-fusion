@@ -61,9 +61,9 @@ namespace Secs
 			if(!_matcher.IsExcluded(componentType))
 				return;
 		
-			var entityComponents = _world.GetEntityComponentsTypeMask(entityId);
-
-			if(_matcher.IsSameAsIncludeMask(entityComponents))
+			var entityComponentsTypeMask = _world.GetEntityComponentsTypeMask(entityId);
+			
+			if(entityComponentsTypeMask.Includes(_matcher.includeTypeMask))
 				_entities.Add(entityId);
 		}
 #region Enumeration
