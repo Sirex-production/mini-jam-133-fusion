@@ -14,7 +14,7 @@ namespace Secs
         {
             if(_entityId != -1)
             {
-                Debug.LogError("This entity reference is occupied by other entity");
+                UnityEngine.Debug.LogError("This entity reference is occupied by other entity");
                 return;
             }
 
@@ -26,7 +26,7 @@ namespace Secs
         {
             if(_entityId == -1)
             {
-                Debug.LogError("Link entity before unlinking it");
+                UnityEngine.Debug.LogError("Link entity before unlinking it");
                 return;
             }
 
