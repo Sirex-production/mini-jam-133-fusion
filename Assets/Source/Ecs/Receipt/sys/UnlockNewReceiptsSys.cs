@@ -6,27 +6,27 @@ namespace Ingame.Receipt
 {
     public sealed class UnlockNewReceiptsSys : IEcsRunSystem
     {
-        [EcsInject(typeof(DiscoverNewReceiptReq))]
+        [EcsInject(typeof(DiscoverNewRecipeReq))]
         private readonly EcsFilter _newItemFilter;
         
-        [EcsInject(typeof(AllReceiptsMdl), typeof(ReceiptStatusMdl))]
+        [EcsInject(typeof(AllRecipesMdl), typeof(RecipeStatusMdl))]
         private readonly EcsFilter _receiptsFilter;
         
         [EcsInject]
-        private readonly EcsPool<DiscoverNewReceiptReq> _discoverNewReceiptItemReqPool;
+        private readonly EcsPool<DiscoverNewRecipeReq> _discoverNewReceiptItemReqPool;
         
         [EcsInject]
-        private readonly EcsPool<AllReceiptsMdl> _allReceiptsPool;
+        private readonly EcsPool<AllRecipesMdl> _allReceiptsPool;
         
         [EcsInject]
-        private readonly EcsPool<ReceiptStatusMdl> _receiptStatusPool;
+        private readonly EcsPool<RecipeStatusMdl> _receiptStatusPool;
         
         public void OnRun()
         {
             foreach (var newItemEntity in _newItemFilter)
             {
                 ref var newItemReq = ref _discoverNewReceiptItemReqPool.GetComponent(newItemEntity);
-                var newReceipt = newItemReq.newReceipt;
+                var newReceipt = newItemReq.newRecipe;
                 
                 foreach (var receiptsEntity in _receiptsFilter)
                 {

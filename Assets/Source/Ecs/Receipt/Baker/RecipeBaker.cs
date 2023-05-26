@@ -7,10 +7,10 @@ using Zenject;
 
 namespace Ingame.Receipt
 {
-    public sealed class ReceiptBaker : MonoBehaviour
+    public sealed class RecipeBaker : MonoBehaviour
     {
         [SerializeField] private List<ItemConfig> startingItems;
-        [SerializeField] private AllReceiptsContainerConfig allReceiptsContainerConfig;
+        [FormerlySerializedAs("allReceiptsContainerConfig")] [SerializeField] private AllRecipeContainerConfig allRecipeContainerConfig;
         private EcsWorld _world;
 
         [Inject]
@@ -22,9 +22,9 @@ namespace Ingame.Receipt
         private void Awake()
         {
             var entity = _world.NewEntity();
-            _world.GetPool<AllReceiptsMdl>().AddComponent(entity).allReceiptsContainerConfig = allReceiptsContainerConfig;
+            _world.GetPool<AllRecipesMdl>().AddComponent(entity).AllRecipeContainerConfig = allRecipeContainerConfig;
             _world.GetPool<StartingItemsMdl>().AddComponent(entity).startingItems = startingItems;
-            _world.GetPool<ReceiptStatusMdl>().AddComponent(entity);
+            _world.GetPool<RecipeStatusMdl>().AddComponent(entity);
             
             gameObject.LinkEcsEntity(_world,entity);
         }

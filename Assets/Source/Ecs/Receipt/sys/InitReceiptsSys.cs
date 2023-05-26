@@ -9,22 +9,22 @@ namespace Ingame.Receipt
     {
         private readonly EcsFilter _startingItemsFilter;
         
-        [EcsInject(typeof(AllReceiptsMdl), typeof(ReceiptStatusMdl))]
+        [EcsInject(typeof(AllRecipesMdl), typeof(RecipeStatusMdl))]
         private readonly EcsFilter _receiptsFilter;
         
         [EcsInject]
         private readonly EcsPool<StartingItemsMdl> _startingItemsPool;
         
         [EcsInject]
-        private readonly EcsPool<AllReceiptsMdl> _allReceiptsPool;
+        private readonly EcsPool<AllRecipesMdl> _allReceiptsPool;
               
         [EcsInject]
-        private readonly EcsPool<ReceiptStatusMdl> _receiptStatusPool;
+        private readonly EcsPool<RecipeStatusMdl> _receiptStatusPool;
 
         public InitReceiptsSys(EcsWorld ecsWorld)
         {
             var matcher = EcsMatcher
-                .Include(typeof(AllReceiptsMdl))
+                .Include(typeof(AllRecipesMdl))
                 .End();
 
             _startingItemsFilter = ecsWorld.GetFilter(matcher);
@@ -33,7 +33,6 @@ namespace Ingame.Receipt
         {   
             foreach (var startingItemsEntity in _startingItemsFilter)
             {
-               Debug.Log(123);
                 ref var startingItemMdl = ref _startingItemsPool.GetComponent(startingItemsEntity);
                 var startingItems = startingItemMdl.startingItems;
                 
@@ -42,14 +41,14 @@ namespace Ingame.Receipt
                     ref var allReceiptsMdl = ref _allReceiptsPool.GetComponent(receiptsEntity);
                     ref var receiptStatusMdl = ref _receiptStatusPool.GetComponent(receiptsEntity);
                     
-                    var allReceipts = allReceiptsMdl.allReceiptsContainerConfig.AllReceipts;
+                    var allReceipts = allReceiptsMdl.AllRecipeContainerConfig.AllRecipe;
                     
-                    receiptStatusMdl.discoveredReceipts = new List<Receipt>();
+                    receiptStatusMdl.discoveredRecipe = new List<Recipe>();
 
                     var unlockedReceipts = allReceipts.Where(e =>
                         startingItems.Contains(e.ComponentA) && startingItems.Contains(e.ComponentB)).ToList();
                     
-                    receiptStatusMdl.unlockedReceipts = unlockedReceipts;
+                    receiptStatusMdl.unlockedRecipe = unlockedReceipts;
                 }
             }
         }

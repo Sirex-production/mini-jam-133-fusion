@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Ingame.Receipt
 {
     [CreateAssetMenu(fileName = "AllReceiptsConfig", menuName = "Cards/AllReceiptsContainer")]
-    public sealed class AllReceiptsContainerConfig : ScriptableObject
+    public sealed class AllRecipeContainerConfig : ScriptableObject
     {
-        [SerializeField] private List<Receipt> allReceipts;
+        [FormerlySerializedAs("allReceipts")] [SerializeField] private List<Recipe> allRecipe;
 
-        public List<Receipt> AllReceipts => new List<Receipt>(allReceipts);
+        public List<Recipe> AllRecipe => new List<Recipe>(allRecipe);
     }
 
     [Serializable]
-    public sealed class Receipt
+    public sealed class Recipe
     {
         [SerializeField] private string receiptName;
         
