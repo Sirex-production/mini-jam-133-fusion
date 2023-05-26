@@ -21,6 +21,7 @@ namespace Ingame
 		private void SetupSystems()
 		{
 			// _ecsSystems.Add(new TestSystem());
+			_ecsSystems.AttachProfiler();
 			_ecsSystems.Inject();
 		}
 
@@ -37,6 +38,7 @@ namespace Ingame
 		private void OnDestroy()
 		{
 			_ecsSystems.FireDisposeSystems();
+			_ecsSystems.ReleaseProfiler();
 		}
 	}
 }
