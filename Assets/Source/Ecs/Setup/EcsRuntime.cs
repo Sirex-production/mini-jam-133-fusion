@@ -1,4 +1,6 @@
-﻿using Secs;
+﻿using Ingame.Receipt;
+using Ingame.Tasks;
+using Secs;
 using UnityEngine;
 using Zenject;
 
@@ -20,8 +22,15 @@ namespace Ingame
 		
 		private void SetupSystems()
 		{
-			// _ecsSystems.Add(new TestSystem());
+			
+			_ecsSystems
+				.Add(new UnlockNewReceiptsSys())
+				.Add(new InitReceiptsSys())
+				.Add(new CreateNewTaskSys())
+				.Add(new CheckOfferedTaskItemValidationSys());
+		 
 			_ecsSystems.AttachProfiler();
+	
 			_ecsSystems.Inject();
 		}
 
