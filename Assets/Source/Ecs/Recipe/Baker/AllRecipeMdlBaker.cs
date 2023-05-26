@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Ingame.Receipt
 {
-    public sealed class AllRecipeBaker : MonoBehaviour
+    public sealed class AllRecipeMdlBaker : MonoBehaviour
     {
         [SerializeField] private AllRecipeContainerConfig allRecipeContainerConfig;
         private EcsWorld _world;

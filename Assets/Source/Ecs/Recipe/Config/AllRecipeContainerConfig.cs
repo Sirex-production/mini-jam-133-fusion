@@ -11,7 +11,7 @@ namespace Ingame.Receipt
     {
         [FormerlySerializedAs("allReceipts")] [SerializeField] private List<Recipe> allRecipe;
 
-        public List<Recipe> AllRecipe => new List<Recipe>(allRecipe);
+        public IReadOnlyCollection<Recipe> AllRecipe => allRecipe;
     }
 
     [Serializable]
