@@ -1,4 +1,5 @@
-﻿using Secs;
+﻿using Ingame.Receipt;
+using Secs;
 using UnityEngine;
 using Zenject;
 
@@ -20,8 +21,10 @@ namespace Ingame
 		
 		private void SetupSystems()
 		{
-			// _ecsSystems.Add(new TestSystem());
 			_ecsSystems.AttachProfiler();
+			_ecsSystems.Add(new UnlockNewReceiptsSys());
+			
+	
 			_ecsSystems.Inject();
 		}
 
