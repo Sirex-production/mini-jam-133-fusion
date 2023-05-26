@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Secs;
 
-namespace Ingame.Receipt
+namespace Ingame.Recipe
 {
     public struct RecipeStatusMdl : IEcsComponent
     {
-        public List<Recipe> discoveredRecipe;
-        public List<Recipe> unlockedRecipe;
+        public HashSet<Recipe> discoveredRecipe;
+        public HashSet<Recipe> unlockedRecipe;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Ingame.Receipt;
+﻿using Ingame.Recipe;
+using Ingame.Shop;
 using Ingame.Tasks;
 using Secs;
 using UnityEngine;
@@ -24,10 +25,15 @@ namespace Ingame
 		{
 			
 			_ecsSystems
-				.Add(new UnlockNewReceiptsSys())
-				.Add(new InitReceiptsSys())
+				//Recipes 
+				.Add(new TryToCombineSys())
+				.Add(new UnlockNewRecipeSys())
+				.Add(new InitRecipesSys())
+				//Tasks
 				.Add(new CreateNewTaskSys())
-				.Add(new CheckOfferedTaskItemValidationSys());
+				//shop
+				.Add(new CheckOfferedTaskItemValidationSys())
+				.Add(new BuyItemSys());
 		 
 			_ecsSystems.AttachProfiler();
 	

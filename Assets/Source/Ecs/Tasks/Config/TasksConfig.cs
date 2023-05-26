@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Ingame.Receipt;
+using Ingame.Recipe;
 using NaughtyAttributes;
 using UnityEngine;
 

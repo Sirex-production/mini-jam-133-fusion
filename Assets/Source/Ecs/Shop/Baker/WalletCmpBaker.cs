@@ -1,30 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Secs;
 using UnityEngine;
 using Zenject;
 
-namespace Ingame.Recipe
+namespace Ingame.Shop
 {
-    public sealed class RecipeBaker : MonoBehaviour
+    public sealed class WalletCmpBaker : MonoBehaviour
     {
-        [SerializeField] private List<ItemConfig> startingItems;
         private EcsWorld _world;
-
+        
         [Inject]
         private void Construct(EcsWorldsProvider ecsWorldsProvider)
         {
             _world = ecsWorldsProvider.GameplayWorld;
         }
-        
+
         private void Awake()
         {
             var entity = _world.NewEntity();
-            _world.GetPool<StartingItemsMdl>().AddComponent(entity).startingItems = startingItems;
-            _world.GetPool<RecipeStatusMdl>().AddComponent(entity);
+            _world.GetPool<WalletCmp>().AddComponent(entity);
             
             _world.UpdateFilters();
             
-            gameObject.LinkEcsEntity(_world,entity);
         }
     }
 }

@@ -4,14 +4,14 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Ingame.Receipt
+namespace Ingame.Recipe
 {
     [CreateAssetMenu(fileName = "AllReceiptsConfig", menuName = "Cards/AllReceiptsContainer")]
     public sealed class AllRecipeContainerConfig : ScriptableObject
     {
         [FormerlySerializedAs("allReceipts")] [SerializeField] private List<Recipe> allRecipe;
 
-        public IReadOnlyCollection<Recipe> AllRecipe => allRecipe;
+        public List<Recipe> AllRecipe => new List<Recipe>(allRecipe);
     }
 
     [Serializable]

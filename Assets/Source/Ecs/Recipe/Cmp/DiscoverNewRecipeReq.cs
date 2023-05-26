@@ -1,6 +1,6 @@
 ﻿using Secs;
 
-namespace Ingame.Receipt
+namespace Ingame.Recipe
 {
     public struct DiscoverNewRecipeReq : IEcsComponent
     {

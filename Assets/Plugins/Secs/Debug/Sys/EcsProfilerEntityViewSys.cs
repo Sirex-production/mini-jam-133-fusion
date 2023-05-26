@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Secs.Debug 
@@ -35,6 +36,9 @@ namespace Secs.Debug
         
         private void CreateNewObserver(int entity)
         {
+            if (_entityObservers.ContainsKey(entity))
+                return;
+            
             var entityGameObject = new GameObject($"Entity {entity}");
             entityGameObject.transform.parent = _worldGameObject.transform;
             
@@ -47,6 +51,9 @@ namespace Secs.Debug
         
         private void DeleteObserver(int entity)
         {
+            if (!_entityObservers.ContainsKey(entity))
+                return;
+
             var objectToDestroy = _entityObservers[entity];
             
             _entityObservers.Remove(entity);

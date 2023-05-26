@@ -16,6 +16,9 @@ namespace Ingame.Tasks
         [EcsInject]
         private readonly EcsPool<OfferTaskItemReq> _offerItemPool;
         
+        [EcsInject]
+        private readonly EcsPool<AskNewTaskEvent> _askNewTaskPool;
+        
         public void OnRun()
         {
             foreach (var taskEntity in _taskFilter)
@@ -25,10 +28,16 @@ namespace Ingame.Tasks
 
                 if (offerTaskItemReq.offeredItem == taskHolderMdl.currentTask.QuestItem)
                 {
-                   //TODO wallet + destroy the item
+                   //TODO wallet + destroy the item + unlock new recipe
+
+                   var newEntity = _world.NewEntity();
+                   _askNewTaskPool.AddComponent(newEntity);
+                   
+                   _world.DelEntity(taskEntity);
+                   continue;
                 }
                 
-                _world.DelEntity(taskEntity);   
+                _offerItemPool.DelComponent(taskEntity);  
             }
         }
     }

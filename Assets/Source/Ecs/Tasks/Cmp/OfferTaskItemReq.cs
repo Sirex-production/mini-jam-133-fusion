@@ -1,4 +1,4 @@
-﻿using Ingame.Receipt;
+﻿using Ingame.Recipe;
 using Secs;
 
 namespace Ingame.Tasks 

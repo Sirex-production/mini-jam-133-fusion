@@ -3,7 +3,7 @@ using Secs;
 using UnityEngine;
 using Zenject;
 
-namespace Ingame.Receipt
+namespace Ingame.Recipe
 {
     public sealed class AllRecipeMdlBaker : MonoBehaviour
     {

@@ -6,13 +6,16 @@ namespace Ingame.Tasks
 {
     public sealed class CreateNewTaskSys : IEcsRunSystem
     {
-        [EcsInject] private EcsWorld _ecsWorld;
+        [EcsInject] private readonly EcsWorld _ecsWorld;
         
         [EcsInject(typeof(AskNewTaskEvent))] 
         private readonly EcsFilter _askNewTaskFilter;
         
         [EcsInject(typeof(AllTasksMdl))] 
         private readonly EcsFilter _allTasksFilter;
+        
+        [EcsInject(typeof(TaskHolderMdl))] 
+        private readonly EcsFilter _filter;
 
         [EcsInject]
         private readonly EcsPool<AllTasksMdl> _allTasksPool;
@@ -20,16 +23,14 @@ namespace Ingame.Tasks
         [EcsInject]
         private readonly EcsPool<TaskHolderMdl> _taskHolderPool;
         
-        [EcsInject(typeof(TaskHolderMdl))] 
-        private readonly EcsFilter _Filter;
-
+        [EcsInject]
+        private readonly EcsPool<AskNewTaskEvent> _askNewTaskPool;
+        
         public void OnRun()
         {
             foreach (var askNewTaskEntity in _askNewTaskFilter)
             {
-                Debug.LogWarning(askNewTaskEntity);
-                var newEntity = _ecsWorld.NewEntity();
-                ref var taskHolderMdl = ref _taskHolderPool.AddComponent(newEntity);
+                ref var taskHolderMdl = ref _taskHolderPool.AddComponent(askNewTaskEntity);
                 
                 foreach (var allTaskEntity in _allTasksFilter)
                 {
@@ -41,12 +42,7 @@ namespace Ingame.Tasks
                     taskHolderMdl.currentTask = allTasks[randomIndex];
                 }
                 
-                _ecsWorld.DelEntity(askNewTaskEntity);
-            }
-
-            foreach (var f in _Filter)
-            {
-            
+                _askNewTaskPool.DelComponent(askNewTaskEntity);
             }
         }
     }

@@ -3,9 +3,9 @@ using System.Linq;
 using Secs;
 using UnityEngine;
 
-namespace Ingame.Receipt
+namespace Ingame.Recipe
 {
-    public sealed class InitReceiptsSys : IEcsInitSystem
+    public sealed class InitRecipesSys : IEcsInitSystem
     {
         [EcsInject] private EcsWorld _ecsWorld;
 
@@ -15,6 +15,9 @@ namespace Ingame.Receipt
         [EcsInject(typeof(StartingItemsMdl), typeof(RecipeStatusMdl))]
         private readonly EcsFilter _playerRecipeFilter;
         
+        [EcsInject(typeof(UnlockedItemsMdl))]
+        private readonly EcsFilter _unlockedItemsFilter;
+        
         [EcsInject]
         private readonly EcsPool<AllRecipesMdl> _allReceiptsPool;
         
@@ -23,6 +26,9 @@ namespace Ingame.Receipt
 
         [EcsInject]
         private readonly EcsPool<RecipeStatusMdl> _recipeStatusPool;
+        
+        [EcsInject]
+        private readonly EcsPool<UnlockedItemsMdl> _unlockedItemsPool;
         
         public void OnInit()
         {   
@@ -39,12 +45,18 @@ namespace Ingame.Receipt
                     
                     var allRecipe = allReceiptsMdl.AllRecipeContainerConfig.AllRecipe;
                     
-                    recipeStatusMdl.discoveredRecipe = new List<Recipe>();
+                    recipeStatusMdl.discoveredRecipe = new HashSet<Recipe>();
 
                     var unlockedReceipts = allRecipe.Where(e =>
-                        startingItems.Contains(e.ComponentA) && startingItems.Contains(e.ComponentB)).ToList();
+                        startingItems.Contains(e.ComponentA) && startingItems.Contains(e.ComponentB)).ToHashSet();
                     
                     recipeStatusMdl.unlockedRecipe = unlockedReceipts;
+                }
+
+                foreach (var unlockedItemsEntity in _unlockedItemsFilter)
+                {
+                    ref var unlockedItemsMdl = ref _unlockedItemsPool.GetComponent(unlockedItemsEntity);
+                    unlockedItemsMdl.items = new List<ItemConfig>(startingItems);
                 }
             }
         }
