@@ -1,12 +1,10 @@
-﻿
-using System;
+﻿using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-namespace Support
+namespace Ingame
 {
     public sealed class SceneService : MonoBehaviour
     {
@@ -31,11 +29,6 @@ namespace Support
 
             _levelCoroutine = StartCoroutine(LoadSceneCoroutine(level));
           
-        }
-
-        public void ResetLevel()
-        {
-            LoadLevel(SceneManager.GetActiveScene().buildIndex);
         }
 
         private IEnumerator LoadSceneCoroutine(int level)

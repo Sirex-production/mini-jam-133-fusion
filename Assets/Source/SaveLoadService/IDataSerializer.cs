@@ -1,4 +1,4 @@
-﻿namespace Support
+﻿namespace Ingame
 {
     public interface IDataSerializer
     {
