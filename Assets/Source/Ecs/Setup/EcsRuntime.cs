@@ -8,20 +8,12 @@ namespace Ingame
 {
 	public sealed class EcsRuntime : MonoBehaviour
 	{
-		private EcsWorld _world;
 		private EcsSystems _ecsSystems;
 		
 		[Inject]
-		private void Construct(EcsWorldsProvider ecsWorldsProvider)
+		private void Construct(EcsWorldsProvider ecsWorldsProvider, InputService inputService)
 		{
-			_world = ecsWorldsProvider.GameplayWorld;
-			_ecsSystems = new EcsSystems(_world);
-			
-			SetupSystems();
-		}
-		
-		private void SetupSystems()
-		{
+			_ecsSystems = new EcsSystems(ecsWorldsProvider.GameplayWorld);
 			
 			_ecsSystems
 				.Add(new UnlockNewReceiptsSys())
@@ -30,7 +22,6 @@ namespace Ingame
 				.Add(new CheckOfferedTaskItemValidationSys());
 		 
 			_ecsSystems.AttachProfiler();
-	
 			_ecsSystems.Inject();
 		}
 
