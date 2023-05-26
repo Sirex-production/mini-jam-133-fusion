@@ -42,6 +42,19 @@ namespace Secs
 			return _bitArray[indexOfType];
 		}
 
+		internal bool Includes(EcsTypeMask ecsTypeMask)
+		{
+			var otherBitArray = ecsTypeMask._bitArray;
+
+			for(int i = 0; i < _bitArray.Length; i++)
+			{
+				if(!_bitArray[i] && otherBitArray[i])
+					return false;
+			}
+
+			return true;
+		}
+
 		internal bool HasCommonTypesWith(EcsTypeMask otherTypeMask)
 		{
 			int longestMaskCount = Math.Max(_bitArray.Length, otherTypeMask._bitArray.Length);

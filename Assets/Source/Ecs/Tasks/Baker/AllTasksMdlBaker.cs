@@ -21,6 +21,8 @@ namespace Ingame.Tasks
         {
            var entity =  _world.NewEntity();
            _world.GetPool<AllTasksMdl>().AddComponent(entity).tasksConfig = tasksConfig;
+           
+           _world.UpdateFilters();
         }
     }
 }

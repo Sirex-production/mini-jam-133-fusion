@@ -7,6 +7,9 @@ namespace Ingame.Receipt
 {
     public sealed class InitReceiptsSys : IEcsInitSystem
     {
+        [EcsInject] private EcsWorld _ecsWorld;
+        
+        [EcsInject(typeof(AllRecipesMdl))]
         private readonly EcsFilter _startingItemsFilter;
         
         [EcsInject(typeof(AllRecipesMdl), typeof(RecipeStatusMdl))]
@@ -20,15 +23,7 @@ namespace Ingame.Receipt
               
         [EcsInject]
         private readonly EcsPool<RecipeStatusMdl> _receiptStatusPool;
-
-        public InitReceiptsSys(EcsWorld ecsWorld)
-        {
-            var matcher = EcsMatcher
-                .Include(typeof(AllRecipesMdl))
-                .End();
-
-            _startingItemsFilter = ecsWorld.GetFilter(matcher);
-        }
+        
         public void OnInit()
         {   
             foreach (var startingItemsEntity in _startingItemsFilter)
