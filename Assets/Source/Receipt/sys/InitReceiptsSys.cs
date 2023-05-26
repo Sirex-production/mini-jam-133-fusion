@@ -25,6 +25,7 @@ namespace Ingame.Receipt
         {
             var matcher = EcsMatcher
                 .Include(typeof(AllReceiptsMdl))
+                // .Exclude(typeof(StartingItemsMdl))
                 .End();
 
             _startingItemsFilter = ecsWorld.GetFilter(matcher);
@@ -32,8 +33,8 @@ namespace Ingame.Receipt
         public void OnInit()
         {   
             foreach (var startingItemsEntity in _startingItemsFilter)
-            {
-               Debug.Log(123);
+            { 
+                Debug.Log(123);
                 ref var startingItemMdl = ref _startingItemsPool.GetComponent(startingItemsEntity);
                 var startingItems = startingItemMdl.startingItems;
                 

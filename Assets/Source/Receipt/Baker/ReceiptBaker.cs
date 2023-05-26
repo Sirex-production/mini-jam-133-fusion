@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Secs;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Ingame.Receipt
@@ -25,6 +23,8 @@ namespace Ingame.Receipt
             _world.GetPool<AllReceiptsMdl>().AddComponent(entity).allReceiptsContainerConfig = allReceiptsContainerConfig;
             _world.GetPool<StartingItemsMdl>().AddComponent(entity).startingItems = startingItems;
             _world.GetPool<ReceiptStatusMdl>().AddComponent(entity);
+            
+            _world.UpdateFilters();
             
             gameObject.LinkEcsEntity(_world,entity);
         }
