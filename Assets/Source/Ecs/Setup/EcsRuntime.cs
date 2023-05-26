@@ -21,9 +21,12 @@ namespace Ingame
 		
 		private void SetupSystems()
 		{
-			_ecsSystems.AttachProfiler();
-			_ecsSystems.Add(new UnlockNewReceiptsSys());
 			
+			_ecsSystems
+				.Add(new UnlockNewReceiptsSys())
+				.Add(new InitReceiptsSys(_world));
+		 
+			_ecsSystems.AttachProfiler();
 	
 			_ecsSystems.Inject();
 		}

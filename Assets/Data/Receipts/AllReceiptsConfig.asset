@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: AllReceiptsConfig
   m_EditorClassIdentifier: 
   allReceipts:
-  - {fileID: 11400000, guid: 6cd93005ca0080745a45244b635a861d, type: 2}
+  - receiptName: Iron
+    componentA: {fileID: 11400000, guid: a892cba95e26096448663ba3e624b242, type: 2}
+    componentB: {fileID: 11400000, guid: 6d7e78b69ed5a4943aa9d1ac655ee8d3, type: 2}
+    createdItem: {fileID: 11400000, guid: f7daaf08fae3fc54b918152795ae5956, type: 2}

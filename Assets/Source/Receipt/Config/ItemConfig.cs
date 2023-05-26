@@ -12,4 +12,6 @@ namespace Ingame.Receipt
         [SerializeField] private Texture2D icon;
         
     }
+    
+    
 }

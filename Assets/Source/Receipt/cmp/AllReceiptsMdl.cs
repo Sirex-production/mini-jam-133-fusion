@@ -2,7 +2,7 @@
 
 namespace Ingame.Receipt 
 {
-    public struct ReceiptModel : IEcsComponent
+    public struct AllReceiptsMdl : IEcsComponent
     {
         public AllReceiptsContainerConfig allReceiptsContainerConfig;
     }
