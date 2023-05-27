@@ -2,6 +2,7 @@
 using Ingame.Shop;
 using Ingame.Tasks;
 using Secs;
+using Secs.Physics;
 using UnityEngine;
 using Zenject;
 
@@ -22,7 +23,8 @@ namespace Ingame
 		{
 			_world = ecsWorldsProvider.GameplayWorld;
 			_ecsSystems = new EcsSystems(_world);
-
+			_ecsSystems.AttachPhysics();
+			
 			_ecsSystems
 				//Recipe
 				.Add(new InitRecipesSys())
@@ -36,8 +38,9 @@ namespace Ingame
 				//Cards
 				.Add(new SelectCardSystem(inputService))
 				.Add(new MoveCardSystem(inputService, generalCardsConfig))
-				.Add(new DropCardSystem(inputService));
-			
+				.Add(new DropCardSystem(inputService))
+				.Add(new DisposeOnTickPhysicsSys());
+
 			_ecsSystems.AttachProfiler();
 			_ecsSystems.Inject();
 		}
@@ -57,6 +60,7 @@ namespace Ingame
 		{
 			_ecsSystems.FireDisposeSystems();
 			_ecsSystems.ReleaseProfiler();
+			_ecsSystems.ReleasePhysics();
 		}
 	}
 }
