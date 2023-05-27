@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSettingsData:
     mapMouseDraggingSpeed: 1
-    cameraMovementSpeed: 25
+    cameraMovementSpeed: 50
