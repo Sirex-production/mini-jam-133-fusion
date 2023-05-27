@@ -43,6 +43,9 @@ namespace Ingame
 				.Add(new SelectCardSystem(inputService))
 				.Add(new MoveCardSystem(inputService, generalCardsConfig))
 				.Add(new DropCardSystem(inputService))
+				.Add(new MoveShopCardsBackToShopSystem())
+				.Add(new UpdateCardMotionSystem(generalCardsConfig))
+				//Physics
 				.Add(new DisposeOnTickPhysicsSys());
 
 			_ecsSystems.AttachProfiler();

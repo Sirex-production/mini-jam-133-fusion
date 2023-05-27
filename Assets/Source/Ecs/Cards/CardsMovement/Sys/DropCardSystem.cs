@@ -29,11 +29,10 @@ namespace Ingame
 			
 			if(_inputService.IsLeftMousePressed)
 				return;
-			
+
 			int cardEntityId = _isFollowingMouseCardFilter.GetFirstEntity();
-			
 			ref var rigidbodyMdl = ref _rigidbodyPool.GetComponent(cardEntityId);
-			
+
 			rigidbodyMdl.rigidbody.isKinematic = false;
 			
 			_isFollowingMouseTagPool.DelComponent(cardEntityId);

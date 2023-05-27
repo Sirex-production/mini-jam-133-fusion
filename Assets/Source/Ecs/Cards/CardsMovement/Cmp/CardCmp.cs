@@ -6,5 +6,7 @@ namespace Ingame
 	public struct CardCmp : IEcsComponent
 	{
 		public ItemConfig itemConfig;
+
+		public float timePassedSinceLastDrop;
 	}
 }
