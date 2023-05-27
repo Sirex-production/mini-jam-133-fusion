@@ -189,4 +189,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generalCardsConfig: {fileID: 11400000, guid: 3e636b8377ae27840bb3a2ec058ed9ad, type: 2}
+  shopConfig: {fileID: 11400000, guid: 948339e185803754caa2317cfa2edd7c, type: 2}
   sceneService: {fileID: 2590189644882682233}

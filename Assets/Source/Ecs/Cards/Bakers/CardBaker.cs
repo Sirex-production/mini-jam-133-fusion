@@ -10,6 +10,7 @@ namespace Ingame
 	{
 		[Required, SerializeField] private ItemConfig itemConfig;
 		[Required, SerializeField] private Rigidbody attachedRigidbody;
+		[Required, SerializeField] private CardView cardView;
 		
 		[Inject]
 		private void Construct(EcsWorldsProvider worldsProvider)
@@ -28,8 +29,8 @@ namespace Ingame
 				initialLocalRot = transform.localRotation
 			};
 			world.GetPool<RigidbodyMdl>().AddComponent(entity).rigidbody = attachedRigidbody;
-			world.UpdateFilters();
-			
+			world.GetPool<CardViewMdl>().AddComponent(entity).cardView = cardView;
+
 			this.LinkEcsEntity(world, entity);
 			
 			Destroy(this);

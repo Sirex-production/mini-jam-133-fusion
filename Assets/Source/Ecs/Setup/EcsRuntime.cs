@@ -1,5 +1,4 @@
 ﻿using Ingame.Recipe;
-using Ingame.Shop;
 using Ingame.Tasks;
 using Secs;
 using UnityEngine;
@@ -15,9 +14,11 @@ namespace Ingame
 		[Inject]
 		private void Construct
 		(
+			DiContainer diContainer,
 			EcsWorldsProvider ecsWorldsProvider,
 			InputService inputService,
-			GeneralCardsConfig generalCardsConfig
+			GeneralCardsConfig generalCardsConfig,
+			ShopConfig shopConfig
 		)
 		{
 			_world = ecsWorldsProvider.GameplayWorld;
@@ -30,10 +31,11 @@ namespace Ingame
 				.Add(new UnlockNewItemSys())
 				//Tasks
 				.Add(new CreateNewTaskSys())
-				//shop
 				.Add(new CheckOfferedTaskItemValidationSys())
-				.Add(new BuyItemSys())
+				//Shop
+				.Add(new RefreshShopSystem(shopConfig, diContainer))
 				//Cards
+				.Add(new UpdateCardsViewSystem())
 				.Add(new SelectCardSystem(inputService))
 				.Add(new MoveCardSystem(inputService, generalCardsConfig))
 				.Add(new DropCardSystem(inputService));

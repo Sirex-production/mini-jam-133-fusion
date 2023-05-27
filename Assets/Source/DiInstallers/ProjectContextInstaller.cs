@@ -8,6 +8,7 @@ namespace Ingame
 	public sealed class ProjectContextInstaller : MonoInstaller
 	{
 		[Required, SerializeField] private GeneralCardsConfig generalCardsConfig;
+		[Required, SerializeField] private ShopConfig shopConfig;
 		[Required, SerializeField] private SceneService sceneService;
 		
 		public override void InstallBindings()
@@ -54,8 +55,15 @@ namespace Ingame
 
 		private void InstallConfigs()
 		{
-			Container.Bind<GeneralCardsConfig>()
+			Container
+				.Bind<GeneralCardsConfig>()
 				.FromInstance(generalCardsConfig)
+				.AsSingle()
+				.NonLazy();
+			
+			Container
+				.Bind<ShopConfig>()
+				.FromInstance(shopConfig)
 				.AsSingle()
 				.NonLazy();
 		}

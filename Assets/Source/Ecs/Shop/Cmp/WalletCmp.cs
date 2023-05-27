@@ -1,9 +1,9 @@
 ﻿using Secs;
 
-namespace Ingame.Shop
+namespace Ingame
 {
-    public struct WalletCmp : IEcsComponent
-    {
-        public float money;
-    }
+	public struct WalletCmp : IEcsComponent
+	{
+		public float currentAmountOfCoins;
+	}
 }

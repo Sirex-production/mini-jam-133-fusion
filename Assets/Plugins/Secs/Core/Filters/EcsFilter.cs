@@ -11,6 +11,7 @@ namespace Secs
 		private readonly HashSet<int> _entities;
 
 		public bool IsEmpty => _entities.Count == 0;
+		public int EntitiesCount => _entities.Count;
 
 		public EcsFilter(EcsWorld world, EcsMatcher matcher)
 		{
