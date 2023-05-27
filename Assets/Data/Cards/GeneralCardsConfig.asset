@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c6fd4c95ff46d1863989d74ffe8635, type: 3}
   m_Name: GeneralCardsConfig
   m_EditorClassIdentifier: 
-  offsetFromCraftingSurfaceWhenDragging: 5
+  offsetFromCraftingSurfaceWhenDragging: 12
   cardsFollowCursorDumping: 0.01
-  cardsRotationDumping: 0
+  cardsRotationAngle: 20
+  cardsRotationStrength: 20
+  timeShouldPassToBeInRestState: 5
