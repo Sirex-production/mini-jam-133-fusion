@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ingame.Npc;
 using Ingame.Recipe;
 using Secs;
 using UnityEngine;
@@ -22,6 +23,9 @@ namespace Ingame.Tasks
         [EcsInject( typeof(PlayerWalletCmp))]
         private readonly EcsFilter _walletCmpFilter;
         
+        [EcsInject( typeof(IsUnderDOTweenAnimationTag),typeof(TaskNpcTag))]
+        private readonly EcsFilter _npcFilter;
+        
         [EcsInject]
         private readonly EcsPool<TaskHolderMdl> _taskPool;
         
@@ -42,6 +46,9 @@ namespace Ingame.Tasks
             foreach (var offerTaskItemEventEntity in _offerTaskItemEventFilter)
             {
                 if(_offeredItemsCmpFilter.IsEmpty)
+                    return;
+                
+                if(!_npcFilter.IsEmpty)
                     return;
                 
                 if(_taskFilter.IsEmpty)

@@ -2,6 +2,7 @@
 using Ingame.Tasks;
 using Secs;
 using Ingame;
+using Ingame.Npc;
 using UnityEngine;
 using Zenject;
 
@@ -52,6 +53,8 @@ namespace Ingame
 				.Add(new MergeCardsSystem(allRecipeContainerConfig))
 				//Camerawork
 				.Add(new MoveCameraSystem(inputService, settingsService))
+				//NPC
+				.Add(new MoveTaskNpcSys())
 				//Physics
 				.Add(new DisposeOnTickPhysicsSys())
 				.Add(new FullyDestroyObject());
