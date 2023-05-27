@@ -18,6 +18,7 @@ namespace Ingame
 			DiContainer diContainer,
 			EcsWorldsProvider ecsWorldsProvider,
 			InputService inputService,
+			SettingsService settingsService,
 			GeneralCardsConfig generalCardsConfig,
 			ShopConfig shopConfig,
 			AllRecipeContainerConfig allRecipeContainerConfig
@@ -49,6 +50,8 @@ namespace Ingame
 				.Add(new UpdateCardMotionSystem(generalCardsConfig))
 				//Fusion
 				.Add(new MergeCardsSystem(allRecipeContainerConfig))
+				//Camerawork
+				.Add(new MoveCameraSystem(inputService, settingsService))
 				//Physics
 				.Add(new DisposeOnTickPhysicsSys())
 				.Add(new FullyDestroyObject());
