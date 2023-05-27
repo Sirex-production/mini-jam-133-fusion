@@ -12,6 +12,4 @@ namespace Ingame.Recipe
         [SerializeField] private Texture2D icon;
         
     }
-    
-    
 }

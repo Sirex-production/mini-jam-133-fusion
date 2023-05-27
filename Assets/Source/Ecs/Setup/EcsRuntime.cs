@@ -38,7 +38,6 @@ namespace Ingame
 				.Add(new MoveCardSystem(inputService, generalCardsConfig))
 				.Add(new DropCardSystem(inputService));
 			
-
 			_ecsSystems.AttachProfiler();
 			_ecsSystems.Inject();
 		}

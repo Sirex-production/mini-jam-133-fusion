@@ -15,7 +15,7 @@ namespace Ingame
 		[EcsInject]
 		private readonly EcsPool<IsFollowingMouseTag> _isFollowingMouseTagPool;
 		[EcsInject]
-		private readonly EcsPool<IsCardTag> _isCardTagPool;
+		private readonly EcsPool<CardCmp> _isCardTagPool;
 		[EcsInject]
 		private readonly EcsPool<RigidbodyMdl> _rigidbodyPool;
 		

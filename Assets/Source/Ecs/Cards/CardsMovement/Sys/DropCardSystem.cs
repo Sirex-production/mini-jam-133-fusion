@@ -4,7 +4,7 @@ namespace Ingame
 {
 	public sealed class DropCardSystem : IEcsRunSystem
 	{
-		[EcsInject(typeof(RigidbodyMdl), typeof(IsCardTag), typeof(IsFollowingMouseTag))]
+		[EcsInject(typeof(RigidbodyMdl), typeof(CardCmp), typeof(IsFollowingMouseTag))]
 		private readonly EcsFilter _isFollowingMouseCardFilter;
 		
 		[EcsInject]

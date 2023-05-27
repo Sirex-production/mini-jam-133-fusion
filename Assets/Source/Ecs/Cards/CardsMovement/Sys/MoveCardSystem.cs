@@ -6,7 +6,7 @@ namespace Ingame
 {
 	public sealed class MoveCardSystem : IEcsRunSystem
 	{
-		[EcsInject(typeof(IsCardTag), typeof(IsFollowingMouseTag), typeof(TransformMdl))]
+		[EcsInject(typeof(CardCmp), typeof(IsFollowingMouseTag), typeof(TransformMdl))]
 		private readonly EcsFilter _followingMouseCardFilter;
 		
 		[EcsInject(typeof(CameraMdl), typeof(MainCameraTag))]
