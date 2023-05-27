@@ -18,6 +18,7 @@ namespace Secs.Debug
             _systems = ecsSys;
             
             CreateWorld();
+            CreateAlreadyCreatedEntities();
             
             _ecsWorld.OnEntityCreated += CreateNewObserver;
             _ecsWorld.OnEntityDeleted += DeleteObserver;
@@ -32,6 +33,15 @@ namespace Secs.Debug
             _ecsSystemsObserver.ecsSystems = _systems;
             
             _worldGameObject.transform.SetParent(EcsWorldsObserver.Instance.gameObject.transform);
+        }
+        
+        private void CreateAlreadyCreatedEntities()
+        {
+            var cashedCollection = _ecsWorld.AliveEntities;
+            foreach (var entity in cashedCollection)
+            {
+                CreateNewObserver(entity);
+            }
         }
         
         private void CreateNewObserver(int entity)

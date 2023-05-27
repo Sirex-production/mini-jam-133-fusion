@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Secs
 {
     public sealed partial class EcsWorld
@@ -28,5 +30,7 @@ namespace Secs
         {
             return Equals(GetPool<T>().GetComponent(i), d);
         }
+        
+        internal IReadOnlyCollection<int> AliveEntities => _aliveEntities;
     }
 }
