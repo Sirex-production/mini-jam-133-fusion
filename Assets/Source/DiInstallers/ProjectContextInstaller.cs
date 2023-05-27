@@ -13,6 +13,7 @@ namespace Ingame
 		[Required, SerializeField] private SceneService sceneService;
 		[Required, SerializeField] private SoundService soundService;
 		[Required, SerializeField] private AllRecipeContainerConfig allRecipeContainerConfig;
+		[Required, SerializeField] private DefaultSettingsConfig defaultSettingsConfig;
 		
 		public override void InstallBindings()
 		{
@@ -21,6 +22,7 @@ namespace Ingame
 			InstallSceneService();
 			InstallSoundService();
 			InstallInputSystem();
+			InstallSettingsService();
 			InstallConfigs();
 		}
 
@@ -64,7 +66,15 @@ namespace Ingame
 				.AsSingle()
 				.NonLazy();
 		}
-		
+
+		private void InstallSettingsService()
+		{
+			Container.Bind<SettingsService>()
+				.FromNew()
+				.AsSingle()
+				.NonLazy();
+		}
+
 		private void InstallConfigs()
 		{
 			Container
@@ -82,6 +92,12 @@ namespace Ingame
 			Container
 				.Bind<AllRecipeContainerConfig>()
 				.FromInstance(allRecipeContainerConfig)
+				.AsSingle()
+				.NonLazy();
+			
+			Container
+				.Bind<DefaultSettingsConfig>()
+				.FromInstance(defaultSettingsConfig)
 				.AsSingle()
 				.NonLazy();
 		}
