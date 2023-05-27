@@ -45,6 +45,7 @@ namespace Ingame
 			
 			foreach(var entity in _followingMouseCardFilter)
 			{
+				//Move card
 				ref var cardTransformMdl = ref _transformPool.GetComponent(entity);
 				var cardTransform = cardTransformMdl.transform;
 				var directionTowardsCamera = Vector3.Normalize(cameraPos - cardTransform.position);
@@ -56,25 +57,20 @@ namespace Ingame
 					targetCardPos,
 					1f - Mathf.Pow(_cardsConfig.CardsFollowCursorDumping, Time.deltaTime)
 				);
-
-				var initialCardEulerAngles = cardTransform.eulerAngles;
+				
+				//Rotate card
 				var movingDirection = Vector3.Normalize(targetCardPos - cardTransform.position);
 				var targetCardEulerAngles = cardTransformMdl.initialLocalRot.eulerAngles;
 
-				movingDirection *= 20;
-				movingDirection.x = Mathf.Clamp(movingDirection.x, -20, 20);
+				movingDirection *= _cardsConfig.CardsRotationStrength;
+				movingDirection.x = Mathf.Clamp(movingDirection.x, -_cardsConfig.CardsRotationAngle, _cardsConfig.CardsRotationAngle);
 				movingDirection.y = 0;
-				movingDirection.z = Mathf.Clamp(movingDirection.z, -20, 20);
+				movingDirection.z = Mathf.Clamp(movingDirection.z, -_cardsConfig.CardsRotationAngle, _cardsConfig.CardsRotationAngle);
 
 				targetCardEulerAngles.x += -movingDirection.z;
 				targetCardEulerAngles.z += movingDirection.x;
 
 				cardTransform.eulerAngles = targetCardEulerAngles;
-				// (
-				// 	cardTransform.eulerAngles,
-				// 	targetCardEulerAngles,
-				// 	1f - Mathf.Pow(_cardsConfig.CardsRotationDumping, Time.deltaTime)
-				// );
 			}
 		}
 
