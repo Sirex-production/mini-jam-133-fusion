@@ -10,6 +10,8 @@ namespace Secs
 		private readonly EcsMatcher _matcher;
 		private readonly HashSet<int> _entities;
 
+		public bool IsEmpty => _entities.Count == 0;
+
 		public EcsFilter(EcsWorld world, EcsMatcher matcher)
 		{
 			_world = world ?? throw new ArgumentNullException(nameof(world));
@@ -66,6 +68,14 @@ namespace Secs
 			
 			if(entityComponentsTypeMask.Includes(_matcher.includeTypeMask))
 				_entities.Add(entityId);
+		}
+		
+		public int GetFirstEntity()
+		{
+			foreach (var entity in _entities)
+				return entity;
+
+			return -1;
 		}
 #region Enumeration
 		public IEnumerator<int> GetEnumerator()
