@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0db0bb6a66462da3b63693f68bc9ba, type: 3}
   m_Name: ShopConfig
   m_EditorClassIdentifier: 
+  initialAmountOfCoins: 20
   shopItems:
   - itemConfig: {fileID: 11400000, guid: 6d7e78b69ed5a4943aa9d1ac655ee8d3, type: 2}
     price: 10

@@ -37,6 +37,7 @@ namespace Ingame
 				.Add(new CheckOfferedTaskItemValidationSys())
 				//Shop
 				.Add(new RefreshShopSystem(shopConfig, diContainer))
+				.Add(new SellItemSystem())
 				//Cards
 				.Add(new UpdateCardsViewSystem())
 				.Add(new SelectCardSystem(inputService))

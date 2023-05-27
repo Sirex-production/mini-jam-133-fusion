@@ -1,5 +1,4 @@
 ﻿using Secs;
-using UnityEngine;
 
 namespace Ingame
 {
@@ -57,7 +56,7 @@ namespace Ingame
 				ref var shopSlotCmp = ref _shopSlotCmpPool.GetComponent(entity);
 				ref var playerWalletCmp = ref _playerWalletPool.GetComponent(_playerWalletFilter.GetFirstEntity());
 				
-				cardViewMdl.cardView.TurnOnShopView(shopSlotCmp.price, shopSlotCmp.price > playerWalletCmp.currentAmountOfCoins);
+				cardViewMdl.cardView.TurnOnShopView(shopSlotCmp.price, playerWalletCmp.HasEnoughCoins(shopSlotCmp.price));
 			}
 		}
 	}

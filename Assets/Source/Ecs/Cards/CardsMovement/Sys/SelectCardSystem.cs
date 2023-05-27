@@ -9,6 +9,8 @@ namespace Ingame
 		private readonly EcsFilter _cameraFilter;
 		[EcsInject(typeof(IsFollowingMouseTag))]
 		private readonly EcsFilter _isFollowingMouseTagFilter;
+		[EcsInject(typeof(PlayerWalletCmp))]
+		private readonly EcsFilter _playerWalletFilter;
 		
 		[EcsInject]
 		private readonly EcsPool<CameraMdl> _cameraPool;
@@ -18,6 +20,10 @@ namespace Ingame
 		private readonly EcsPool<CardCmp> _isCardTagPool;
 		[EcsInject]
 		private readonly EcsPool<RigidbodyMdl> _rigidbodyPool;
+		[EcsInject]
+		private readonly EcsPool<ShopSlotCmp> _shopSlotPool;
+		[EcsInject]
+		private readonly EcsPool<PlayerWalletCmp> _playerWalletPool;
 		
 		private readonly InputService _inputService;
 
@@ -47,6 +53,15 @@ namespace Ingame
 
 			if(!_isCardTagPool.HasComponent(entityReference.EntityId))
 				return;
+
+			if(!_playerWalletFilter.IsEmpty && _shopSlotPool.HasComponent(entityReference.EntityId))
+			{
+				ref var shopSlotCmp = ref _shopSlotPool.GetComponent(entityReference.EntityId);
+				ref var playerWalletCmp = ref _playerWalletPool.GetComponent(_playerWalletFilter.GetFirstEntity());
+					
+				if(!playerWalletCmp.HasEnoughCoins(shopSlotCmp.price))
+					return;
+			}
 
 			ref var rigidbodyMdl = ref _rigidbodyPool.GetComponent(entityReference.EntityId);
 

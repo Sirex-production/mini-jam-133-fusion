@@ -50,7 +50,6 @@ namespace Ingame
             ref var eventComponent = ref _onTriggerEnterEvent.AddComponent(eventEntity);
             eventComponent.collider = collider;
             eventComponent.senderObject = senderGameObject;
-            UnityEngine.Debug.Log(21);
         }    
         
         internal static void RegisterTriggerStayEvent(Transform senderGameObject, Collider collider)
