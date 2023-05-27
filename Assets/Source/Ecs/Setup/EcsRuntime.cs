@@ -24,8 +24,6 @@ namespace Ingame
 			_ecsSystems = new EcsSystems(_world);
 
 			_ecsSystems
-				//Fusion
-				.Add(new TryToCombineSys())
 				//Recipe
 				.Add(new InitRecipesSys())
 				.Add(new UnlockNewRecipeSys())
