@@ -48,7 +48,7 @@ namespace Ingame.Tasks
                 ref var offeredTaskItemsCmp = ref _offerItemsPool.GetComponent(_offeredItemsCmpFilter.GetFirstEntity());
                 ref var taskHolderMdl = ref _taskPool.GetComponent(_taskFilter.GetFirstEntity());
                 ref var walletCmp = ref _walletCmpPool.GetComponent(_walletCmpFilter.GetFirstEntity());
-
+                
                 if (offeredTaskItemsCmp.IsTradeAccepted(taskHolderMdl.currentTask.QuestItems))
                 {
                     walletCmp.currentAmountOfCoins += taskHolderMdl.currentTask.Money;
@@ -57,7 +57,7 @@ namespace Ingame.Tasks
                     _askNewTaskPool.AddComponent(newEntity);
                     
                    
-                    Debug.Log(123231123);
+                
                 }
                 _world.DelEntity(offerTaskItemEventEntity);
             }

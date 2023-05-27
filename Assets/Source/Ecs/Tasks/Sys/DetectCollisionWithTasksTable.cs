@@ -50,6 +50,9 @@ namespace Ingame.Tasks
                 if(!cardEntityReference.World.GetPool<CardCmp>().HasComponent(cardEntityReference.EntityId))
                     continue;
 
+                if(cardEntityReference.World.GetPool<ShopSlotCmp>().HasComponent(cardEntityReference.EntityId))
+                    continue;
+                
                 ref var cardCmp = ref cardEntityReference.World.GetPool<CardCmp>().GetComponent(cardEntityReference.EntityId);
                 ref var transformMdlCmp = ref cardEntityReference.World.GetPool<TransformMdl>().GetComponent(cardEntityReference.EntityId);
                 
@@ -81,6 +84,9 @@ namespace Ingame.Tasks
                     continue;
                 
                 if(!cardEntityReference.World.GetPool<CardCmp>().HasComponent(cardEntityReference.EntityId))
+                    continue;
+                
+                if(cardEntityReference.World.GetPool<ShopSlotCmp>().HasComponent(cardEntityReference.EntityId))
                     continue;
                 
                 ref var cardCmp = ref cardEntityReference.World.GetPool<CardCmp>().GetComponent(cardEntityReference.EntityId);

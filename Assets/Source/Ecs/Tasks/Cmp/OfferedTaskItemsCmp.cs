@@ -36,6 +36,9 @@ namespace Ingame.Tasks
 
         public bool IsTradeAccepted(List<ItemConfig> items)
         {
+            items.Sort();
+
+            ItemConfig itemConfig;
             
             return true;
         }
