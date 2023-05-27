@@ -8,6 +8,7 @@ namespace Ingame
 		[EcsInject(typeof(CameraMdl), typeof(MainCameraTag))]
 		private readonly EcsFilter _cameraFilter;
 		[EcsInject(typeof(IsFollowingMouseTag))]
+		[AndExclude(typeof(IsUnderDOTweenAnimationTag))]
 		private readonly EcsFilter _isFollowingMouseTagFilter;
 		[EcsInject(typeof(PlayerWalletCmp))]
 		private readonly EcsFilter _playerWalletFilter;

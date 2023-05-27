@@ -1425,6 +1425,7 @@ GameObject:
   - component: {fileID: 2506858035076246410}
   - component: {fileID: 4080136594206532744}
   - component: {fileID: 665006733431476447}
+  - component: {fileID: 2574092972008852816}
   - component: {fileID: 8037965169823382564}
   m_Layer: 6
   m_Name: EcsEntity - Card
@@ -1500,6 +1501,21 @@ MonoBehaviour:
   shopInfoRootTransform: {fileID: 3602427112571280111}
   unavailableToBuyRootTransform: {fileID: 2337523017820709643}
   priceText: {fileID: 2006469194762567135}
+--- !u!114 &2574092972008852816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7026886335144813740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3344a58f5f941988cad745de33a35f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onCollisionEnter: 1
+  onCollisionStay: 0
+  onCollisionExit: 0
 --- !u!114 &8037965169823382564
 MonoBehaviour:
   m_ObjectHideFlags: 0

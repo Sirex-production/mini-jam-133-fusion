@@ -8,16 +8,13 @@ namespace Ingame
 	{
 		[EcsInject(typeof(CardCmp), typeof(IsFollowingMouseTag), typeof(TransformMdl))]
 		private readonly EcsFilter _followingMouseCardFilter;
-		
 		[EcsInject(typeof(CameraMdl), typeof(MainCameraTag))]
 		private readonly EcsFilter _cameraFilter;
-		
 		[EcsInject(typeof(TransformMdl), typeof(GameSurfaceTag))]
 		private readonly EcsFilter _craftingSurfaceFilter;
 		
 		[EcsInject]
 		private readonly EcsPool<TransformMdl> _transformPool;
-		
 		[EcsInject]
 		private readonly EcsPool<CameraMdl> _cameraPool;
 

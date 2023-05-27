@@ -30,34 +30,26 @@ namespace Ingame
 				return;
 			
 			ref var walletCmp = ref _walletPool.GetComponent(_walletFilter.GetFirstEntity());
-			
-			Debug.Log("A");
 
 			foreach(var entity in _onTriggerEnterEventFilter)
 			{
 				ref var onTriggerEnterEvent = ref _onTriggerEnterEventPool.GetComponent(entity);
-
-				Debug.Log("A1");
 				
+				if(onTriggerEnterEvent.collider == null || onTriggerEnterEvent.senderObject == null)
+					continue;
+
 				if(!onTriggerEnterEvent.senderObject.TryGetComponent(out EcsEntityReference senderEntityReference))
 					continue;
-			
-				Debug.Log("B");
+
+				if(!onTriggerEnterEvent.collider.TryGetComponent(out EcsEntityReference otherEntityReference))
+					continue;
 				
 				if(!_craftingSurfacePool.HasComponent(senderEntityReference.EntityId))
 					continue;
-				
-				Debug.Log("C");
-				
-				if(!onTriggerEnterEvent.collider.TryGetComponent(out EcsEntityReference otherEntityReference))
-					continue;
-			
-				Debug.Log("D");
-				
+
 				if(!_shopSlotPool.HasComponent(otherEntityReference.EntityId))
 					continue;
 				
-				Debug.Log("E");
 				
 				SellItem(otherEntityReference.EntityId, ref walletCmp);
 			}
@@ -70,8 +62,6 @@ namespace Ingame
 			if(!walletCmp.HasEnoughCoins(shopSlotCmp.price))
 				return;
 
-			Debug.Log("F");
-			
 			walletCmp.currentAmountOfCoins -= shopSlotCmp.price;
 			
 			_shopSlotPool.DelComponent(cardEntityId);

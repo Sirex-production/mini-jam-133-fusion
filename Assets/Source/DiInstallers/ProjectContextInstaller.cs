@@ -1,4 +1,5 @@
-﻿using NaughtyAttributes;
+﻿using Ingame.Recipe;
+using NaughtyAttributes;
 using Secs;
 using UnityEngine;
 using Zenject;
@@ -11,6 +12,7 @@ namespace Ingame
 		[Required, SerializeField] private ShopConfig shopConfig;
 		[Required, SerializeField] private SceneService sceneService;
 		[Required, SerializeField] private SoundService soundService;
+		[Required, SerializeField] private AllRecipeContainerConfig allRecipeContainerConfig;
 		
 		public override void InstallBindings()
 		{
@@ -74,6 +76,12 @@ namespace Ingame
 			Container
 				.Bind<ShopConfig>()
 				.FromInstance(shopConfig)
+				.AsSingle()
+				.NonLazy();
+			
+			Container
+				.Bind<AllRecipeContainerConfig>()
+				.FromInstance(allRecipeContainerConfig)
 				.AsSingle()
 				.NonLazy();
 		}

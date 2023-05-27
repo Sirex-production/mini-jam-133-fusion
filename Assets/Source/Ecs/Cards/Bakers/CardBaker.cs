@@ -6,6 +6,7 @@ using Zenject;
 
 namespace Ingame
 {
+	[RequireComponent(typeof(EcsPhysicsCollisionProvider))]
 	public sealed class CardBaker : MonoBehaviour
 	{
 		[Required, SerializeField] private ItemConfig itemConfig;

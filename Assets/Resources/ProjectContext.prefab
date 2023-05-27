@@ -193,6 +193,7 @@ MonoBehaviour:
   shopConfig: {fileID: 11400000, guid: 948339e185803754caa2317cfa2edd7c, type: 2}
   sceneService: {fileID: 2590189644882682233}
   soundService: {fileID: 9009655195514370092}
+  allRecipeContainerConfig: {fileID: 11400000, guid: e88dfce6267e36849a12e0bc631b7c2e, type: 2}
 --- !u!1 &8032421548215848644
 GameObject:
   m_ObjectHideFlags: 0
