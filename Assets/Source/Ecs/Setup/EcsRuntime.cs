@@ -33,6 +33,7 @@ namespace Ingame
 				.Add(new UnlockNewRecipeSys())
 				.Add(new UnlockNewItemSys())
 				//Tasks
+				.Add(new DetectCollisionWithTasksTable())
 				.Add(new CreateNewTaskSys())
 				.Add(new CheckOfferedTaskItemValidationSys())
 				//Shop

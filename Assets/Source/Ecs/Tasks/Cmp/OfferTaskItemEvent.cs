@@ -5,6 +5,5 @@ namespace Ingame.Tasks
 {
     public struct OfferTaskItemEvent : IEcsComponent
     {
-        public ItemConfig offeredItem;
     }
 }
