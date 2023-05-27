@@ -7,8 +7,10 @@ namespace Ingame
 	{
 		[SerializeField] [Min(0f)] private float offsetFromCraftingSurfaceWhenDragging = 5f;
 		[SerializeField] [Range(0, 1)] private float cardsFollowCursorDumping = .01f;
+		[SerializeField] [Range(0, 1)] private float cardsRotationDumping = .01f;
 
-		public Vector3 OffsetFromCraftingSurfaceWhenDragging => offsetFromCraftingSurfaceWhenDragging * Vector3.up;
+		public float OffsetFromCraftingSurfaceWhenDragging => offsetFromCraftingSurfaceWhenDragging;
 		public float CardsFollowCursorDumping => cardsFollowCursorDumping;
+		public float CardsRotationDumping => cardsRotationDumping;
 	}
 }

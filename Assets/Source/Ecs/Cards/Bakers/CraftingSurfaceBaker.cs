@@ -13,7 +13,12 @@ namespace Ingame
 			int entity = world.NewEntity();
 			
 			world.GetPool<CraftingSurfaceTag>().AddComponent(entity);
-			world.GetPool<TransformMdl>().AddComponent(entity).transform = transform;
+			world.GetPool<TransformMdl>().AddComponent(entity) = new TransformMdl
+			{
+				transform = transform,
+				initialLocalPos = transform.localPosition,
+				initialLocalRot = transform.localRotation
+			};
 		}
 	}
 }

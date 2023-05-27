@@ -1,4 +1,5 @@
-﻿using Secs;
+﻿using System.Runtime.CompilerServices;
+using Secs;
 using UnityEngine;
 
 namespace Ingame
@@ -37,23 +38,60 @@ namespace Ingame
 				return;
 			
 			ref var mainCameraMdl = ref _cameraPool.GetComponent(_cameraFilter.GetFirstEntity());
-			var craftingSurfacePos = _transformPool.GetComponent(_craftingSurfaceFilter.GetFirstEntity()).transform.position;
+			var cameraPos = mainCameraMdl.camera.transform.position;
 
+			if(!GetCraftingSurfacePosition(mousePosition, mainCameraMdl.camera, out Vector3 hitPos))
+				return;
+			
 			foreach(var entity in _followingMouseCardFilter)
 			{
-				var cardTransform = _transformPool.GetComponent(entity).transform;
-				var cursorPositionInWorldSpace = mainCameraMdl.camera.ScreenToWorldPoint(mousePosition);
-				cursorPositionInWorldSpace.y = craftingSurfacePos.y;
-				
-				var targetCardPos = cursorPositionInWorldSpace + _cardsConfig.OffsetFromCraftingSurfaceWhenDragging;
-				
+				ref var cardTransformMdl = ref _transformPool.GetComponent(entity);
+				var cardTransform = cardTransformMdl.transform;
+				var directionTowardsCamera = Vector3.Normalize(cameraPos - cardTransform.position);
+				var targetCardPos = hitPos + directionTowardsCamera * _cardsConfig.OffsetFromCraftingSurfaceWhenDragging;
+
 				cardTransform.position = Vector3.Lerp
 				(
 					cardTransform.position,
 					targetCardPos,
 					1f - Mathf.Pow(_cardsConfig.CardsFollowCursorDumping, Time.deltaTime)
 				);
+
+				var initialCardEulerAngles = cardTransform.eulerAngles;
+				var movingDirection = Vector3.Normalize(targetCardPos - cardTransform.position);
+				var targetCardEulerAngles = cardTransformMdl.initialLocalRot.eulerAngles;
+
+				movingDirection *= 20;
+				movingDirection.x = Mathf.Clamp(movingDirection.x, -20, 20);
+				movingDirection.y = 0;
+				movingDirection.z = Mathf.Clamp(movingDirection.z, -20, 20);
+
+				targetCardEulerAngles.x += -movingDirection.z;
+				targetCardEulerAngles.z += movingDirection.x;
+
+				cardTransform.eulerAngles = targetCardEulerAngles;
+				// (
+				// 	cardTransform.eulerAngles,
+				// 	targetCardEulerAngles,
+				// 	1f - Mathf.Pow(_cardsConfig.CardsRotationDumping, Time.deltaTime)
+				// );
 			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private bool GetCraftingSurfacePosition(Vector2 mousePosition, Camera camera, out Vector3 hitPoint)
+		{
+			var ray = camera.ScreenPointToRay(mousePosition);
+			int raycastMask = ~LayerMask.GetMask("Card");
+
+			if(!Physics.Raycast(ray, out RaycastHit hit,100f,  raycastMask))
+			{
+				hitPoint = Vector3.zero;
+				return false;
+			}
+			
+			hitPoint = hit.point;
+			return true;
 		}
 	}
 }
