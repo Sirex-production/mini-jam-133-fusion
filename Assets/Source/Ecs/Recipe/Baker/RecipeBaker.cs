@@ -8,23 +8,23 @@ namespace Ingame.Recipe
     public sealed class RecipeBaker : MonoBehaviour
     {
         [SerializeField] private List<ItemConfig> startingItems;
-        private EcsWorld _world;
+        private EcsWorld _ecsWorld;
 
         [Inject]
         private void Construct(EcsWorldsProvider ecsWorldsProvider)
         {
-            _world = ecsWorldsProvider.GameplayWorld;
+            _ecsWorld = ecsWorldsProvider.GameplayWorld;
         }
         
         private void Awake()
         {
-            var entity = _world.NewEntity();
-            _world.GetPool<StartingItemsMdl>().AddComponent(entity).startingItems = startingItems;
-            _world.GetPool<RecipeStatusMdl>().AddComponent(entity);
+            var entity = _ecsWorld.NewEntity();
+            _ecsWorld.GetPool<StartingItemsMdl>().AddComponent(entity).startingItems = startingItems;
+            _ecsWorld.GetPool<RecipeStatusMdl>().AddComponent(entity);
             
-            _world.UpdateFilters();
+            _ecsWorld.UpdateFilters();
             
-            gameObject.LinkEcsEntity(_world,entity);
+            gameObject.LinkEcsEntity(_ecsWorld,entity);
         }
     }
 }

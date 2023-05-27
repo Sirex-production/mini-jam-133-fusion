@@ -25,10 +25,12 @@ namespace Ingame
 		{
 			
 			_ecsSystems
-				//Recipes 
+				//Fusion
 				.Add(new TryToCombineSys())
-				.Add(new UnlockNewRecipeSys())
+				//Recipe
 				.Add(new InitRecipesSys())
+				.Add(new UnlockNewRecipeSys())
+				.Add(new UnlockNewItemSys())
 				//Tasks
 				.Add(new CreateNewTaskSys())
 				//shop

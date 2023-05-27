@@ -51,6 +51,7 @@ namespace Secs.Debug
         
         private void DeleteObserver(int entity)
         {
+            //TODO cash GO - dont dellete just setActive(false)
             if (!_entityObservers.ContainsKey(entity))
                 return;
 

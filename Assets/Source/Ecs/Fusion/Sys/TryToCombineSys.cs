@@ -35,7 +35,15 @@ namespace Ingame.Recipe
         {
             foreach (var fusionEntity in _fusionReqFilter)
             {
+                //Victor fusion
                 //todo check if formula is valid + check if it's a new
+
+                foreach (var recipeStatusMdlEntity in _recipeStatusMdlFilter)
+                {
+                    
+                    
+                }
+                
                 _ecsWord.DelEntity(fusionEntity);
             }
         }
