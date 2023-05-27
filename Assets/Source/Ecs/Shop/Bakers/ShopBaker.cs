@@ -1,27 +1,37 @@
-﻿using System;
-using NaughtyAttributes;
+﻿using NaughtyAttributes;
+using Secs;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Ingame
 {
 	public sealed class ShopBaker : MonoBehaviour
 	{
+		[Required, SerializeField] private Button refreshButton;
 		[Required, SerializeField] private CardBaker cardPrefab;
 		[SerializeField] private Transform[] slotTransform;
+		
+		private EcsWorld _world;
 		
 		[Inject]
 		private void Construct(EcsWorldsProvider worldsProvider)
 		{
-			var world = worldsProvider.GameplayWorld;
-			int entity = world.NewEntity();
+			refreshButton.onClick.AddListener(OnRefreshButtonClicked);
 			
-			world.GetPool<ShopCmp>().AddComponent(entity) = new ShopCmp
+			_world = worldsProvider.GameplayWorld;
+			int entity = _world.NewEntity();
+			
+			_world.GetPool<ShopCmp>().AddComponent(entity) = new ShopCmp
 			{
 				cardPrefab = cardPrefab,
 				slotsPositions = slotTransform
 			};
+		}
+
+		private void OnRefreshButtonClicked()
+		{
+			_world.GetPool<RefreshShopEvent>().AddComponent(_world.NewEntity());
 		}
 
 		private void OnDrawGizmos()

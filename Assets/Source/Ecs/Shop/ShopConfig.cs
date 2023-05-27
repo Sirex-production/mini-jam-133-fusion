@@ -10,11 +10,14 @@ namespace Ingame
 	[CreateAssetMenu(menuName = "Ingame/ShopConfig")]
 	public sealed class ShopConfig : ScriptableObject
 	{
+		[SerializeField] [Min(0)] private int refreshCost;
+		
 		[SerializeField] [Min(0)] private int initialAmountOfCoins;
 		[SerializeField] private ShopItemData[] shopItems;
 		
 		private Dictionary<ItemConfig, ShopItemData> _cachedShopItems;
 
+		public int RefreshCost => refreshCost;
 		public int InitialAmountOfCoins => initialAmountOfCoins;
 
 		public bool TryGetShopItemData(ItemConfig itemConfig, out ShopItemData shopItemData)
