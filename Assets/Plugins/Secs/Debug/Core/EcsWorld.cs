@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Secs
 {
     public sealed partial class EcsWorld
@@ -7,8 +9,7 @@ namespace Secs
         {
            return (T) GetPool<T>().GetItem(entity);
         }
-        
-        
+
         internal void ReplaceItem<T>(int entity, T newValue) where T : struct, IEcsComponent
         {
             GetPool<T>().ReplaceComponent(entity, newValue);
@@ -28,5 +29,7 @@ namespace Secs
         {
             return Equals(GetPool<T>().GetComponent(i), d);
         }
+        
+        internal IReadOnlyCollection<int> AliveEntities => _aliveEntities;
     }
 }

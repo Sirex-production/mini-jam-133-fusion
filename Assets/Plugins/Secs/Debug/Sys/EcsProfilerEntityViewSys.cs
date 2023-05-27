@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Secs.Debug 
@@ -17,6 +18,7 @@ namespace Secs.Debug
             _systems = ecsSys;
             
             CreateWorld();
+            CreateAlreadyCreatedEntities();
             
             _ecsWorld.OnEntityCreated += CreateNewObserver;
             _ecsWorld.OnEntityDeleted += DeleteObserver;
@@ -33,8 +35,20 @@ namespace Secs.Debug
             _worldGameObject.transform.SetParent(EcsWorldsObserver.Instance.gameObject.transform);
         }
         
+        private void CreateAlreadyCreatedEntities()
+        {
+            var cashedCollection = _ecsWorld.AliveEntities;
+            foreach (var entity in cashedCollection)
+            {
+                CreateNewObserver(entity);
+            }
+        }
+        
         private void CreateNewObserver(int entity)
         {
+            if (_entityObservers.ContainsKey(entity))
+                return;
+            
             var entityGameObject = new GameObject($"Entity {entity}");
             entityGameObject.transform.parent = _worldGameObject.transform;
             
@@ -47,6 +61,10 @@ namespace Secs.Debug
         
         private void DeleteObserver(int entity)
         {
+            //TODO cash GO - dont dellete just setActive(false)
+            if (!_entityObservers.ContainsKey(entity))
+                return;
+
             var objectToDestroy = _entityObservers[entity];
             
             _entityObservers.Remove(entity);

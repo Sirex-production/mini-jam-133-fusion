@@ -1,7 +1,7 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
 
-namespace Ingame.Receipt
+namespace Ingame.Recipe
 {
     [CreateAssetMenu(fileName = "Item", menuName = "Cards/Item")]
     public sealed class ItemConfig : ScriptableObject

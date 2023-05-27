@@ -1,4 +1,5 @@
-﻿using Ingame.Receipt;
+﻿using Ingame.Recipe;
+using Ingame.Shop;
 using Ingame.Tasks;
 using Secs;
 using UnityEngine;
@@ -10,32 +11,41 @@ namespace Ingame
 	{
 		private EcsWorld _world;
 		private EcsSystems _ecsSystems;
-		
+
 		[Inject]
-		private void Construct(EcsWorldsProvider ecsWorldsProvider)
+		private void Construct
+		(
+			EcsWorldsProvider ecsWorldsProvider,
+			InputService inputService,
+			GeneralCardsConfig generalCardsConfig
+		)
 		{
 			_world = ecsWorldsProvider.GameplayWorld;
 			_ecsSystems = new EcsSystems(_world);
-			
-			SetupSystems();
-		}
-		
-		private void SetupSystems()
-		{
-			
+
 			_ecsSystems
-				.Add(new UnlockNewReceiptsSys())
-				.Add(new InitReceiptsSys())
+				//Recipe
+				.Add(new InitRecipesSys())
+				.Add(new UnlockNewRecipeSys())
+				.Add(new UnlockNewItemSys())
+				//Tasks
 				.Add(new CreateNewTaskSys())
-				.Add(new CheckOfferedTaskItemValidationSys());
-		 
+				//shop
+				.Add(new CheckOfferedTaskItemValidationSys())
+				.Add(new BuyItemSys())
+				//Cards
+				.Add(new SelectCardSystem(inputService))
+				.Add(new MoveCardSystem(inputService, generalCardsConfig))
+				.Add(new DropCardSystem(inputService));
+			
+
 			_ecsSystems.AttachProfiler();
-	
 			_ecsSystems.Inject();
 		}
 
 		private void Start()
 		{
+			_world.UpdateFilters();
 			_ecsSystems.FireInitSystems();
 		}
 

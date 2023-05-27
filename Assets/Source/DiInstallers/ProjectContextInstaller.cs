@@ -7,6 +7,7 @@ namespace Ingame
 {
 	public sealed class ProjectContextInstaller : MonoInstaller
 	{
+		[Required, SerializeField] private GeneralCardsConfig generalCardsConfig;
 		[Required, SerializeField] private SceneService sceneService;
 		
 		public override void InstallBindings()
@@ -14,6 +15,8 @@ namespace Ingame
 			InstallEcs();
 			InstallSaveLoadService();
 			InstallSceneService();
+			InstallInputSystem();
+			InstallConfigs();
 		}
 
 		private void InstallEcs()
@@ -38,6 +41,23 @@ namespace Ingame
 			Container
 				.BindInstance(sceneService)
 				.AsSingle();
+		}
+
+		private void InstallInputSystem()
+		{
+			Container
+				.Bind<InputService>()
+				.FromNew()
+				.AsSingle()
+				.NonLazy();
+		}
+
+		private void InstallConfigs()
+		{
+			Container.Bind<GeneralCardsConfig>()
+				.FromInstance(generalCardsConfig)
+				.AsSingle()
+				.NonLazy();
 		}
 	}
 }

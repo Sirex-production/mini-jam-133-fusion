@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258fb7f1c24c4a48a6fd48b226f7562b, type: 3}
   m_Name: TasksConfig
   m_EditorClassIdentifier: 
-  tasks: []
+  tasks:
+  - questItem: {fileID: 11400000, guid: f7daaf08fae3fc54b918152795ae5956, type: 2}
+    description: Hello... 1 iron please...
+    money: 15
+  - questItem: {fileID: 11400000, guid: f7daaf08fae3fc54b918152795ae5956, type: 2}
+    description: '... I hope u could help me to find some iron... '
+    money: 22

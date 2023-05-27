@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Ingame.Receipt;
+using Ingame.Recipe;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -10,6 +10,8 @@ namespace Ingame.Tasks
     public sealed class TasksConfig : ScriptableObject
     {
         [SerializeField] private List<Task> tasks;
+
+        public List<Task> Tasks => tasks;
     }
 
     [Serializable]
