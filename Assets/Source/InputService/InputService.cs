@@ -9,6 +9,9 @@ namespace Ingame
 
 		public bool IsLeftMousePressed => _inputActions.Mouse.LeftButton.IsPressed();
 		public bool IsRightMousePressed => _inputActions.Mouse.RightButton.IsPressed();
+		
+		public bool IsLeftMouseClicked=> _inputActions.Mouse.LeftButton.WasPressedThisFrame();
+		public bool IsRightMouseClicked=> _inputActions.Mouse.RightButton.WasPressedThisFrame();
 
 		public Vector2 MousePosition => Mouse.current.position.value;
 

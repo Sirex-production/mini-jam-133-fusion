@@ -1,50 +1,59 @@
-﻿using Ingame.Cmp;
-using Secs;
+﻿using Secs;
 using UnityEngine;
 
-namespace Ingame.Sys
+namespace Ingame
 {
 	public sealed class MoveCardSystem : IEcsRunSystem
 	{
-		[EcsInject(typeof(CardViewMdl), typeof(MainCameraTag))]
+		[EcsInject(typeof(IsCardTag), typeof(IsFollowingMouseTag), typeof(TransformMdl))]
+		private readonly EcsFilter _followingMouseCardFilter;
+		
+		[EcsInject(typeof(CameraMdl), typeof(MainCameraTag))]
 		private readonly EcsFilter _cameraFilter;
+		
 		[EcsInject(typeof(TransformMdl), typeof(CraftingSurfaceTag))]
 		private readonly EcsFilter _craftingSurfaceFilter;
+		
+		[EcsInject]
+		private readonly EcsPool<TransformMdl> _transformPool;
+		
 		[EcsInject]
 		private readonly EcsPool<CameraMdl> _cameraPool;
-		[EcsInject]
-		private readonly EcsPool<TransformMdl> _transformMdlPool;
-		
-		private readonly InputService _inputService;
-		private readonly GeneralCardsConfig _generalCardsConfig;
 
-		public MoveCardSystem(InputService inputService, GeneralCardsConfig generalCardsConfig)
+		private readonly InputService _inputService;
+		private readonly GeneralCardsConfig _cardsConfig;
+
+		public MoveCardSystem(InputService inputService, GeneralCardsConfig cardsConfig)
 		{
 			_inputService = inputService;
-			_generalCardsConfig = generalCardsConfig;
+			_cardsConfig = cardsConfig;
 		}
 		
 		public void OnRun()
 		{
+			var mousePosition = _inputService.MousePosition;
+			
 			if(_cameraFilter.IsEmpty || _craftingSurfaceFilter.IsEmpty)
 				return;
 			
-			if(!_inputService.IsLeftMousePressed)
-				return;
-			
-			var mousePosition = _inputService.MousePosition;
-			var craftingSurfaceTransform = _transformMdlPool.GetComponent(_craftingSurfaceFilter.GetFirstEntity()).transform;
-			ref var cameraMdl = ref _cameraPool.GetComponent(_cameraFilter.GetFirstEntity());
+			ref var mainCameraMdl = ref _cameraPool.GetComponent(_cameraFilter.GetFirstEntity());
+			var craftingSurfacePos = _transformPool.GetComponent(_craftingSurfaceFilter.GetFirstEntity()).transform.position;
 
-			var ray = cameraMdl.camera.ScreenPointToRay(mousePosition);
-
-			if(!Physics.Raycast(ray, out RaycastHit hit, 100f))
-				return;
-
-			if(!hit.collider.TryGetComponent(out CardView cardView))
-				return;
-			
-			// if(cardView.TryGetComponent<>())
+			foreach(var entity in _followingMouseCardFilter)
+			{
+				var cardTransform = _transformPool.GetComponent(entity).transform;
+				var cursorPositionInWorldSpace = mainCameraMdl.camera.ScreenToWorldPoint(mousePosition);
+				cursorPositionInWorldSpace.y = craftingSurfacePos.y;
+				
+				var targetCardPos = cursorPositionInWorldSpace + _cardsConfig.OffsetFromCraftingSurfaceWhenDragging;
+				
+				cardTransform.position = Vector3.Lerp
+				(
+					cardTransform.position,
+					targetCardPos,
+					1f - Mathf.Pow(_cardsConfig.CardsFollowCursorDumping, Time.deltaTime)
+				);
+			}
 		}
 	}
 }
