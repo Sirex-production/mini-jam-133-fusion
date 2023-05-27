@@ -19,7 +19,8 @@ namespace Ingame
 			EcsWorldsProvider ecsWorldsProvider,
 			InputService inputService,
 			GeneralCardsConfig generalCardsConfig,
-			ShopConfig shopConfig
+			ShopConfig shopConfig,
+			AllRecipeContainerConfig allRecipeContainerConfig
 		)
 		{
 			_world = ecsWorldsProvider.GameplayWorld;
@@ -45,6 +46,8 @@ namespace Ingame
 				.Add(new DropCardSystem(inputService))
 				.Add(new MoveShopCardsBackToShopSystem())
 				.Add(new UpdateCardMotionSystem(generalCardsConfig))
+				//Fusion
+				.Add(new MergeCardsSystem(allRecipeContainerConfig))
 				//Physics
 				.Add(new DisposeOnTickPhysicsSys());
 

@@ -39,13 +39,7 @@ namespace Secs
 			_pools = new Dictionary<int, object>(config.world.initialAllocatedPools);
 			_filters = new Dictionary<EcsMatcher, EcsFilter>(config.world.initialAllocatedFilters);
 		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal bool IsEntityDead(int entityId)
-		{
-			return _deadEntities.Contains(entityId);
-		}
-
+		
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal EcsTypeMask GetEntityComponentsTypeMask(in int entityId)
 		{
@@ -74,6 +68,12 @@ namespace Secs
 			});
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public bool IsEntityDead(int entityId)
+		{
+			return _deadEntities.Contains(entityId);
+		}
+		
 		public void UpdateFilters()
 		{
 			foreach(var updateOperation in _entityUpdateOperations)
