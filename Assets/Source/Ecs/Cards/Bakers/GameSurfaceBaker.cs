@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Ingame
 {
-	public sealed class CraftingSurfaceBaker : MonoBehaviour
+	public sealed class GameSurfaceBaker : MonoBehaviour
 	{
 		[Inject]
 		private void Construct(EcsWorldsProvider ecsWorldsProvider)
@@ -12,7 +12,7 @@ namespace Ingame
 			
 			int entity = world.NewEntity();
 			
-			world.GetPool<CraftingSurfaceTag>().AddComponent(entity);
+			world.GetPool<GameSurfaceTag>().AddComponent(entity);
 			world.GetPool<TransformMdl>().AddComponent(entity) = new TransformMdl
 			{
 				transform = transform,

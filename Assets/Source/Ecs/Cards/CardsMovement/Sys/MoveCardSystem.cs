@@ -12,7 +12,7 @@ namespace Ingame
 		[EcsInject(typeof(CameraMdl), typeof(MainCameraTag))]
 		private readonly EcsFilter _cameraFilter;
 		
-		[EcsInject(typeof(TransformMdl), typeof(CraftingSurfaceTag))]
+		[EcsInject(typeof(TransformMdl), typeof(GameSurfaceTag))]
 		private readonly EcsFilter _craftingSurfaceFilter;
 		
 		[EcsInject]
