@@ -40,6 +40,7 @@ namespace Ingame.Tasks
                     int randomIndex = Random.Range(0, allTasks.Count);
                     
                     taskHolderMdl.currentTask = allTasks[randomIndex];
+                    
                 }
                 
                 _askNewTaskPool.DelComponent(askNewTaskEntity);

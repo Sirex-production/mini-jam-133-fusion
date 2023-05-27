@@ -35,6 +35,7 @@ namespace Ingame
 				.Add(new UnlockNewRecipeSys())
 				.Add(new UnlockNewItemSys())
 				//Tasks
+				.Add(new DetectCollisionWithTasksTable())
 				.Add(new CreateNewTaskSys())
 				.Add(new CheckOfferedTaskItemValidationSys())
 				//Shop
@@ -52,7 +53,8 @@ namespace Ingame
 				//Camerawork
 				.Add(new MoveCameraSystem(inputService, settingsService))
 				//Physics
-				.Add(new DisposeOnTickPhysicsSys());
+				.Add(new DisposeOnTickPhysicsSys())
+				.Add(new FullyDestroyObject());
 
 			_ecsSystems.AttachProfiler();
 			_ecsSystems.Inject();
