@@ -2,7 +2,7 @@
 
 namespace Ingame.Recipe
 {
-    public struct DiscoverNewItemReq : IEcsComponent
+    public struct DiscoverNewItemEvent : IEcsComponent
     {
         public ItemConfig item;
     }

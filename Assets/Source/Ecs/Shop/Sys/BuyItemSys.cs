@@ -1,4 +1,5 @@
-﻿using Secs;
+﻿using Ingame.Recipe;
+using Secs;
 
 namespace Ingame.Shop
 {
@@ -19,25 +20,30 @@ namespace Ingame.Shop
         [EcsInject] 
         private readonly EcsPool<WalletCmp> _walletCmpPool;
         
+        [EcsInject] 
+        private readonly EcsPool<DiscoverNewItemEvent> _discoverNewItemEventPool;
+        
         public void OnRun()
         {
-            foreach (var buyItemEventEntity in _buyItemEventFilter)
-            {
-                ref var buyItemEvent = ref _buyItemEventPool.GetComponent(buyItemEventEntity);
-                
-                foreach (var walletCmpEntity in _walletCmpFilter)
-                {
-                    ref var walletCmp = ref _walletCmpPool.GetComponent(walletCmpEntity);
+            
+            if(_buyItemEventFilter.IsEmpty || _walletCmpFilter.IsEmpty)
+                return;
+            
+            var buyItemEventEntity = _buyItemEventFilter.GetFirstEntity();
+            var walletCmpEntity = _walletCmpFilter.GetFirstEntity();
+           
+            ref var buyItemEvent = ref _buyItemEventPool.GetComponent(buyItemEventEntity);
+            ref var walletCmp = ref _walletCmpPool.GetComponent(walletCmpEntity);
                     
-                    if (walletCmp.money >= buyItemEvent.requestedItem.Cost)
-                    {
-                        walletCmp.money -= buyItemEvent.requestedItem.Cost;
-                        //todo add new item to inventory
-                    }
-                }
-                
-                _ecsWorld.DelEntity(buyItemEventEntity);
+            if (walletCmp.money >= buyItemEvent.requestedItem.Cost)
+            {
+                walletCmp.money -= buyItemEvent.requestedItem.Cost;
+
+                var newEntity = _ecsWorld.NewEntity();
+                _discoverNewItemEventPool.AddComponent(newEntity).item = buyItemEvent.requestedItem.Item;
             }
+                    
+            _ecsWorld.DelEntity(buyItemEventEntity);
         }
     }
 }

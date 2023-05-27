@@ -3,7 +3,7 @@ using Secs;
 
 namespace Ingame.Tasks 
 {
-    public struct OfferTaskItemReq : IEcsComponent
+    public struct OfferTaskItemEvent : IEcsComponent
     {
         public ItemConfig offeredItem;
     }

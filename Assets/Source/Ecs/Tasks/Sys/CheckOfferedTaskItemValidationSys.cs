@@ -7,14 +7,14 @@ namespace Ingame.Tasks
         [EcsInject]
         private readonly EcsWorld _world;
         
-        [EcsInject( typeof(TaskHolderMdl),typeof(OfferTaskItemReq))]
+        [EcsInject( typeof(TaskHolderMdl),typeof(OfferTaskItemEvent))]
         private readonly EcsFilter _taskFilter;
         
         [EcsInject]
         private readonly EcsPool<TaskHolderMdl> _taskPool;
         
         [EcsInject]
-        private readonly EcsPool<OfferTaskItemReq> _offerItemPool;
+        private readonly EcsPool<OfferTaskItemEvent> _offerItemPool;
         
         [EcsInject]
         private readonly EcsPool<AskNewTaskEvent> _askNewTaskPool;

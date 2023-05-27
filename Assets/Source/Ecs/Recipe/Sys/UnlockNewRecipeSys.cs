@@ -7,7 +7,7 @@ namespace Ingame.Recipe
 {
     public sealed class UnlockNewRecipeSys : IEcsRunSystem
     {
-        [EcsInject(typeof(DiscoverNewRecipeReq))]
+        [EcsInject(typeof(DiscoverNewRecipeEvent))]
         private readonly EcsFilter _newItemFilter;
         
         [EcsInject(typeof(RecipeStatusMdl))]
@@ -20,7 +20,7 @@ namespace Ingame.Recipe
         private readonly EcsFilter _unlockedItemsFilter;
         
         [EcsInject]
-        private readonly EcsPool<DiscoverNewRecipeReq> _discoverNewReceiptItemReqPool;
+        private readonly EcsPool<DiscoverNewRecipeEvent> _discoverNewReceiptItemEventPool;
         
         [EcsInject]
         private readonly EcsPool<AllRecipesMdl> _allReceiptsPool;
@@ -35,12 +35,17 @@ namespace Ingame.Recipe
         {
             foreach (var newRecipeEntity in _newItemFilter)
             {
-                ref var newItemReq = ref _discoverNewReceiptItemReqPool.GetComponent(newRecipeEntity);
+                ref var newItemReq = ref _discoverNewReceiptItemEventPool.GetComponent(newRecipeEntity);
                 var newRecipe = newItemReq.newRecipe;
                 
                 foreach (var recipeEntity in _recipeStatusMdlFilter)
                 {
                     ref var recipeStatusMdl = ref _receiptStatusPool.GetComponent(recipeEntity);
+                    var unlockedRecipes = recipeStatusMdl.unlockedRecipe;
+                    
+                    if( recipeStatusMdl.discoveredRecipe.Contains(newRecipe))
+                        continue;
+                    
                     recipeStatusMdl.discoveredRecipe.Add(newRecipe);
                     
                     foreach (var allRecipeEntity in _allReceiptsFilter)
@@ -59,12 +64,13 @@ namespace Ingame.Recipe
                                 .Where(e => 
                                     unlockedItemsList.Contains(e.ComponentA) &&
                                     unlockedItemsList.Contains(e.ComponentB))
+                                .Where(e=> !unlockedRecipes.Contains(e))
                                 .ToHashSet();
                         }
                     }
                 }
                 
-                _discoverNewReceiptItemReqPool.DelComponent(newRecipeEntity);
+                _discoverNewReceiptItemEventPool.DelComponent(newRecipeEntity);
             }
         }
     }
