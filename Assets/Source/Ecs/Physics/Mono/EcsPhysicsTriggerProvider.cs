@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Secs.Physics
+namespace Ingame
 {
     public sealed class EcsPhysicsTriggerProvider : MonoBehaviour
     {

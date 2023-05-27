@@ -1,7 +1,7 @@
 ﻿using Ingame.Recipe;
 using Ingame.Tasks;
 using Secs;
-using Secs.Physics;
+using Ingame;
 using UnityEngine;
 using Zenject;
 
@@ -24,7 +24,8 @@ namespace Ingame
 		{
 			_world = ecsWorldsProvider.GameplayWorld;
 			_ecsSystems = new EcsSystems(_world);
-			_ecsSystems.AttachPhysics();
+			
+			EcsPhysics.BindToEcsWorld(_world, _ecsSystems);
 			
 			_ecsSystems
 				//Recipe
@@ -62,7 +63,7 @@ namespace Ingame
 		{
 			_ecsSystems.FireDisposeSystems();
 			_ecsSystems.ReleaseProfiler();
-			_ecsSystems.ReleasePhysics();
+			EcsPhysics.UnbindToEcsWorld();
 		}
 	}
 }

@@ -1,4 +1,6 @@
-﻿namespace Secs.Physics
+﻿using Secs;
+
+namespace Ingame
 {
     public sealed class DisposeOnTickPhysicsSys : IEcsRunSystem
     {

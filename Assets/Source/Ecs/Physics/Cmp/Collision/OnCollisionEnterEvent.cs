@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Secs;
+using UnityEngine;
 
-namespace  Secs.Physics 
+namespace Ingame 
 {
     public struct OnCollisionEnterEvent : IEcsComponent
     {
