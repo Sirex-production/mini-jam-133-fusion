@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 117401275}
   - component: {fileID: 117401274}
   - component: {fileID: 117401279}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 'EcsEntity - TasksTableSurface '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117401272}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -117.3, y: -0.6, z: 84.1042}
+  m_LocalPosition: {x: -117.3, y: -1.7, z: 84.1042}
   m_LocalScale: {x: 223.11601, y: 4.110023, z: 70.772575}
   m_ConstrainProportionsScale: 0
   m_Children: []

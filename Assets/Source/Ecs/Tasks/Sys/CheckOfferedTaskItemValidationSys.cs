@@ -1,4 +1,6 @@
-﻿using Secs;
+﻿using System.Collections.Generic;
+using Ingame.Recipe;
+using Secs;
 using UnityEngine;
 
 namespace Ingame.Tasks
@@ -30,6 +32,9 @@ namespace Ingame.Tasks
         private readonly EcsPool<AskNewTaskEvent> _askNewTaskPool;
         
         [EcsInject]
+        private readonly EcsPool<UpdateCardsViewEvent> _updateCardsViewEvenPool;
+        
+        [EcsInject]
         private readonly EcsPool<PlayerWalletCmp> _walletCmpPool;
         
         public void OnRun()
@@ -49,15 +54,17 @@ namespace Ingame.Tasks
                 ref var taskHolderMdl = ref _taskPool.GetComponent(_taskFilter.GetFirstEntity());
                 ref var walletCmp = ref _walletCmpPool.GetComponent(_walletCmpFilter.GetFirstEntity());
                 
-                if (offeredTaskItemsCmp.IsTradeAccepted(taskHolderMdl.currentTask.QuestItems))
+                if (offeredTaskItemsCmp.IsTradeAccepted(new List<ItemConfig>(taskHolderMdl.currentTask.QuestItems)))
                 {
                     walletCmp.currentAmountOfCoins += taskHolderMdl.currentTask.Money;
+                    
+                    offeredTaskItemsCmp.SubtractItems(new List<ItemConfig>(taskHolderMdl.currentTask.QuestItems));
                     
                     var newEntity = _world.NewEntity();
                     _askNewTaskPool.AddComponent(newEntity);
                     
-                   
-                
+                    newEntity = _world.NewEntity();
+                    _updateCardsViewEvenPool.AddComponent(newEntity);
                 }
                 _world.DelEntity(offerTaskItemEventEntity);
             }

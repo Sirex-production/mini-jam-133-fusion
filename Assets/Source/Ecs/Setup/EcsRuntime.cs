@@ -50,7 +50,8 @@ namespace Ingame
 				//Fusion
 				.Add(new MergeCardsSystem(allRecipeContainerConfig))
 				//Physics
-				.Add(new DisposeOnTickPhysicsSys());
+				.Add(new DisposeOnTickPhysicsSys())
+				.Add(new FullyDestroyObject());
 
 			_ecsSystems.AttachProfiler();
 			_ecsSystems.Inject();
