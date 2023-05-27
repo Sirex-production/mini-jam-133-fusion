@@ -15,10 +15,46 @@ MonoBehaviour:
   tasks:
   - questItems:
     - {fileID: 11400000, guid: f7daaf08fae3fc54b918152795ae5956, type: 2}
-    description: Hello... 1 iron please...
-    money: 30
+    description: Hello... you seem to be the one who knows how to get  IRON
+    money: 45
   - questItems:
     - {fileID: 11400000, guid: f7daaf08fae3fc54b918152795ae5956, type: 2}
     - {fileID: 11400000, guid: f7daaf08fae3fc54b918152795ae5956, type: 2}
-    description: '... I hope u could help me to find some iron [2] ... '
+    description: ... IIRON [2]  !!!.... Fast!!! Maggot!!
+    money: 112
+  - questItems:
+    - {fileID: 11400000, guid: e1e4d3a6f1f9c0a45bd4be95ba59298e, type: 2}
+    description: Hey there! I'm in dire need of a shimmering AXE. Any leads on where
+      I can find it?
     money: 78
+  - questItems:
+    - {fileID: 11400000, guid: 2c380ec964e456545b4c470566fa349d, type: 2}
+    - {fileID: 11400000, guid: 6f4a90d1f7aae614fa743b46b9599957, type: 2}
+    description: If I could lay my hands on a steady supply of pristine WATER and
+      a pile of sturdy LOG, I'd be able to build a fortress fit for legends.
+    money: 160
+  - questItems:
+    - {fileID: 11400000, guid: 6d7e78b69ed5a4943aa9d1ac655ee8d3, type: 2}
+    description: I think I'm freezing [...] Only smooth touch of FIRE could help
+      me in that regrettable case
+    money: 36
+  - questItems:
+    - {fileID: 11400000, guid: 2b36f23aaedd04546bfca3cc76e5ff07, type: 2}
+    description: If only I could get my hands on that power of DEATH, said to hold
+      immeasurable power and grant the bearer unparalleled abilities
+    money: 231
+  - questItems:
+    - {fileID: 11400000, guid: f4c61c8ddd044304fac83a0972055351, type: 2}
+    description: Please... * blub*... I told my wife I...*hiccup* I would be fishing
+      with my friends... I can not return without any FISH
+    money: 140
+  - questItems:
+    - {fileID: 11400000, guid: d61e88be0e3a5724c846862de6376ebf, type: 2}
+    description: It's sunny... how awfull.. I wish a STORM will approach
+    money: 240
+  - questItems:
+    - {fileID: 11400000, guid: 86ac30385989e954a8df24d8b4eb6310, type: 2}
+    - {fileID: 11400000, guid: 92f06a50dd6e6c44399f29f0797d3cbb, type: 2}
+    description: I do love those lovely view... I think I will stay here for even
+      longer that I expected... Now I only need a new HOUSE and MINE... just in case
+    money: 356

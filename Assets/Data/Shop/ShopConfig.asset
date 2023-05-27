@@ -17,6 +17,6 @@ MonoBehaviour:
   - itemConfig: {fileID: 11400000, guid: 6d7e78b69ed5a4943aa9d1ac655ee8d3, type: 2}
     price: 10
   - itemConfig: {fileID: 11400000, guid: a892cba95e26096448663ba3e624b242, type: 2}
-    price: 100
+    price: 25
   - itemConfig: {fileID: 11400000, guid: f7daaf08fae3fc54b918152795ae5956, type: 2}
     price: 20
