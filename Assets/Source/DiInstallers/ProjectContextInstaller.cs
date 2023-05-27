@@ -9,12 +9,14 @@ namespace Ingame
 	{
 		[Required, SerializeField] private GeneralCardsConfig generalCardsConfig;
 		[Required, SerializeField] private SceneService sceneService;
+		[Required, SerializeField] private SoundService soundService;
 		
 		public override void InstallBindings()
 		{
 			InstallEcs();
 			InstallSaveLoadService();
 			InstallSceneService();
+			InstallSoundService();
 			InstallInputSystem();
 			InstallConfigs();
 		}
@@ -52,6 +54,14 @@ namespace Ingame
 				.NonLazy();
 		}
 
+		private void InstallSoundService()
+		{
+			Container.Bind<SoundService>()
+				.FromInstance(soundService)
+				.AsSingle()
+				.NonLazy();
+		}
+		
 		private void InstallConfigs()
 		{
 			Container.Bind<GeneralCardsConfig>()
