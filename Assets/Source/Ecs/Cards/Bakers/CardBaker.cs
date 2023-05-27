@@ -16,7 +16,12 @@ namespace Ingame
 			int entity = worldsProvider.GameplayWorld.NewEntity();
 			
 			world.GetPool<IsCardTag>().AddComponent(entity);
-			world.GetPool<TransformMdl>().AddComponent(entity).transform = transform;
+			world.GetPool<TransformMdl>().AddComponent(entity) = new TransformMdl
+			{
+				transform = transform,
+				initialLocalPos = transform.localPosition,
+				initialLocalRot = transform.localRotation
+			};
 			world.GetPool<RigidbodyMdl>().AddComponent(entity).rigidbody = attachedRigidbody;
 
 			world.UpdateFilters();
