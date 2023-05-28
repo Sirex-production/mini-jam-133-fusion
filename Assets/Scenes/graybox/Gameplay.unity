@@ -8712,6 +8712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519baaf999bc453fade177d17fa46dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogSound: {fileID: 8300000, guid: 7750fee782db39c40b0685da53507060, type: 3}
   positions:
   - {fileID: 988642660}
   - {fileID: 1884452757}

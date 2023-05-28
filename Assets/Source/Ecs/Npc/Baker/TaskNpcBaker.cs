@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using DG.Tweening;
+using Ingame.Audio;
 using Ingame.Npc;
+using Ingame.Tasks;
 using NaughtyAttributes;
 using Secs;
 using TMPro;
@@ -14,6 +16,9 @@ namespace Ingame.NPC
 {
     public sealed class TaskNpcBaker : MonoBehaviour
     {
+        [Required]
+        [SerializeField] private AudioClip dialogSound;
+        
         [SerializeField]
         private List<Transform> positions;
         
@@ -52,10 +57,13 @@ namespace Ingame.NPC
             dialogMdl.image = dialogBox;
             dialogMdl.taskText = "";
             
+            _world.GetPool<AudioCmp>().AddComponent(entity).audioClip = dialogSound;
+            _world.GetPool<TaskHolderMdl>().AddComponent(entity);
+            
             gameObject.LinkEcsEntity(_world, entity);
             
             _world.UpdateFilters();
-            //start quest
+        
             entity = _world.NewEntity();
             _world.GetPool<ForwardNpcEvent>().AddComponent(entity);
             

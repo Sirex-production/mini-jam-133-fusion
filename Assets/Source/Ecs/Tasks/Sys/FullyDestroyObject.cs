@@ -20,7 +20,8 @@ namespace Ingame.Tasks
                 ref var destroyObjectRequest = ref _ecsPool.GetComponent(entity);
                 
                 UnityEngine.Object.Destroy(destroyObjectRequest.gameObject);
-                _ecsWorld.DelEntity(destroyObjectRequest.entityId);
+                if(!_ecsWorld.IsEntityDead(destroyObjectRequest.entityId))
+                    _ecsWorld.DelEntity(destroyObjectRequest.entityId);
                 _ecsWorld.DelEntity(entity);
             }
         }

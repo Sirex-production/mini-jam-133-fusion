@@ -28,12 +28,12 @@ namespace Ingame
 
         private void OnAudioClipGet(AudioSource clip)
         {
-           
+            clip.gameObject.SetActive(true);
         }
 
         private void OnAudioClipRelease(AudioSource clip)
         {
-            clip.Pause();
+            clip.Stop();
             clip.gameObject.SetActive(false);
         }
         

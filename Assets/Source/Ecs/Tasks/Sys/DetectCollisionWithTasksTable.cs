@@ -56,7 +56,6 @@ namespace Ingame.Tasks
                 ref var cardCmp = ref cardEntityReference.World.GetPool<CardCmp>().GetComponent(cardEntityReference.EntityId);
                 ref var transformMdlCmp = ref cardEntityReference.World.GetPool<TransformMdl>().GetComponent(cardEntityReference.EntityId);
                 
-                
                 offeredTaskItems.Add(cardCmp.itemConfig,transformMdlCmp.transform);
 
                 var newEntity = _ecsWorld.NewEntity();
