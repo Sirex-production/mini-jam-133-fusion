@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -22,6 +23,7 @@ namespace Ingame
         private AudioSource OnAudioClipCreate()
         {
             var go = new GameObject("audio");
+            go.transform.SetParent(transform);
             return go.AddComponent<AudioSource>();
         }
       
@@ -34,6 +36,7 @@ namespace Ingame
         private void OnAudioClipRelease(AudioSource clip)
         {
             clip.Stop();
+            clip.clip = null;
             clip.gameObject.SetActive(false);
         }
         
@@ -42,6 +45,13 @@ namespace Ingame
            
         }
 
+        private IEnumerator PlaySoundAndReturnToPoolRoutine(AudioSource audioSource)
+        {
+            yield return new WaitUntil(() => !audioSource.isPlaying);
+
+            StopSound(audioSource);
+        }
+        
         public AudioSource PlaySound(AudioClip clip, bool loop = false)
         {
             var audioSource = _audioPool.Get();
@@ -52,10 +62,19 @@ namespace Ingame
             return audioSource;
         }
         
+        public void PlaySoundThenReturnToPool(AudioClip clip)
+        {
+            var audioSource = _audioPool.Get();
+            audioSource.clip = clip;
+            audioSource.Play();
+            StartCoroutine(PlaySoundAndReturnToPoolRoutine(audioSource));
+        }
+        
         public void StopSound(AudioSource audioSource)
         {
             audioSource.Stop();
             _audioPool.Release(audioSource);
         }
+        
     }
 }
