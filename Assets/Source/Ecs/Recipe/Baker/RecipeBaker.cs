@@ -21,6 +21,7 @@ namespace Ingame.Recipe
             var entity = _ecsWorld.NewEntity();
             _ecsWorld.GetPool<StartingItemsMdl>().AddComponent(entity).startingItems = startingItems;
             _ecsWorld.GetPool<RecipeStatusMdl>().AddComponent(entity);
+            _ecsWorld.GetPool<UnlockedItemsMdl>().AddComponent(entity);
 
             gameObject.LinkEcsEntity(_ecsWorld,entity);
         }

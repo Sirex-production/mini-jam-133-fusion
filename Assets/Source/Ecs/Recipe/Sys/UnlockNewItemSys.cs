@@ -35,8 +35,6 @@ namespace Ingame.Recipe
             if(_discoverNewItemFilter.IsEmpty)
                 return;
 
-            Debug.Log("A1");
-            
             if(_unlockedItemsFilter.IsEmpty || _recipeStatusMdlFilter.IsEmpty || _allReceiptsFilter.IsEmpty)
                 return;
             
@@ -71,6 +69,8 @@ namespace Ingame.Recipe
             
             _updateGameplayUiEventPool.AddComponent(_ecsWorld.NewEntity());
             _updateCollectionsUiEventPool.AddComponent(_ecsWorld.NewEntity());
+            
+            _ecsWorld.DelEntity(discoverNewItemEntity);
         }
     }
 }

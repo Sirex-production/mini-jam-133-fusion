@@ -37,7 +37,7 @@ namespace Ingame.Tasks
                     ref var allTasksMdl = ref _allTasksPool.GetComponent(allTaskEntity);
                     var allTasks = allTasksMdl.tasksConfig.Tasks;
                     
-                    int randomIndex = Random.Range(0, 1);
+                    int randomIndex = Random.Range(0, allTasks.Count);
                     
                     taskHolderMdl.currentTask = allTasks[randomIndex];
                     

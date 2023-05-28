@@ -7,6 +7,7 @@ namespace Ingame.Recipe
 {
     public sealed class UnlockNewRecipeSys : IEcsRunSystem
     {
+        [EcsInject] private EcsWorld _ecsWorld;
         [EcsInject(typeof(DiscoverNewRecipeEvent))]
         private readonly EcsFilter _newItemFilter;
         
@@ -69,8 +70,7 @@ namespace Ingame.Recipe
                         }
                     }
                 }
-                
-                _discoverNewReceiptItemEventPool.DelComponent(newRecipeEntity);
+                _ecsWorld.DelEntity(newRecipeEntity);
             }
         }
     }
