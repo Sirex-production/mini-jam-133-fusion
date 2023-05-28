@@ -1,4 +1,6 @@
 ﻿using DG.Tweening;
+using Ingame.Audio;
+using Ingame.Cmp;
 using Ingame.Recipe;
 using Secs;
 using UnityEngine;
@@ -16,6 +18,8 @@ namespace Ingame
 				
 		private const float RESULT_CARD_SCALE = 1.3f;
 		private const float RESULT_SCALE_DURATION = .1f;
+
+		private SoundService _soundService;
 		
 		[EcsInject]
 		private readonly EcsWorld _world;
@@ -23,6 +27,9 @@ namespace Ingame
 		[EcsInject(typeof(OnCollisionEnterEvent))]
 		private readonly EcsFilter _collisionEnterEvents;
 
+		[EcsInject(typeof(AudioCmp),typeof(FusionSoundTag))]
+		private readonly EcsFilter _fusionSoundFilter;
+		
 		[EcsInject]
 		private readonly EcsPool<OnCollisionEnterEvent> _collisionEnterEventPool;
 		[EcsInject]
@@ -35,13 +42,15 @@ namespace Ingame
 		private readonly EcsPool<IsUnderDOTweenAnimationTag> _isUnderDOTweenAnimationPool;
 		[EcsInject]
 		private readonly EcsPool<DiscoverNewItemEvent> _discoverNewItemEventPool;
-		
+		[EcsInject]
+		private readonly EcsPool<AudioCmp> _audioCmpPool;
 		
 		private readonly AllRecipeContainerConfig _receiptConfig;
 		
-		public MergeCardsSystem(AllRecipeContainerConfig receiptConfig)
+		public MergeCardsSystem(AllRecipeContainerConfig receiptConfig, SoundService soundService)
 		{
 			_receiptConfig = receiptConfig;
+			_soundService = soundService;
 		}
 		
 		public void OnRun()
@@ -83,6 +92,11 @@ namespace Ingame
 				_isUnderDOTweenAnimationPool.AddComponent(senderEntityReference.EntityId);
 				_isUnderDOTweenAnimationPool.AddComponent(otherEntityReference.EntityId);
 
+				AudioSource audioSource = null;
+				
+				if(!_fusionSoundFilter.IsEmpty)
+					audioSource = _soundService.PlaySound(_audioCmpPool.GetComponent(_fusionSoundFilter.GetFirstEntity()).audioClip);
+
 				DOTween.Sequence()
 					.Append(otherCardTransform.DOMove(senderCardTransform.position, MOVE_DURATION).SetLink(otherCardTransform.gameObject))
 					.Join(senderCardTransform.DOShakePosition(SHAKE_DURATION, SHAKE_STRENGTH, VIBRATION, fadeOut: false).SetLink(senderCardTransform.gameObject))
@@ -105,6 +119,9 @@ namespace Ingame
 					.Append(senderCardTransform.DOScale(Vector3.one, RESULT_SCALE_DURATION).SetLink(senderCardTransform.gameObject))
 					.OnComplete(() =>
 					{
+						if(audioSource!=null)
+							_soundService.StopSound(audioSource);
+						
 						_isUnderDOTweenAnimationPool.DelComponent(senderEntityReference.EntityId);
 						_world.DelEntity(otherEntityReference.EntityId);
 						Object.Destroy(otherEntityReference.gameObject);

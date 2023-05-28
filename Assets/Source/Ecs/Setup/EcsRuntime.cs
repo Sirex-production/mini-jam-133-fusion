@@ -39,7 +39,7 @@ namespace Ingame
 				//Tasks
 				.Add(new DetectCollisionWithTasksTable())
 				.Add(new CreateNewTaskSys())
-				.Add(new CheckOfferedTaskItemValidationSys())
+				.Add(new CheckOfferedTaskItemValidationSys(soundService))
 				//Shop
 				.Add(new RefreshShopSystem(shopConfig, diContainer))
 				.Add(new SellItemSystem())
@@ -51,7 +51,7 @@ namespace Ingame
 				.Add(new MoveShopCardsBackToShopSystem())
 				.Add(new UpdateCardMotionSystem(generalCardsConfig))
 				//Fusion
-				.Add(new MergeCardsSystem(allRecipeContainerConfig))
+				.Add(new MergeCardsSystem(allRecipeContainerConfig, soundService))
 				//Camerawork
 				.Add(new MoveCameraSystem(inputService, settingsService))
 				//Gameplay UI

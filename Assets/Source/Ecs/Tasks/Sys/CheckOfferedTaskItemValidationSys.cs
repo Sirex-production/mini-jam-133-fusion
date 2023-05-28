@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ingame.Audio;
 using Ingame.Npc;
 using Ingame.Recipe;
 using Secs;
@@ -26,6 +27,9 @@ namespace Ingame.Tasks
         [EcsInject( typeof(IsUnderDOTweenAnimationTag),typeof(TaskNpcTag))]
         private readonly EcsFilter _npcFilter;
         
+        [EcsInject( typeof(TaskCompletedSoundTag),typeof(AudioCmp))]
+        private readonly EcsFilter _audioFilter;
+        
         [EcsInject]
         private readonly EcsPool<TaskHolderMdl> _taskPool;
         
@@ -44,6 +48,19 @@ namespace Ingame.Tasks
         [EcsInject]
         private readonly EcsPool<MoveBackNpcEvent> _moveBckNpcEventPool;
         
+        [EcsInject]
+        private readonly EcsPool<UpdateGameplayUiEvent> _updateGameplayUiEventPool;
+
+        [EcsInject] 
+        private readonly EcsPool<AudioCmp> _audioPool;
+        
+        private SoundService _soundService;
+
+        public CheckOfferedTaskItemValidationSys(SoundService soundService)
+        {
+            _soundService = soundService;
+        }
+        
         public void OnRun()
         {
             foreach (var offerTaskItemEventEntity in _offerTaskItemEventFilter)
@@ -60,6 +77,16 @@ namespace Ingame.Tasks
                 
                 if (offeredTaskItemsCmp.IsTradeAccepted(new List<ItemConfig>(taskHolderMdl.currentTask.QuestItems)))
                 {
+                    if (!_audioFilter.IsEmpty)
+                    {
+                       ref var audioCmp = ref _audioPool.GetComponent(_audioFilter.GetFirstEntity());
+                       
+                       if(audioCmp.audioSource != null)
+                           _soundService.StopSound(audioCmp.audioSource);
+
+                       audioCmp.audioSource = _soundService.PlaySound(audioCmp.audioClip);
+                    }
+                    
                     walletCmp.currentAmountOfCoins += taskHolderMdl.currentTask.Money;
                     
                     offeredTaskItemsCmp.SubtractItems(new List<ItemConfig>(taskHolderMdl.currentTask.QuestItems));
@@ -72,7 +99,12 @@ namespace Ingame.Tasks
                     
                     newEntity = _world.NewEntity();
                     _moveBckNpcEventPool.AddComponent(newEntity);
+                    
+                    newEntity = _world.NewEntity();
+                    _updateGameplayUiEventPool.AddComponent(newEntity);
+                    
                 }
+                
                 _world.DelEntity(offerTaskItemEventEntity);
             }
         }
