@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: DefaultSettingsConfig
   m_EditorClassIdentifier: 
   defaultSettingsData:
+    soundVolume: 0.5
     mapMouseDraggingSpeed: 1
     cameraMovementSpeed: 50

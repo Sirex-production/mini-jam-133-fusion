@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Ingame
@@ -18,7 +17,8 @@ namespace Ingame
 	[Serializable]
 	public struct SettingsData
 	{
-		[FormerlySerializedAs("mapDraggingSpeed")] public float mapMouseDraggingSpeed;
+		public float soundVolume;
+		public float mapMouseDraggingSpeed;
 		public float cameraMovementSpeed;
 	}
 }
