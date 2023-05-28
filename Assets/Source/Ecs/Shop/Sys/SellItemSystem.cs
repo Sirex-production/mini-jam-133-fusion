@@ -23,6 +23,8 @@ namespace Ingame
 		private readonly EcsPool<ShopSlotCmp> _shopSlotPool;
 		[EcsInject]
 		private readonly EcsPool<UpdateCardsViewEvent> _updateCardsViewEventPool;
+		[EcsInject]
+		private readonly EcsPool<UpdateGameplayUiEvent> _updateGameplayUiEventPool;
 
 		public void OnRun()
 		{
@@ -66,6 +68,7 @@ namespace Ingame
 			
 			_shopSlotPool.DelComponent(cardEntityId);
 			_updateCardsViewEventPool.AddComponent(_world.NewEntity());
+			_updateGameplayUiEventPool.AddComponent(_world.NewEntity());
 		}
 	}
 }

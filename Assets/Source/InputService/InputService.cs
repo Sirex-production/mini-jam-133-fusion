@@ -19,7 +19,26 @@ namespace Ingame
 		public Vector2 MouseDelta => Mouse.current.delta.ReadValue();
 		
 		public Vector2 CameraMovement => _inputActions.Camera.Movement.ReadValue<Vector2>();
-		
+
+		public bool MovementEnabled 
+		{
+			set
+			{
+				if(!value)
+				{
+					_inputActions.Mouse.Disable();
+					_inputActions.Camera.Disable();
+				}
+				else
+				{
+					_inputActions.Mouse.Enable();
+					_inputActions.Camera.Enable(); ;
+				}
+			}
+			
+			get => _inputActions.Mouse.enabled && _inputActions.Camera.enabled;
+		}
+
 		public InputService()
 		{
 			_inputActions.Enable();

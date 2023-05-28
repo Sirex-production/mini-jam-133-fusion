@@ -7,31 +7,27 @@ namespace Ingame.Recipe
     {
         [EcsInject] private readonly EcsWorld _ecsWorld;
         
-        
         [EcsInject(typeof(RecipeStatusMdl))]
         private readonly EcsFilter _recipeStatusMdlFilter;
-        
         [EcsInject( typeof(AllRecipesMdl))]
         private readonly EcsFilter _allReceiptsFilter;
-        
         [EcsInject(typeof(UnlockedItemsMdl))]
         private readonly EcsFilter _unlockedItemsFilter;
-        
         [EcsInject(typeof(DiscoverNewItemEvent))]
         private readonly EcsFilter _discoverNewItemFilter;
         
-        
         [EcsInject]
         private readonly EcsPool<DiscoverNewItemEvent> _discoverNewItemPool;
-        
         [EcsInject]
         private readonly EcsPool<AllRecipesMdl> _allReceiptsPool;
-        
         [EcsInject]
         private readonly EcsPool<RecipeStatusMdl> _recipeStatusPool;
-        
         [EcsInject]
         private readonly EcsPool<UnlockedItemsMdl> _unlockedItemsPool;
+        [EcsInject]
+        private readonly EcsPool<UpdateGameplayUiEvent> _updateGameplayUiEventPool;
+        [EcsInject]
+        private readonly EcsPool<UpdateCollectionsUiEvent> _updateCollectionsUiEventPool;
         
         public void OnRun()
         {
@@ -65,8 +61,11 @@ namespace Ingame.Recipe
                 .Where(e => unlockedItemsList.Contains(e.ComponentA) && unlockedItemsList.Contains(e.ComponentB))
                 .Where(e=>alreadyDiscoveredRecipes.Contains(e))
                 .ToHashSet();
-
+            
             recipeStatus.discoveredRecipe = newUnlockedItems;
+            
+            _updateGameplayUiEventPool.AddComponent(_ecsWorld.NewEntity());
+            _updateCollectionsUiEventPool.AddComponent(_ecsWorld.NewEntity());
         }
     }
 }

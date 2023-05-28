@@ -51,6 +51,9 @@ namespace Ingame
 				.Add(new MergeCardsSystem(allRecipeContainerConfig))
 				//Camerawork
 				.Add(new MoveCameraSystem(inputService, settingsService))
+				//Gameplay UI
+				.Add(new UpdateCurrencyViewSystem())
+				.Add(new UpdateUiCollectionViewSystem())
 				//Physics
 				.Add(new DisposeOnTickPhysicsSys());
 

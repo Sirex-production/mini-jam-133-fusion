@@ -29,6 +29,8 @@ namespace Ingame
 		private readonly EcsPool<TransformMdl> _transformPool;
 		[EcsInject]
 		private readonly EcsPool<UpdateCardsViewEvent> _updateCardsViewEventPool;
+		[EcsInject]
+		private readonly EcsPool<UpdateGameplayUiEvent> _updateGameplayUiEventPool;
 
 		private readonly ShopConfig _shopConfig;
 		private readonly DiContainer _diContainer;
@@ -62,6 +64,7 @@ namespace Ingame
 			
 			_refreshShopEventPool.DelComponent(_refreshShopEventFilter.GetFirstEntity());
 			_updateCardsViewEventPool.AddComponent(_world.NewEntity());
+			_updateGameplayUiEventPool.AddComponent(_world.NewEntity());
 		}
 
 		private void InstantiateMissingCards(ref ShopCmp shopCmp)
