@@ -95,7 +95,7 @@ namespace Ingame.Npc
                     .OnComplete(() =>
                     {
                         transform
-                            .DOJump(nextWaypoint.position, 2, 7, 3)
+                            .DOJump(nextWaypoint.position, 2, 7, 2.2f)
                             .SetEase(Ease.Linear)
                             .SetLink(transform.gameObject)
                             .OnComplete(() =>
@@ -160,9 +160,9 @@ namespace Ingame.Npc
             var firstPosition = waypoint.Next();
             var secondPosition = waypoint.Next();
 
-            transform.DOLookAt(firstPosition.position, 1f).OnComplete(() =>
+            transform.DOLookAt(firstPosition.position, 0.7f).OnComplete(() =>
             {
-                transform.DOJump(firstPosition.position, 2, 7, 3)
+                transform.DOJump(firstPosition.position, 2, 7, 2.2f)
                     .SetEase(Ease.Linear)
                     .SetLink(transform.gameObject)
                     .OnComplete(() =>

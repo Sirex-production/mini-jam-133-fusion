@@ -38,35 +38,33 @@ namespace Ingame.Tasks
 
         public bool IsTradeAccepted(List<ItemConfig> items)
         {
-            var hash = new HashSet<ItemConfig>(items);
-            var dictionary = hash.ToDictionary(
-                e => e, 
-                e => items.Select(item => e==item).Count());
+            var query = items.GroupBy(x => x)
+                .Select(g => new {Value = g.Key, Count = g.Count()})
+                .OrderByDescending(x=>x.Count);
 
-            foreach (var key in dictionary.Keys)
+            foreach (var key in query)
             {
-                if (!offeredItems.ContainsKey(key))
+                if (!offeredItems.ContainsKey(key.Value))
                     return false;
 
-                if (offeredItems[key].Count < dictionary[key])
+                if (offeredItems[key.Value].Count < key.Count)
                     return false;
             }
-
+            
             return true;
         }
 
         public void SubtractItems(List<ItemConfig> items)
         {
-            var hash = new HashSet<ItemConfig>(items);
-            var dictionary = hash.ToDictionary(
-                e => e, 
-                e => items.Select(item => e==item).Count());
+            var query = items.GroupBy(x => x)
+                .Select(g => new {Value = g.Key, Count = g.Count()})
+                .OrderByDescending(x=>x.Count);
             
-            foreach (var key in dictionary.Keys)
+            foreach (var key in query)
             {
-                for (int i = 0; i < dictionary[key]; i++)
+                for (int i = 0; i < key.Count; i++)
                 {
-                    var toRemoveObject = offeredItems[key][0];
+                    var toRemoveObject = offeredItems[key.Value][0];
                     var entityReference = toRemoveObject.GetComponent<EcsEntityReference>();
 
                     var newEntity = entityReference.World.NewEntity();
@@ -75,7 +73,7 @@ namespace Ingame.Tasks
                     entityDestroyer.entityId = entityReference.EntityId;
                     entityDestroyer.gameObject = toRemoveObject.gameObject;
                     
-                    offeredItems[key].RemoveAt(0);
+                    offeredItems[key.Value].RemoveAt(0);
                 }
             }
         }

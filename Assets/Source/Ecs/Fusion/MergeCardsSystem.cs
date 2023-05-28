@@ -2,6 +2,7 @@
 using Ingame.Audio;
 using Ingame.Cmp;
 using Ingame.Recipe;
+using Ingame.VfX;
 using Secs;
 using UnityEngine;
 
@@ -44,6 +45,8 @@ namespace Ingame
 		private readonly EcsPool<DiscoverNewItemEvent> _discoverNewItemEventPool;
 		[EcsInject]
 		private readonly EcsPool<AudioCmp> _audioCmpPool;
+		[EcsInject]
+		private readonly EcsPool<ParticleSystemMdl> _particleSystemPool;
 		
 		private readonly AllRecipeContainerConfig _receiptConfig;
 		
@@ -93,10 +96,11 @@ namespace Ingame
 				_isUnderDOTweenAnimationPool.AddComponent(otherEntityReference.EntityId);
 
 				AudioSource audioSource = null;
+				ParticleSystem particleSystem = null;
 				
 				if(!_fusionSoundFilter.IsEmpty)
 					audioSource = _soundService.PlaySound(_audioCmpPool.GetComponent(_fusionSoundFilter.GetFirstEntity()).audioClip);
-
+				
 				DOTween.Sequence()
 					.Append(otherCardTransform.DOMove(senderCardTransform.position, MOVE_DURATION).SetLink(otherCardTransform.gameObject))
 					.Join(senderCardTransform.DOShakePosition(SHAKE_DURATION, SHAKE_STRENGTH, VIBRATION, fadeOut: false).SetLink(senderCardTransform.gameObject))
@@ -113,6 +117,10 @@ namespace Ingame
 								_updateCardsViewEventPool.AddComponent(_world.NewEntity());
 								_discoverNewItemEventPool.AddComponent(_world.NewEntity()).item = resultItemConfig;
 								otherEntityReference.gameObject.SetActive(false);
+
+								if(_particleSystemPool.HasComponent(senderEntityReference.EntityId))
+									_particleSystemPool.GetComponent(senderEntityReference.EntityId).particleSystem?.Play();
+							 
 							})
 					)
 					.Append(senderCardTransform.DOScale(Vector3.one * RESULT_CARD_SCALE, RESULT_SCALE_DURATION).SetLink(senderCardTransform.gameObject))

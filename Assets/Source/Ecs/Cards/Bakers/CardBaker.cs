@@ -1,4 +1,5 @@
 ﻿using Ingame.Recipe;
+using Ingame.VfX;
 using NaughtyAttributes;
 using Secs;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Ingame
 		[Required, SerializeField] private ItemConfig itemConfig;
 		[Required, SerializeField] private Rigidbody attachedRigidbody;
 		[Required, SerializeField] private CardView cardView;
+		[Required, SerializeField] private ParticleSystem particleSystem;
 		
 		[Inject]
 		private void Construct(EcsWorldsProvider worldsProvider)
@@ -31,7 +33,8 @@ namespace Ingame
 			};
 			world.GetPool<RigidbodyMdl>().AddComponent(entity).rigidbody = attachedRigidbody;
 			world.GetPool<CardViewMdl>().AddComponent(entity).cardView = cardView;
-
+			world.GetPool<ParticleSystemMdl>().AddComponent(entity).particleSystem = particleSystem;
+			
 			this.LinkEcsEntity(world, entity);
 			
 			Destroy(this);

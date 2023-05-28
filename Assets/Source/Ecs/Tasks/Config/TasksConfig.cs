@@ -10,9 +10,13 @@ namespace Ingame.Tasks
     [CreateAssetMenu(fileName = "TasksConfig", menuName = "Tasks/TasksConfig")]
     public sealed class TasksConfig : ScriptableObject
     {
-        [SerializeField] private List<Task> tasks;
-
+        [SerializeField] 
+        [ReorderableList]
+        private List<Task> tasks;
+   
         public List<Task> Tasks => tasks;
+
+     
     }
 
     [Serializable]

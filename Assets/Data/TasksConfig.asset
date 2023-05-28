@@ -16,45 +16,104 @@ MonoBehaviour:
   - questItems:
     - {fileID: 11400000, guid: f7daaf08fae3fc54b918152795ae5956, type: 2}
     description: Hello... you seem to be the one who knows how to get  IRON
+    money: 35
+  - questItems:
+    - {fileID: 11400000, guid: f7daaf08fae3fc54b918152795ae5956, type: 2}
+    - {fileID: 11400000, guid: f7daaf08fae3fc54b918152795ae5956, type: 2}
+    description: ... IIRON [2]  !!!.... Fast!!! Im in hurry!!!
+    money: 65
+  - questItems:
+    - {fileID: 11400000, guid: aaaef89a5d95da64fb16cffbd434cefb, type: 2}
+    - {fileID: 11400000, guid: 191dac4da6971f34a94914cda6aec035, type: 2}
+    description: Have u ever seen the trick... you know that trick... I need a TREE
+      and FOGgy day to show you..
+    money: 70
+  - questItems:
+    - {fileID: 11400000, guid: 5826e6f1e49db714db585a7b602a44fa, type: 2}
+    description: Did u know I am almighty Zues... I just need a LIGHTNING to prove
+      it..
     money: 45
   - questItems:
-    - {fileID: 11400000, guid: f7daaf08fae3fc54b918152795ae5956, type: 2}
-    - {fileID: 11400000, guid: f7daaf08fae3fc54b918152795ae5956, type: 2}
-    description: ... IIRON [2]  !!!.... Fast!!! Maggot!!
-    money: 112
+    - {fileID: 11400000, guid: 6d7e78b69ed5a4943aa9d1ac655ee8d3, type: 2}
+    - {fileID: 11400000, guid: 2c380ec964e456545b4c470566fa349d, type: 2}
+    description: I think I'm freezing [...] Only smooth touch of FIRE and  WATER 
+      could help me in that regrettable case
+    money: 26
+  - questItems:
+    - {fileID: 11400000, guid: 6e711f19c4267624abb258743dc0153e, type: 2}
+    description: Are u a landlord... I would like to buy a LAND from you.
+    money: 71
+  - questItems:
+    - {fileID: 11400000, guid: d61e88be0e3a5724c846862de6376ebf, type: 2}
+    description: It's sunny... how awfull.. I wish a STORM will approach...
+    money: 73
+  - questItems:
+    - {fileID: 11400000, guid: 86ac30385989e954a8df24d8b4eb6310, type: 2}
+    description: 'What a hopeless day.. The MINE''s closed... I gonna lose my job
+      *cry*... '
+    money: 102
+  - questItems:
+    - {fileID: 11400000, guid: 191dac4da6971f34a94914cda6aec035, type: 2}
+    - {fileID: 11400000, guid: 5826e6f1e49db714db585a7b602a44fa, type: 2}
+    description: '"I want nothing more than seeing a LIGHTNING in a FOGgy day...'
+    money: 86
+  - questItems:
+    - {fileID: 11400000, guid: 4d0df3a936f876441b280a74dea44c8e, type: 2}
+    description: I've always dreamt of seeing a SEA... I wish one day it would happen..
+    money: 34
+  - questItems:
+    - {fileID: 11400000, guid: 8842534012d448b4ab8115974b07a553, type: 2}
+    - {fileID: 11400000, guid: 8842534012d448b4ab8115974b07a553, type: 2}
+    - {fileID: 11400000, guid: 8842534012d448b4ab8115974b07a553, type: 2}
+    description: The wind will be soon... I must get a much CHARCOAL [3]  as I can...
+    money: 100
+  - questItems:
+    - {fileID: 11400000, guid: b9b5229ea1a2cdc4f9e3d6f8f17c21da, type: 2}
+    description: What's your favourite computer language?... My is RUST...
+    money: 75
   - questItems:
     - {fileID: 11400000, guid: e1e4d3a6f1f9c0a45bd4be95ba59298e, type: 2}
-    description: Hey there! I'm in dire need of a shimmering AXE. Any leads on where
-      I can find it?
-    money: 78
+    - {fileID: 11400000, guid: aaaef89a5d95da64fb16cffbd434cefb, type: 2}
+    description: It's a good day to become a canadian lumberjack... Just need a fine
+      AXE and TREE to chop...
+    money: 135
   - questItems:
-    - {fileID: 11400000, guid: 2c380ec964e456545b4c470566fa349d, type: 2}
     - {fileID: 11400000, guid: 6f4a90d1f7aae614fa743b46b9599957, type: 2}
-    description: If I could lay my hands on a steady supply of pristine WATER and
-      a pile of sturdy LOG, I'd be able to build a fortress fit for legends.
-    money: 160
+    description: Hey... it's you again... can you help me... I joined lumberjack's
+      club but I can't get any good LOG...
+    money: 150
   - questItems:
-    - {fileID: 11400000, guid: 6d7e78b69ed5a4943aa9d1ac655ee8d3, type: 2}
-    description: I think I'm freezing [...] Only smooth touch of FIRE could help
-      me in that regrettable case
-    money: 36
-  - questItems:
-    - {fileID: 11400000, guid: 2b36f23aaedd04546bfca3cc76e5ff07, type: 2}
-    description: If only I could get my hands on that power of DEATH, said to hold
-      immeasurable power and grant the bearer unparalleled abilities
-    money: 231
+    - {fileID: 11400000, guid: 92f06a50dd6e6c44399f29f0797d3cbb, type: 2}
+    description: Finally... I found a well-built builder... How much time do you
+      need to build me a house?
+    money: 165
   - questItems:
     - {fileID: 11400000, guid: f4c61c8ddd044304fac83a0972055351, type: 2}
     description: Please... * blub*... I told my wife I...*hiccup* I would be fishing
       with my friends... I can not return without any FISH
-    money: 140
+    money: 160
   - questItems:
-    - {fileID: 11400000, guid: d61e88be0e3a5724c846862de6376ebf, type: 2}
-    description: It's sunny... how awfull.. I wish a STORM will approach
-    money: 240
+    - {fileID: 11400000, guid: 6e711f19c4267624abb258743dc0153e, type: 2}
+    - {fileID: 11400000, guid: 2c380ec964e456545b4c470566fa349d, type: 2}
+    - {fileID: 11400000, guid: 6f4a90d1f7aae614fa743b46b9599957, type: 2}
+    description: If I could lay my hands on a steady supply of pristine WATER, LAND
+      and a pile of sturdy LOGs, I'd be able to build a fortress fit for legends.
+    money: 120
   - questItems:
-    - {fileID: 11400000, guid: 86ac30385989e954a8df24d8b4eb6310, type: 2}
+    - {fileID: 11400000, guid: 2b36f23aaedd04546bfca3cc76e5ff07, type: 2}
+    description: If only I could get my hands on that power of DEATH, said to hold
+      immeasurable power and grant the bearer unparalleled abilities
+    money: 260
+  - questItems:
+    - {fileID: 11400000, guid: 2c380ec964e456545b4c470566fa349d, type: 2}
+    - {fileID: 11400000, guid: 6d7e78b69ed5a4943aa9d1ac655ee8d3, type: 2}
+    - {fileID: 11400000, guid: a892cba95e26096448663ba3e624b242, type: 2}
+    - {fileID: 11400000, guid: 0330050dad32a5944885a8ffa8eef5f8, type: 2}
+    description: I am the avatar... The master of all FOUR ELEMENTS...
+    money: 50
+  - questItems:
     - {fileID: 11400000, guid: 92f06a50dd6e6c44399f29f0797d3cbb, type: 2}
+    - {fileID: 11400000, guid: 86ac30385989e954a8df24d8b4eb6310, type: 2}
     description: I do love those lovely views... I think I will stay here for even
       longer that I expected... Now I only need a new HOUSE and MINE... just in case
-    money: 356
+    money: 130

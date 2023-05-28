@@ -73,3 +73,7 @@ MonoBehaviour:
     componentA: {fileID: 11400000, guid: 6d7e78b69ed5a4943aa9d1ac655ee8d3, type: 2}
     componentB: {fileID: 11400000, guid: 0330050dad32a5944885a8ffa8eef5f8, type: 2}
     createdItem: {fileID: 11400000, guid: 5826e6f1e49db714db585a7b602a44fa, type: 2}
+  - receiptName: storm
+    componentA: {fileID: 11400000, guid: 5826e6f1e49db714db585a7b602a44fa, type: 2}
+    componentB: {fileID: 11400000, guid: 0330050dad32a5944885a8ffa8eef5f8, type: 2}
+    createdItem: {fileID: 11400000, guid: d61e88be0e3a5724c846862de6376ebf, type: 2}
