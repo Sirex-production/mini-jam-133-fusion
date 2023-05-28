@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ingame.Npc;
 using Ingame.Recipe;
 using Secs;
 using UnityEngine;
@@ -22,6 +23,9 @@ namespace Ingame.Tasks
         [EcsInject( typeof(PlayerWalletCmp))]
         private readonly EcsFilter _walletCmpFilter;
         
+        [EcsInject( typeof(IsUnderDOTweenAnimationTag),typeof(TaskNpcTag))]
+        private readonly EcsFilter _npcFilter;
+        
         [EcsInject]
         private readonly EcsPool<TaskHolderMdl> _taskPool;
         
@@ -37,19 +41,19 @@ namespace Ingame.Tasks
         [EcsInject]
         private readonly EcsPool<PlayerWalletCmp> _walletCmpPool;
         
+        [EcsInject]
+        private readonly EcsPool<MoveBackNpcEvent> _moveBckNpcEventPool;
+        
         public void OnRun()
         {
             foreach (var offerTaskItemEventEntity in _offerTaskItemEventFilter)
             {
-                if(_offeredItemsCmpFilter.IsEmpty)
-                    return;
-                
-                if(_taskFilter.IsEmpty)
-                    return;
-                
-                if(_walletCmpFilter.IsEmpty)
-                    return;
-                
+                if (_offeredItemsCmpFilter.IsEmpty || !_npcFilter.IsEmpty || _taskFilter.IsEmpty || _walletCmpFilter.IsEmpty)
+                {
+                    _world.DelEntity(offerTaskItemEventEntity);
+                    continue;
+                }
+
                 ref var offeredTaskItemsCmp = ref _offerItemsPool.GetComponent(_offeredItemsCmpFilter.GetFirstEntity());
                 ref var taskHolderMdl = ref _taskPool.GetComponent(_taskFilter.GetFirstEntity());
                 ref var walletCmp = ref _walletCmpPool.GetComponent(_walletCmpFilter.GetFirstEntity());
@@ -65,6 +69,9 @@ namespace Ingame.Tasks
                     
                     newEntity = _world.NewEntity();
                     _updateCardsViewEvenPool.AddComponent(newEntity);
+                    
+                    newEntity = _world.NewEntity();
+                    _moveBckNpcEventPool.AddComponent(newEntity);
                 }
                 _world.DelEntity(offerTaskItemEventEntity);
             }
