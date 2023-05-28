@@ -23,7 +23,8 @@ namespace Ingame
 			SoundService soundService,
 			GeneralCardsConfig generalCardsConfig,
 			ShopConfig shopConfig,
-			AllRecipeContainerConfig allRecipeContainerConfig
+			AllRecipeContainerConfig allRecipeContainerConfig,
+			AllItemsConfig allItemsConfig
 		)
 		{
 			_world = ecsWorldsProvider.GameplayWorld;
@@ -57,6 +58,7 @@ namespace Ingame
 				//Gameplay UI
 				.Add(new UpdateCurrencyViewSystem())
 				.Add(new UpdateUiCollectionViewSystem())
+				.Add(new CheckWinConditionsSystem(allItemsConfig))
 				//NPC
 				.Add(new MoveTaskNpcSys(soundService))
 				//Physics
