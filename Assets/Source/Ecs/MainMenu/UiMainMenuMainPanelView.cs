@@ -37,8 +37,16 @@ namespace Ingame
 		[BoxGroup("Animation properties")]
 		[SerializeField] [Min(0f)] float animationDuration = .3f;
 
+		private SoundService _soundService;
+		
 		private Vector3 _initialContentParentPos;
-
+		
+		[Inject]
+		private void Construct(SoundService soundService)
+		{
+			_soundService = soundService;
+		}
+		
 		private void Awake()
 		{
 			_initialContentParentPos = contentParent.position;
@@ -67,24 +75,28 @@ namespace Ingame
 
 		private void OnPlayButtonClicked()
 		{
+			_soundService.PlayUiClickSound();
 			tutorialView.Show();
 			Hide();
 		}
 		
 		private void OnDevelopersButtonClicked()
 		{
+			_soundService.PlayUiClickSound();
 			Hide();
 			developersView.Show();
 		}
 		
 		private void OnSettingsButtonClicked()
 		{
+			_soundService.PlayUiClickSound();
 			Hide();
 			settingsView.Show();
 		}
 		
 		private void OnExitButtonClicked()
 		{
+			_soundService.PlayUiClickSound();
 			Application.Quit();
 		}
 

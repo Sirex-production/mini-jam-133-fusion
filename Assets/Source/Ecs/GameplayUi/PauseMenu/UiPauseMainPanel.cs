@@ -44,14 +44,16 @@ namespace Ingame
 		private Vector3 _initialContentParentPos;
 		private SceneService _sceneService;
 		private InputService _inputService;
+		private SoundService _soundService;
 
 		private bool _isOpened = true;
 		
 		[Inject]
-		private void Construct(SceneService sceneService, InputService inputService)
+		private void Construct(SceneService sceneService, InputService inputService, SoundService soundService)
 		{
 			_sceneService = sceneService;
 			_inputService = inputService;
+			_soundService = soundService;
 			
 			Hide();
 		}
@@ -78,6 +80,8 @@ namespace Ingame
 
 		private void OnPauseButtonClicked()
 		{
+			_soundService.PlayUiClickSound();
+			
 			if(_isOpened) 
 				Hide();
 			else
@@ -86,22 +90,26 @@ namespace Ingame
 
 		private void OnContinueButtonClicked()
 		{
+			_soundService.PlayUiClickSound();
 			Hide();
 		}
 		
 		private void OnRestartButtonClicked()
 		{
+			_soundService.PlayUiClickSound();
 			_sceneService.LoadLevel(SceneManager.GetActiveScene().buildIndex);
 			Hide();
 		}
 		
 		private void OnSettingsButtonClicked()
 		{
+			_soundService.PlayUiClickSound();
 			settingsView.Show();
 		}
 		
 		private void OnExitButtonClicked()
 		{
+			_soundService.PlayUiClickSound();
 			_sceneService.LoadLevel(mainMenuScene);
 		}
 

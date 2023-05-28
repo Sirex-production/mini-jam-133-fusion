@@ -21,11 +21,13 @@ namespace Ingame
 		[SerializeField] [Min(0f)] private float animationDuration = 1f;
 		
 		private SceneService _sceneService;
+		private SoundService _soundService;
 		
 		[Inject]
-		private void Construct(SceneService sceneService)
+		private void Construct(SceneService sceneService, SoundService soundService)
 		{
 			_sceneService = sceneService;
+			_soundService = soundService;
 		}
 		
 		private void Awake()
@@ -41,6 +43,7 @@ namespace Ingame
 
 		private void OnMainMenuButtonClicked()
 		{
+			_soundService.PlayUiClickSound();
 			_sceneService.LoadLevel(sceneToLoad);
 		}
 

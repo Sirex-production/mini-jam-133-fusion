@@ -3,6 +3,7 @@ using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Ingame
 {
@@ -18,19 +19,33 @@ namespace Ingame
 		[BoxGroup("Animation properties")]
 		[SerializeField] [Min(0f)] private float animationDuration = .3f;
 		
+		private SoundService _soundService;
+		
 		public event Action OnDevelopersClosed;
+
+		[Inject]
+		private void Construct(SoundService soundService)
+		{
+			_soundService = soundService;
+		}
 		
 		private void Awake()
 		{
-			closeButton.onClick.AddListener(Hide);
+			closeButton.onClick.AddListener(OnCloseButtonClicked);
 			Hide();
 		}
 
 		private void OnDestroy()
 		{
-			closeButton.onClick.RemoveListener(Hide);
+			closeButton.onClick.RemoveListener(OnCloseButtonClicked);
 		}
 
+		private void OnCloseButtonClicked()
+		{
+			_soundService.PlayUiClickSound();
+			Hide();
+		}
+		
 		private void Hide()
 		{
 			backgroundCanvasGroup.DOFade(0, animationDuration / 2f);

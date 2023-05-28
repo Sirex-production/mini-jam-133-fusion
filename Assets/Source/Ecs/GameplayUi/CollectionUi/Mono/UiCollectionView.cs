@@ -28,17 +28,19 @@ namespace Ingame
 		[SerializeField] [Min(0f)] private float animationDuration = .3f;
 
 		private InputService _inputService;
-		private HashSet<ItemConfig> _allItemsSet;
+		private SoundService _soundService;
 		
+		private HashSet<ItemConfig> _allItemsSet;
 		private List<UiCollectionItemView> _currentCollectionItemViews = new();
 		
 		public event Action OnCollectionShown; 
 		public event Action OnCollectionClosed;
 
 		[Inject]
-		private void Construct(InputService inputService, AllItemsConfig allItemsConfig)
+		private void Construct(InputService inputService, AllItemsConfig allItemsConfig, SoundService soundService)
 		{
 			_inputService = inputService;
+			_soundService = soundService;
 			_allItemsSet = allItemsConfig.AllItems.ToHashSet();
 		}
 		
@@ -61,6 +63,7 @@ namespace Ingame
 
 		private void OnCloseButtonClicked()
 		{
+			_soundService.PlayUiClickSound();
 			Hide();
 		}
 

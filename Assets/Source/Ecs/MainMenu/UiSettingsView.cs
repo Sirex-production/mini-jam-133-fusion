@@ -28,22 +28,24 @@ namespace Ingame
 		[SerializeField] [Min(0f)] private float animationDuration = .3f;
 
 		private SettingsService _settingsService;
+		private SoundService _soundService;
 
 		private bool _isOpened = true;
 		
 		public event Action OnSettingsClosed;
 
 		[Inject]
-		private void Construct(SettingsService settingsService)
+		private void Construct(SettingsService settingsService, SoundService soundService)
 		{
 			_settingsService = settingsService;
+			_soundService = soundService;
 
 			Hide();
 		}
 		
 		private void Awake()
 		{
-			closeButton.onClick.AddListener(Hide);
+			closeButton.onClick.AddListener(OnCloseButtonClicked);
 			soundVolumeSlider.onValueChanged.AddListener(OnSoundVolumeSliderValueChanged);
 			cameraMovementSpeedSlider.onValueChanged.AddListener(OnCameraMovementSpeedSliderValueChanged);
 			mouseDragSensitivitySlider.onValueChanged.AddListener(OnMouseDragSensitivitySliderValueChanged);
@@ -57,7 +59,7 @@ namespace Ingame
 		
 		private void OnDestroy()
 		{
-			closeButton.onClick.RemoveListener(Hide);
+			closeButton.onClick.RemoveListener(OnCloseButtonClicked);
 			soundVolumeSlider.onValueChanged.RemoveListener(OnSoundVolumeSliderValueChanged);
 			cameraMovementSpeedSlider.onValueChanged.RemoveListener(OnCameraMovementSpeedSliderValueChanged);
 			mouseDragSensitivitySlider.onValueChanged.RemoveListener(OnMouseDragSensitivitySliderValueChanged);
@@ -77,6 +79,12 @@ namespace Ingame
 		private void OnMouseDragSensitivitySliderValueChanged(float value)
 		{
 			_settingsService.currentSettingsData.mapMouseDraggingSpeed = value;
+		}
+		
+		private void OnCloseButtonClicked()
+		{
+			_soundService.PlayUiClickSound();
+			Hide();
 		}
 		
 		private void Hide()

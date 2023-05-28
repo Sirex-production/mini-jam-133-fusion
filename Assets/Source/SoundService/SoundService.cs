@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -7,6 +8,8 @@ namespace Ingame
 {
     public sealed class SoundService : MonoBehaviour
     {
+        [Required, SerializeField] private AudioClip clickAudioClip;
+        
         private ObjectPool<AudioSource> _audioPool;
 
         private void Awake()
@@ -18,16 +21,14 @@ namespace Ingame
                 OnAudioClipDestroy
                 );
         }
-
-      
+        
         private AudioSource OnAudioClipCreate()
         {
             var go = new GameObject("audio");
             go.transform.SetParent(transform);
             return go.AddComponent<AudioSource>();
         }
-      
-
+        
         private void OnAudioClipGet(AudioSource clip)
         {
             clip.gameObject.SetActive(true);
@@ -61,7 +62,12 @@ namespace Ingame
             
             return audioSource;
         }
-        
+
+        public void PlayUiClickSound()
+        {
+            PlaySoundThenReturnToPool(clickAudioClip);
+        }
+
         public void PlaySoundThenReturnToPool(AudioClip clip)
         {
             var audioSource = _audioPool.Get();
@@ -75,6 +81,5 @@ namespace Ingame
             audioSource.Stop();
             _audioPool.Release(audioSource);
         }
-        
     }
 }

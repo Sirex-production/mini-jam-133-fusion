@@ -2,6 +2,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Ingame
 {
@@ -15,6 +16,14 @@ namespace Ingame
 		[BoxGroup("Animation")]
 		[SerializeField] [Min(0f)] private float animationDuration = .2f;
 
+		private SoundService _soundService;
+		
+		[Inject]
+		private void Construct(SoundService soundService)
+		{
+			_soundService = soundService;
+		}
+		
 		private void Awake()
 		{
 			collectionsButton.onClick.AddListener(OnCollectionsButtonClicked);
@@ -31,6 +40,7 @@ namespace Ingame
 
 		private void OnCollectionsButtonClicked()
 		{
+			_soundService.PlayUiClickSound();
 			collectionView.Show();
 		}
 

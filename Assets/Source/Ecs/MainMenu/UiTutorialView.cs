@@ -21,12 +21,14 @@ namespace Ingame
 		[BoxGroup("Animation properties")]
 		[SerializeField] [Min(0f)] private float animationDuration = .3f;
 		
+		private SoundService _soundService;
 		private SceneService _sceneService;
-		
+
 		[Inject]
-		private void Construct(SceneService sceneService)
+		private void Construct(SceneService sceneService, SoundService soundService)
 		{
 			_sceneService = sceneService;
+			_soundService = soundService;
 		}
 		
 		private void Awake()
@@ -43,6 +45,7 @@ namespace Ingame
 
 		private void OnPlayButtonClicked()
 		{
+			_soundService.PlayUiClickSound();
 			Hide();
 			_sceneService.LoadLevel(sceneToLoad);
 		}
