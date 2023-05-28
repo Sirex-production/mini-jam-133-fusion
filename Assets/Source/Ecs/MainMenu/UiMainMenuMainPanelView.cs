@@ -24,6 +24,8 @@ namespace Ingame
 		[Required, SerializeField] private UiDevelopersView developersView;
 		[BoxGroup("References other views")]
 		[Required, SerializeField] private UiSettingsView settingsView;
+		[BoxGroup("References other views")]
+		[Required, SerializeField] private UiTutorialView tutorialView;
 		
 		[BoxGroup("References (Animation)")]
 		[Required, SerializeField] private Transform contentParent;
@@ -36,13 +38,6 @@ namespace Ingame
 		[SerializeField] [Min(0f)] float animationDuration = .3f;
 
 		private Vector3 _initialContentParentPos;
-		private SceneService _sceneService;
-		
-		[Inject]
-		private void Construct(SceneService sceneService)
-		{
-			_sceneService = sceneService;
-		}
 
 		private void Awake()
 		{
@@ -72,7 +67,8 @@ namespace Ingame
 
 		private void OnPlayButtonClicked()
 		{
-			_sceneService.LoadLevel(sceneToLoad);
+			tutorialView.Show();
+			Hide();
 		}
 		
 		private void OnDevelopersButtonClicked()
