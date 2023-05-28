@@ -96,10 +96,10 @@ namespace Ingame
 				_isUnderDOTweenAnimationPool.AddComponent(otherEntityReference.EntityId);
 
 				AudioSource audioSource = null;
-				ParticleSystem particleSystem = null;
-				
+
 				if(!_fusionSoundFilter.IsEmpty)
 					audioSource = _soundService.PlaySound(_audioCmpPool.GetComponent(_fusionSoundFilter.GetFirstEntity()).audioClip);
+				
 				
 				DOTween.Sequence()
 					.Append(otherCardTransform.DOMove(senderCardTransform.position, MOVE_DURATION).SetLink(otherCardTransform.gameObject))
@@ -118,9 +118,14 @@ namespace Ingame
 								_discoverNewItemEventPool.AddComponent(_world.NewEntity()).item = resultItemConfig;
 								otherEntityReference.gameObject.SetActive(false);
 
-								if(_particleSystemPool.HasComponent(senderEntityReference.EntityId))
-									_particleSystemPool.GetComponent(senderEntityReference.EntityId).particleSystem?.Play();
-							 
+								var entity = senderEntityReference.EntityId;
+								if (!_particleSystemPool.HasComponent(entity)) 
+									return;
+								
+								var particle = _particleSystemPool.GetComponent(entity).particleSystem;
+								
+								particle.Clear();
+								particle.Play();
 							})
 					)
 					.Append(senderCardTransform.DOScale(Vector3.one * RESULT_CARD_SCALE, RESULT_SCALE_DURATION).SetLink(senderCardTransform.gameObject))
@@ -133,6 +138,9 @@ namespace Ingame
 						_isUnderDOTweenAnimationPool.DelComponent(senderEntityReference.EntityId);
 						_world.DelEntity(otherEntityReference.EntityId);
 						Object.Destroy(otherEntityReference.gameObject);
+						
+						var entity = senderEntityReference.EntityId;
+						
 					});
 			}
 		}
