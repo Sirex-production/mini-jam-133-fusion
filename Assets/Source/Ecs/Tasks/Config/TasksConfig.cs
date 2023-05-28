@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Ingame.Recipe;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Ingame.Tasks 
 {
@@ -17,20 +18,21 @@ namespace Ingame.Tasks
     [Serializable]
     public sealed class Task
     {
+        [FormerlySerializedAs("questItem")]
         [SerializeField] 
         [Required]
-        private ItemConfig questItem;
+        private List<ItemConfig> questItems;
 
         [SerializeField] 
         private string description;
 
         [SerializeField] 
-        private float money;
+        private int money;
         
-        public ItemConfig QuestItem => questItem;
+        public List<ItemConfig> QuestItems => questItems;
 
         public string Description => description;
 
-        public float Money => money;
+        public int Money => money;
     }
 }

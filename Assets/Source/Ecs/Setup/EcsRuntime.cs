@@ -2,6 +2,7 @@
 using Ingame.Tasks;
 using Secs;
 using Ingame;
+using Ingame.Npc;
 using UnityEngine;
 using Zenject;
 
@@ -35,6 +36,7 @@ namespace Ingame
 				.Add(new UnlockNewRecipeSys())
 				.Add(new UnlockNewItemSys())
 				//Tasks
+				.Add(new DetectCollisionWithTasksTable())
 				.Add(new CreateNewTaskSys())
 				.Add(new CheckOfferedTaskItemValidationSys())
 				//Shop
@@ -54,8 +56,11 @@ namespace Ingame
 				//Gameplay UI
 				.Add(new UpdateCurrencyViewSystem())
 				.Add(new UpdateUiCollectionViewSystem())
+				//NPC
+				.Add(new MoveTaskNpcSys())
 				//Physics
-				.Add(new DisposeOnTickPhysicsSys());
+				.Add(new DisposeOnTickPhysicsSys())
+				.Add(new FullyDestroyObject());
 
 			_ecsSystems.AttachProfiler();
 			_ecsSystems.Inject();
