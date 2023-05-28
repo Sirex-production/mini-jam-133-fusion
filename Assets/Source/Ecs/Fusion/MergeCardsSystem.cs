@@ -33,6 +33,8 @@ namespace Ingame
 		private readonly EcsPool<ShopSlotCmp> _shopSlotPool;
 		[EcsInject]
 		private readonly EcsPool<IsUnderDOTweenAnimationTag> _isUnderDOTweenAnimationPool;
+		[EcsInject]
+		private readonly EcsPool<DiscoverNewItemEvent> _discoverNewItemEventPool;
 		
 		
 		private readonly AllRecipeContainerConfig _receiptConfig;
@@ -95,6 +97,7 @@ namespace Ingame
 								_cardPool.GetComponent(senderEntityReference.EntityId).itemConfig = resultItemConfig;
 
 								_updateCardsViewEventPool.AddComponent(_world.NewEntity());
+								_discoverNewItemEventPool.AddComponent(_world.NewEntity()).item = resultItemConfig;
 								otherEntityReference.gameObject.SetActive(false);
 							})
 					)

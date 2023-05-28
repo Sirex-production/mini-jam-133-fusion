@@ -1,4 +1,5 @@
-﻿using Secs;
+﻿using Ingame.Recipe;
+using Secs;
 using UnityEngine;
 
 namespace Ingame
@@ -22,9 +23,13 @@ namespace Ingame
 		[EcsInject]
 		private readonly EcsPool<ShopSlotCmp> _shopSlotPool;
 		[EcsInject]
+		private readonly EcsPool<CardCmp> _cardCmpPool;
+		[EcsInject]
 		private readonly EcsPool<UpdateCardsViewEvent> _updateCardsViewEventPool;
 		[EcsInject]
 		private readonly EcsPool<UpdateGameplayUiEvent> _updateGameplayUiEventPool;
+		[EcsInject]
+		private readonly EcsPool<DiscoverNewItemEvent> _discoverNewItemEventPool;
 
 		public void OnRun()
 		{
@@ -60,6 +65,7 @@ namespace Ingame
 		private void SellItem(int cardEntityId, ref PlayerWalletCmp walletCmp)
 		{
 			ref var shopSlotCmp = ref _shopSlotPool.GetComponent(cardEntityId);
+			ref var cardCmp = ref _cardCmpPool.GetComponent(cardEntityId);
 			
 			if(!walletCmp.HasEnoughCoins(shopSlotCmp.price))
 				return;
@@ -69,6 +75,7 @@ namespace Ingame
 			_shopSlotPool.DelComponent(cardEntityId);
 			_updateCardsViewEventPool.AddComponent(_world.NewEntity());
 			_updateGameplayUiEventPool.AddComponent(_world.NewEntity());
+			_discoverNewItemEventPool.AddComponent(_world.NewEntity()).item = cardCmp.itemConfig;
 		}
 	}
 }
