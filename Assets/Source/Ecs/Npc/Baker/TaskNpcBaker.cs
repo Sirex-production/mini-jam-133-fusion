@@ -9,6 +9,7 @@ using NaughtyAttributes;
 using Secs;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
@@ -17,7 +18,7 @@ namespace Ingame.NPC
     public sealed class TaskNpcBaker : MonoBehaviour
     {
         [Required]
-        [SerializeField] private AudioClip dialogSound;
+        [SerializeField] private List<AudioClip> dialogSounds;
         
         [SerializeField]
         private List<Transform> positions;
@@ -57,7 +58,7 @@ namespace Ingame.NPC
             dialogMdl.image = dialogBox;
             dialogMdl.taskText = "";
             
-            _world.GetPool<AudioCmp>().AddComponent(entity).audioClip = dialogSound;
+            _world.GetPool<RandomAudioCmp>().AddComponent(entity).audioClips = dialogSounds;
             _world.GetPool<TaskHolderMdl>().AddComponent(entity);
             
             gameObject.LinkEcsEntity(_world, entity);

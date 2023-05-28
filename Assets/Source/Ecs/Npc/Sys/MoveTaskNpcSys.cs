@@ -13,7 +13,7 @@ namespace Ingame.Npc
         
         [EcsInject] private EcsWorld _ecsWorld;
         
-        [EcsInject(typeof(WaypointsCmp),typeof(TaskNpcTag),typeof(TransformMdl),typeof(DialogMdl),typeof(AudioCmp))] 
+        [EcsInject(typeof(WaypointsCmp),typeof(TaskNpcTag),typeof(TransformMdl),typeof(DialogMdl),typeof(RandomAudioCmp))] 
         private EcsFilter _npcFilter;
         
         [EcsInject(typeof(MoveBackNpcEvent))] 
@@ -35,7 +35,7 @@ namespace Ingame.Npc
         private EcsPool<TaskHolderMdl> _taskHolderMdlPool;
         
         [EcsInject]
-        private EcsPool<AudioCmp> _audioClipPool;
+        private EcsPool<RandomAudioCmp> _audioClipPool;
         
         [EcsInject]
         private EcsPool<IsUnderDOTweenAnimationTag> _isUnderDOTweenAnimationTagPool;
@@ -83,7 +83,7 @@ namespace Ingame.Npc
             
             _isUnderDOTweenAnimationTagPool.AddComponent(npcEntity);
 
-            var audioClip = audioCmp.audioClip;
+            var audioClip = audioCmp.GetRandom();
             var transform = transformMdl.transform;
             var nextWaypoint = waypoint.Next();
             AudioSource audioSource;

@@ -364,7 +364,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519baaf999bc453fade177d17fa46dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogSound: {fileID: 0}
+  dialogSounds:
+  - {fileID: 8300000, guid: df0f744fe5810aa47a27d2f5175ba4f5, type: 3}
+  - {fileID: 8300000, guid: 5245e6218b9c1644ab6f7365ec1f47e8, type: 3}
   positions:
   - {fileID: 1023936214960162980}
   - {fileID: 1023936213794734677}

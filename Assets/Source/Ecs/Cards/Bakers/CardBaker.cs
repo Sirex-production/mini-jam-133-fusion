@@ -13,7 +13,7 @@ namespace Ingame
 		[Required, SerializeField] private ItemConfig itemConfig;
 		[Required, SerializeField] private Rigidbody attachedRigidbody;
 		[Required, SerializeField] private CardView cardView;
-		[Required, SerializeField] private ParticleSystem particleSystem;
+		[Required, SerializeField] private new ParticleSystem particleSystem;
 		
 		[Inject]
 		private void Construct(EcsWorldsProvider worldsProvider)

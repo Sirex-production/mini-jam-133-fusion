@@ -20231,6 +20231,18 @@ PrefabInstance:
       propertyPath: dialogSound
       value: 
       objectReference: {fileID: 8300000, guid: df0f744fe5810aa47a27d2f5175ba4f5, type: 3}
+    - target: {fileID: 3580319854617561718, guid: 047d3a6cf7e38a5449d76114ba627759, type: 3}
+      propertyPath: dialogSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3580319854617561718, guid: 047d3a6cf7e38a5449d76114ba627759, type: 3}
+      propertyPath: dialogSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: df0f744fe5810aa47a27d2f5175ba4f5, type: 3}
+    - target: {fileID: 3580319854617561718, guid: 047d3a6cf7e38a5449d76114ba627759, type: 3}
+      propertyPath: dialogSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5245e6218b9c1644ab6f7365ec1f47e8, type: 3}
     - target: {fileID: 3580319854617561719, guid: 047d3a6cf7e38a5449d76114ba627759, type: 3}
       propertyPath: m_LocalScale.x
       value: 0
