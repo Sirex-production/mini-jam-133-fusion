@@ -34,7 +34,7 @@ namespace Ingame
 			world.GetPool<RigidbodyMdl>().AddComponent(entity).rigidbody = attachedRigidbody;
 			world.GetPool<CardViewMdl>().AddComponent(entity).cardView = cardView;
 			world.GetPool<ParticleSystemMdl>().AddComponent(entity).particleSystem = particleSystem;
-			
+	 
 			this.LinkEcsEntity(world, entity);
 			
 			Destroy(this);
