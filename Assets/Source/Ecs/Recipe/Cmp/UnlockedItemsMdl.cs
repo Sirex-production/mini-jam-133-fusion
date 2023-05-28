@@ -5,6 +5,6 @@ namespace Ingame.Recipe
 {
     public struct UnlockedItemsMdl : IEcsComponent
     {
-        public List<ItemConfig> items;
+        public HashSet<ItemConfig> items;
     }
 }

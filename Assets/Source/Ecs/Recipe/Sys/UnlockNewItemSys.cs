@@ -37,9 +37,7 @@ namespace Ingame.Recipe
 
             if(_unlockedItemsFilter.IsEmpty || _recipeStatusMdlFilter.IsEmpty || _allReceiptsFilter.IsEmpty)
                 return;
-            
-            Debug.Log("B1");
-            
+
             var discoverNewItemEntity = _discoverNewItemFilter.GetFirstEntity();
             var allReceiptsEntity = _allReceiptsFilter.GetFirstEntity();
             var recipeStatusMdlEntity = _recipeStatusMdlFilter.GetFirstEntity();

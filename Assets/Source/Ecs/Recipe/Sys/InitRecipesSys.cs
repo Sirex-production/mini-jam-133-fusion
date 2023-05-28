@@ -56,8 +56,10 @@ namespace Ingame.Recipe
                 foreach (var unlockedItemsEntity in _unlockedItemsFilter)
                 {
                     ref var unlockedItemsMdl = ref _unlockedItemsPool.GetComponent(unlockedItemsEntity);
-                    unlockedItemsMdl.items = new List<ItemConfig>(startingItems);
+                    unlockedItemsMdl.items = new HashSet<ItemConfig>(startingItems);
                 }
+                
+                _ecsWorld.GetPool<UpdateCollectionsUiEvent>().AddComponent(_ecsWorld.NewEntity());
             }
         }
     }

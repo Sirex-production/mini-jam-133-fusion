@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Ingame.Recipe;
 using NaughtyAttributes;
 using UnityEngine;
@@ -50,9 +51,10 @@ namespace Ingame
 			OnCollectionClosed?.Invoke();
 		}
 
-		public void UpdateCollectionItemsViews(List<ItemConfig> unlockedItems)
+		public void UpdateCollectionItemsViews(HashSet<ItemConfig> unlockedItems)
 		{
 			int itemsToAdd = unlockedItems.Count - _currentCollectionItemViews.Count;
+			var unlockedItemsArray = unlockedItems.ToArray();
 
 			for(int i = 0; i < itemsToAdd; i++)
 			{
@@ -69,7 +71,7 @@ namespace Ingame
 				}
 				
 				_currentCollectionItemViews[itemIndex].gameObject.SetActive(true);
-				_currentCollectionItemViews[itemIndex].SetItemView(unlockedItems[itemIndex]);
+				_currentCollectionItemViews[itemIndex].SetItemView(unlockedItemsArray[itemIndex]);
 			}
 		}
 

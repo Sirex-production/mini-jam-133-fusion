@@ -26,20 +26,14 @@ namespace Ingame
 				return;
 			
 			_updateCollectionsUiEventPool.DelComponent(_updateCollectionsUiEventFilter.GetFirstEntity());
-			
-			Debug.Log("A");
-			
+
 			if(_uiCollectionViewMdlFilter.IsEmpty)
 				return;
-			
-			Debug.Log("B");
-			
+
 			ref var unlockedItemsMdl = ref _unlockedItemsMdlPool.GetComponent(_unlockedItemsMdlFilter.GetFirstEntity());
 
 			foreach(var entity in _uiCollectionViewMdlFilter)
 			{
-				Debug.Log("C");
-				
 				ref var uiCollectionViewMdl = ref _uiCollectionViewMdlPool.GetComponent(entity);
 				uiCollectionViewMdl.uiCollectionView.UpdateCollectionItemsViews(unlockedItemsMdl.items);
 			}
