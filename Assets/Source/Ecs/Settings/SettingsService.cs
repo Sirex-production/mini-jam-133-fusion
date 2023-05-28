@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace Ingame
@@ -11,6 +12,7 @@ namespace Ingame
 		public SettingsService(DefaultSettingsConfig settingsConfig)
 		{
 			currentSettingsData = settingsConfig.DefaultSettingsData;
+			AudioListener.volume = settingsConfig.DefaultSettingsData.soundVolume;
 		}
 	}
 

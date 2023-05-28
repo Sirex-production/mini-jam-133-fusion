@@ -63,6 +63,7 @@ namespace Ingame
 		private void OnSoundVolumeSliderValueChanged(float value)
 		{
 			_settingsService.currentSettingsData.soundVolume = value;
+			AudioListener.volume = value;
 		}
 
 		private void OnCameraMovementSpeedSliderValueChanged(float value)
