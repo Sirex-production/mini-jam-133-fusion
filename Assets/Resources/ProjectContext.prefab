@@ -863,6 +863,7 @@ MonoBehaviour:
   soundService: {fileID: 9009655195514370092}
   allRecipeContainerConfig: {fileID: 11400000, guid: e88dfce6267e36849a12e0bc631b7c2e, type: 2}
   defaultSettingsConfig: {fileID: 11400000, guid: 68560ed79af2d5947a0519f7b66022c0, type: 2}
+  allItemsConfig: {fileID: 11400000, guid: d115d436c4517154d8b0c2f0ad08f339, type: 2}
 --- !u!1 &7232915003872309958
 GameObject:
   m_ObjectHideFlags: 0

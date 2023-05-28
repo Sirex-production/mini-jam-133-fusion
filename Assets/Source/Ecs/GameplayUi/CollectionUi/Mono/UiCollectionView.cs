@@ -16,6 +16,7 @@ namespace Ingame
 		[Required, SerializeField] private Button closeButton;
 
 		private InputService _inputService;
+		private HashSet<ItemConfig> _allItemsSet;
 		
 		private List<UiCollectionItemView> _currentCollectionItemViews = new();
 		
@@ -23,15 +24,22 @@ namespace Ingame
 		public event Action OnCollectionClosed;
 
 		[Inject]
-		private void Construct(InputService inputService)
+		private void Construct(InputService inputService, AllItemsConfig allItemsConfig)
 		{
 			_inputService = inputService;
+			_allItemsSet = allItemsConfig.AllItems.ToHashSet();
 		}
 		
 		private void Awake()
 		{
 			closeButton.onClick.AddListener(OnCloseButtonClicked);
 			Hide();
+
+			for(int i = 0; i < _allItemsSet.Count; i++)
+			{
+				var collectionItemView = Instantiate(collectionItemViewPrefab, itemParentTransform);
+				_currentCollectionItemViews.Add(collectionItemView);
+			}
 		}
 
 		private void OnDestroy()
@@ -53,25 +61,14 @@ namespace Ingame
 
 		public void UpdateCollectionItemsViews(HashSet<ItemConfig> unlockedItems)
 		{
-			int itemsToAdd = unlockedItems.Count - _currentCollectionItemViews.Count;
-			var unlockedItemsArray = unlockedItems.ToArray();
-
-			for(int i = 0; i < itemsToAdd; i++)
+			int currentItemViewIndex = 0;
+			
+			foreach(var itemConfig in _allItemsSet)
 			{
-				var collectionItemView = Instantiate(collectionItemViewPrefab, itemParentTransform);
-				_currentCollectionItemViews.Add(collectionItemView);
-			}
+				bool isItemUnlocked = !unlockedItems.Contains(itemConfig);
+				_currentCollectionItemViews[currentItemViewIndex].SetItemView(itemConfig, isItemUnlocked);
 
-			for(int itemIndex = 0; itemIndex < _currentCollectionItemViews.Count; itemIndex++)
-			{
-				if(itemIndex >= unlockedItems.Count)
-				{
-					_currentCollectionItemViews[itemIndex].gameObject.SetActive(false);
-					continue;
-				}
-				
-				_currentCollectionItemViews[itemIndex].gameObject.SetActive(true);
-				_currentCollectionItemViews[itemIndex].SetItemView(unlockedItemsArray[itemIndex]);
+				currentItemViewIndex++;
 			}
 		}
 

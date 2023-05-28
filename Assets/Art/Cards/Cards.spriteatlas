@@ -76,6 +76,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 776e9f1809840fe409ad014398d31537, type: 3}
   - {fileID: 21300000, guid: 9cfebd4b5f8bb2540816c50393c7eea2, type: 3}
   - {fileID: 21300000, guid: a6b5575b2c41dd2409f7ef968603c040, type: 3}
+  - {fileID: 21300000, guid: 1b1a13ebd91e12f40af7815fb70b66c4, type: 3}
   - {fileID: 21300000, guid: b97c704de8aafeb42bffcb82a707bf80, type: 3}
   - {fileID: 21300000, guid: 052aa75ed6fbdb344ba3814a9624fd9d, type: 3}
   - {fileID: 21300000, guid: 0d1e0bbe2c6505e4ab2037c4d30dd687, type: 3}
@@ -108,6 +109,7 @@ SpriteAtlas:
   - storm
   - rust
   - land
+  - wind
   - fire
   - charcoal
   - sea

@@ -14,6 +14,7 @@ namespace Ingame
 		[Required, SerializeField] private SoundService soundService;
 		[Required, SerializeField] private AllRecipeContainerConfig allRecipeContainerConfig;
 		[Required, SerializeField] private DefaultSettingsConfig defaultSettingsConfig;
+		[Required, SerializeField] private AllItemsConfig allItemsConfig;
 		
 		public override void InstallBindings()
 		{
@@ -98,6 +99,12 @@ namespace Ingame
 			Container
 				.Bind<DefaultSettingsConfig>()
 				.FromInstance(defaultSettingsConfig)
+				.AsSingle()
+				.NonLazy();
+			
+			Container
+				.Bind<AllItemsConfig>()
+				.FromInstance(allItemsConfig)
 				.AsSingle()
 				.NonLazy();
 		}

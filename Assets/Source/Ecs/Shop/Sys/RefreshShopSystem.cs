@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using Ingame.Recipe;
 using Secs;
 using Zenject;
 
@@ -16,6 +16,10 @@ namespace Ingame
 		private readonly EcsFilter _shopFilter;
 		[EcsInject(typeof(TransformMdl), typeof(CardCmp), typeof(ShopSlotCmp))]
 		private readonly EcsFilter _shopSlotFilter;
+		[EcsInject(typeof(UnlockedItemsMdl))]
+		private readonly EcsFilter _unlockedItemsFilter;
+		[EcsInject(typeof(PlayerWalletCmp))]
+		private readonly EcsFilter _playerWalletFilter;
 
 		[EcsInject]
 		private readonly EcsPool<RefreshShopEvent> _refreshShopEventPool;
@@ -31,6 +35,10 @@ namespace Ingame
 		private readonly EcsPool<UpdateCardsViewEvent> _updateCardsViewEventPool;
 		[EcsInject]
 		private readonly EcsPool<UpdateGameplayUiEvent> _updateGameplayUiEventPool;
+		[EcsInject]
+		private readonly EcsPool<UnlockedItemsMdl> _unlockedItemsPool;
+		[EcsInject]
+		private readonly EcsPool<PlayerWalletCmp> _playerWalletPool;
 
 		private readonly ShopConfig _shopConfig;
 		private readonly DiContainer _diContainer;
@@ -54,9 +62,21 @@ namespace Ingame
 		
 		public void OnRun()
 		{
+			if(_unlockedItemsFilter.IsEmpty)
+				return;
+			
 			if(_refreshShopEventFilter.IsEmpty || _shopFilter.IsEmpty)
 				return;
 			
+			if(_playerWalletFilter.IsEmpty)
+				return;
+			
+			ref var playerWalletCmp = ref _playerWalletPool.GetComponent(_playerWalletFilter.GetFirstEntity());
+			
+			if(!playerWalletCmp.HasEnoughCoins(_shopConfig.RefreshCost))
+				return;
+
+			playerWalletCmp.currentAmountOfCoins -= _shopConfig.RefreshCost;
 			ref var shopCmp = ref _shopPool.GetComponent(_shopFilter.GetFirstEntity());
 			
 			InstantiateMissingCards(ref shopCmp);
@@ -82,7 +102,8 @@ namespace Ingame
 		
 		private void PlaceCardsInShop(ref ShopCmp shopCmp)
 		{
-			var randomItems = _shopConfig.GetRandomItems(shopCmp.slotsPositions.Length).ToArray();
+			var unlockedItems = _unlockedItemsPool.GetComponent(_unlockedItemsFilter.GetFirstEntity()).items;
+			var randomItems = _shopConfig.GetRandomItems(shopCmp.slotsPositions.Length, unlockedItems).ToArray();
 			int currentSlotIndex = shopCmp.slotsPositions.Length - 1;
 			
 			foreach(var shopSlotEntity in _shopSlotFilter)

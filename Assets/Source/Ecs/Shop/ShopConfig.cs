@@ -34,10 +34,14 @@ namespace Ingame
 			return true;
 		}
 		
-		public IEnumerable<ShopItemData> GetRandomItems(int itemCount)
+		public IEnumerable<ShopItemData> GetRandomItems(int itemCount, HashSet<ItemConfig> discoveredItems)
 		{
+			var availableItems = shopItems
+				.Where(item => discoveredItems.Contains(item.itemConfig))
+				.ToArray();
+			
 			for (int i = 0; i < itemCount; i++)
-				yield return shopItems[Random.Range(0, shopItems.Length)];
+				yield return availableItems[Random.Range(0, availableItems.Length)];
 		}
 
 		[Serializable]

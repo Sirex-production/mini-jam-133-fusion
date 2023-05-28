@@ -124,3 +124,4 @@ MonoBehaviour:
   startingItems:
   - {fileID: 11400000, guid: 6d7e78b69ed5a4943aa9d1ac655ee8d3, type: 2}
   - {fileID: 11400000, guid: a892cba95e26096448663ba3e624b242, type: 2}
+  - {fileID: 11400000, guid: 2c380ec964e456545b4c470566fa349d, type: 2}
