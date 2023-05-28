@@ -55,6 +55,6 @@ MonoBehaviour:
   - questItems:
     - {fileID: 11400000, guid: 86ac30385989e954a8df24d8b4eb6310, type: 2}
     - {fileID: 11400000, guid: 92f06a50dd6e6c44399f29f0797d3cbb, type: 2}
-    description: I do love those lovely view... I think I will stay here for even
+    description: I do love those lovely views... I think I will stay here for even
       longer that I expected... Now I only need a new HOUSE and MINE... just in case
     money: 356

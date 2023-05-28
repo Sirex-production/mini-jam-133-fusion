@@ -1,17 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using DG.Tweening;
 using Ingame.Npc;
+using NaughtyAttributes;
 using Secs;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Ingame.NPC
 {
     public sealed class TaskNpcBaker : MonoBehaviour
     {
-        public Transform startingPosition;
-        public Transform endingPosition;
+        [SerializeField]
+        private List<Transform> positions;
+        
+        [Required]
+        [SerializeField]
+        private TextMeshProUGUI text;
+        
+        [Required]
+        [SerializeField] 
+        private Image dialogBox;
+        
         private EcsWorld _world;
         
         [Inject]
@@ -32,11 +45,21 @@ namespace Ingame.NPC
             _world.GetPool<TaskNpcTag>().AddComponent(entity);
             
             ref var waypointsMdl = ref _world.GetPool<WaypointsCmp>().AddComponent(entity);
-            waypointsMdl.transforms = new List<Transform>() { startingPosition, endingPosition };
+            waypointsMdl.transforms = new List<Transform>(positions);
 
+            ref var dialogMdl = ref _world.GetPool<DialogMdl>().AddComponent(entity);
+            dialogMdl.text = text;
+            dialogMdl.image = dialogBox;
+            dialogMdl.taskText = "";
+            
+            gameObject.LinkEcsEntity(_world, entity);
+            
+            _world.UpdateFilters();
+            //start quest
             entity = _world.NewEntity();
             _world.GetPool<ForwardNpcEvent>().AddComponent(entity);
-            //Destroy(this);
+            
+            Destroy(this);
         }
     }
 }
