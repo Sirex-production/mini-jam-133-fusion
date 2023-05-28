@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Ingame.Recipe;
 using NaughtyAttributes;
 using UnityEngine;
@@ -11,9 +12,20 @@ namespace Ingame
 {
 	public sealed class UiCollectionView : MonoBehaviour
 	{
+		[BoxGroup("References")]
 		[Required, SerializeField] private UiCollectionItemView collectionItemViewPrefab;
+		[BoxGroup("References")]
 		[Required, SerializeField] private Transform itemParentTransform;
+		[BoxGroup("References")]
 		[Required, SerializeField] private Button closeButton;
+		
+		[BoxGroup("References (Animation)")]
+		[Required, SerializeField] private CanvasGroup backgroundCanvasGroup;
+		[BoxGroup("References (Animation)")]
+		[Required, SerializeField] private Transform frameTransform;
+		
+		[BoxGroup("Animation")]
+		[SerializeField] [Min(0f)] private float animationDuration = .3f;
 
 		private InputService _inputService;
 		private HashSet<ItemConfig> _allItemsSet;
@@ -55,8 +67,12 @@ namespace Ingame
 		private void Hide()
 		{
 			_inputService.MovementEnabled = true;
-			gameObject.SetActive(false);
+			
 			OnCollectionClosed?.Invoke();
+			
+			backgroundCanvasGroup.DOFade(0f, animationDuration);
+			frameTransform.DOScale(0f, animationDuration)
+				.OnComplete(() => gameObject.SetActive(false));
 		}
 
 		public void UpdateCollectionItemsViews(HashSet<ItemConfig> unlockedItems)
@@ -77,6 +93,9 @@ namespace Ingame
 			_inputService.MovementEnabled = false;
 			gameObject.SetActive(true);
 			OnCollectionShown?.Invoke();
+			
+			backgroundCanvasGroup.DOFade(1f, animationDuration);
+			frameTransform.DOScale(1f, animationDuration);
 		}
 	}
 }

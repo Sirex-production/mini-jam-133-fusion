@@ -14,8 +14,6 @@ namespace Ingame
 		
 		[BoxGroup("Animation")]
 		[SerializeField] [Min(0f)] private float animationDuration = .2f;
-		[BoxGroup("Animation")]
-		[SerializeField] [Min(0f)] private float selectScale = 1.3f;
 
 		private void Awake()
 		{
@@ -52,16 +50,6 @@ namespace Ingame
 			transform
 				.DOScale(Vector3.zero, animationDuration)
 				.OnComplete(() => gameObject.SetActive(false));
-		}
-		
-		public void ScaleUp()
-		{
-			transform.localScale = Vector3.one * selectScale;
-		}
-		
-		public void ScaleDown()
-		{
-			transform.localScale = Vector3.one;
 		}
 	}
 }

@@ -713,6 +713,8 @@ GameObject:
   - component: {fileID: 1607014550199896826}
   - component: {fileID: 373168859998286513}
   - component: {fileID: 2434123749435194175}
+  - component: {fileID: 8295393350079039322}
+  - component: {fileID: 4477073550471862881}
   m_Layer: 5
   m_Name: Button - Settings
   m_TagString: Untagged
@@ -824,6 +826,65 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8295393350079039322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520079287654156690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64129120e9704fd791ef6c440ac7a5f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleWhenPointerEnter: {x: 1.2, y: 1.2, z: 1.2}
+  animationDuration: 0.3
+--- !u!114 &4477073550471862881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520079287654156690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8295393350079039322}
+          m_TargetAssemblyTypeName: Ingame.UiButtonScaler, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8295393350079039322}
+          m_TargetAssemblyTypeName: Ingame.UiButtonScaler, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1816868088818408139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,6 +1471,8 @@ GameObject:
   - component: {fileID: 6405623436725778123}
   - component: {fileID: 5249577997974245536}
   - component: {fileID: 6892183417359045596}
+  - component: {fileID: 1668090002428334254}
+  - component: {fileID: 1525714682501993504}
   m_Layer: 5
   m_Name: Button - MainMenu
   m_TagString: Untagged
@@ -1521,6 +1584,65 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1668090002428334254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2721235978833123950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64129120e9704fd791ef6c440ac7a5f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleWhenPointerEnter: {x: 1.2, y: 1.2, z: 1.2}
+  animationDuration: 0.3
+--- !u!114 &1525714682501993504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2721235978833123950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1668090002428334254}
+          m_TargetAssemblyTypeName: Ingame.UiButtonScaler, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1668090002428334254}
+          m_TargetAssemblyTypeName: Ingame.UiButtonScaler, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2800340382747789612
 GameObject:
   m_ObjectHideFlags: 0
@@ -2144,6 +2266,8 @@ GameObject:
   - component: {fileID: 3258562244111446053}
   - component: {fileID: 3102493734103162537}
   - component: {fileID: 1286740270744879671}
+  - component: {fileID: 6433691987594422663}
+  - component: {fileID: 7291205383590463965}
   m_Layer: 5
   m_Name: Container - PauseButton
   m_TagString: Untagged
@@ -2255,6 +2379,65 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 2.5
+--- !u!114 &6433691987594422663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441105842671654983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64129120e9704fd791ef6c440ac7a5f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleWhenPointerEnter: {x: 1.1, y: 1.1, z: 1.1}
+  animationDuration: 0.3
+--- !u!114 &7291205383590463965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441105842671654983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6433691987594422663}
+          m_TargetAssemblyTypeName: Ingame.UiButtonScaler, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6433691987594422663}
+          m_TargetAssemblyTypeName: Ingame.UiButtonScaler, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3670973680205815765
 GameObject:
   m_ObjectHideFlags: 0
@@ -3616,6 +3799,7 @@ GameObject:
   - component: {fileID: 6632167445115451923}
   - component: {fileID: 6632167445115451921}
   - component: {fileID: 6632167445115451922}
+  - component: {fileID: 7107501344814232215}
   m_Layer: 5
   m_Name: Image - Background
   m_TagString: Untagged
@@ -3681,6 +3865,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &7107501344814232215
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6632167445115451924}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6632167445151481745
 GameObject:
   m_ObjectHideFlags: 0
@@ -3872,7 +4068,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6632167445190994868}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3880,8 +4076,8 @@ RectTransform:
   - {fileID: 6632167446198388112}
   - {fileID: 6632167444996075280}
   - {fileID: 6632167445406196519}
-  m_Father: {fileID: 6632167445725249506}
-  m_RootOrder: 2
+  m_Father: {fileID: 2692878492610578604}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4225,15 +4421,15 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6632167445433625947}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6632167445050258651}
   - {fileID: 6632167445064569039}
-  m_Father: {fileID: 6632167445725249506}
-  m_RootOrder: 1
+  m_Father: {fileID: 2692878492610578604}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -4254,6 +4450,7 @@ GameObject:
   - component: {fileID: 6632167445437740101}
   - component: {fileID: 3003607505543677842}
   - component: {fileID: 6632167445437740102}
+  - component: {fileID: 6851022328872290285}
   m_Layer: 5
   m_Name: Container - CollectionButton
   m_TagString: Untagged
@@ -4384,9 +4581,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6632167445437740102}
-          m_TargetAssemblyTypeName: Ingame.UiCollectionsButtonView, Assembly-CSharp
-          m_MethodName: ScaleUp
+        - m_Target: {fileID: 6851022328872290285}
+          m_TargetAssemblyTypeName: Ingame.UiButtonScaler, Assembly-CSharp
+          m_MethodName: OnPointerEnter
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4400,9 +4597,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6632167445437740102}
-          m_TargetAssemblyTypeName: Ingame.UiCollectionsButtonView, Assembly-CSharp
-          m_MethodName: ScaleDown
+        - m_Target: {fileID: 6851022328872290285}
+          m_TargetAssemblyTypeName: Ingame.UiButtonScaler, Assembly-CSharp
+          m_MethodName: OnPointerExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4427,7 +4624,20 @@ MonoBehaviour:
   collectionView: {fileID: 6632167445725249504}
   collectionsButton: {fileID: 6632167445437740101}
   animationDuration: 0.2
-  selectScale: 1.3
+--- !u!114 &6851022328872290285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6632167445437740104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64129120e9704fd791ef6c440ac7a5f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleWhenPointerEnter: {x: 1.3, y: 1.3, z: 1.3}
+  animationDuration: 0.2
 --- !u!1 &6632167445587461395
 GameObject:
   m_ObjectHideFlags: 0
@@ -4613,8 +4823,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6632167445115451923}
-  - {fileID: 6632167445433625946}
-  - {fileID: 6632167445190994867}
+  - {fileID: 2692878492610578604}
   m_Father: {fileID: 6632167446749598325}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4638,6 +4847,9 @@ MonoBehaviour:
   collectionItemViewPrefab: {fileID: 4823863130690255796, guid: a81837d8dcc81d64bb568a8ce7801ee5, type: 3}
   itemParentTransform: {fileID: 6632167445752422589}
   closeButton: {fileID: 6632167446198388079}
+  backgroundCanvasGroup: {fileID: 7107501344814232215}
+  frameTransform: {fileID: 2692878492610578604}
+  animationDuration: 0.3
 --- !u!114 &6632167445725249505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7359,6 +7571,8 @@ GameObject:
   - component: {fileID: 8677071704975365335}
   - component: {fileID: 8805825815219725783}
   - component: {fileID: 6331326035328931259}
+  - component: {fileID: 1104644272405214079}
+  - component: {fileID: 2635713296215195028}
   m_Layer: 5
   m_Name: Button - Play
   m_TagString: Untagged
@@ -7470,6 +7684,103 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1104644272405214079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7463844743624354085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64129120e9704fd791ef6c440ac7a5f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleWhenPointerEnter: {x: 1.2, y: 1.2, z: 1.2}
+  animationDuration: 0.3
+--- !u!114 &2635713296215195028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7463844743624354085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1104644272405214079}
+          m_TargetAssemblyTypeName: Ingame.UiButtonScaler, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1104644272405214079}
+          m_TargetAssemblyTypeName: Ingame.UiButtonScaler, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!1 &7818656848885124716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2692878492610578604}
+  m_Layer: 5
+  m_Name: Container - Frame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2692878492610578604
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818656848885124716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6632167445433625946}
+  - {fileID: 6632167445190994867}
+  m_Father: {fileID: 6632167445725249506}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8216000775793524837
 GameObject:
   m_ObjectHideFlags: 0
@@ -7807,6 +8118,8 @@ GameObject:
   - component: {fileID: 5581385724134264887}
   - component: {fileID: 5606326258104498271}
   - component: {fileID: 5788936046879156412}
+  - component: {fileID: 2166450169338858285}
+  - component: {fileID: 3209111269872495762}
   m_Layer: 5
   m_Name: Button - Restart
   m_TagString: Untagged
@@ -7918,6 +8231,65 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2166450169338858285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760054702697510210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64129120e9704fd791ef6c440ac7a5f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleWhenPointerEnter: {x: 1.2, y: 1.2, z: 1.2}
+  animationDuration: 0.3
+--- !u!114 &3209111269872495762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760054702697510210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2166450169338858285}
+          m_TargetAssemblyTypeName: Ingame.UiButtonScaler, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2166450169338858285}
+          m_TargetAssemblyTypeName: Ingame.UiButtonScaler, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &9016921801528022241
 GameObject:
   m_ObjectHideFlags: 0
