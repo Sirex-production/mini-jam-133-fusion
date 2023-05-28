@@ -46,11 +46,11 @@ namespace Ingame.Tasks
                    continue;
                }
                 
-               ref var taskHolderMdl = ref _taskHolderPool.GetComponent(_taskHolderFilter.GetFirstEntity());
-               ref var allTasksMdl = ref _allTasksPool.GetComponent(_allTasksFilter.GetFirstEntity());
-               ref var recipeStatusMdl = ref _recipeStatusMdlPool.GetComponent(_recipeStatusMdlFilter.GetFirstEntity());
+              ref var taskHolderMdl = ref _taskHolderPool.GetComponent(_taskHolderFilter.GetFirstEntity());
+               
+               //ref var recipeStatusMdl = ref _recipeStatusMdlPool.GetComponent(_recipeStatusMdlFilter.GetFirstEntity());
 
-               var possibleItem = recipeStatusMdl.unlockedRecipe.Select(e => e.CreatedItem).ToList();
+               /*var possibleItem = recipeStatusMdl.unlockedRecipe.Select(e => e.CreatedItem).ToList();
                
                var allTasks = allTasksMdl.tasksConfig.Tasks;
                var possibleTasks = allTasks.Where(e => e.QuestItems.All(questItem => possibleItem.Contains(questItem))).ToList();
@@ -61,9 +61,12 @@ namespace Ingame.Tasks
                    possibleTasks = allTasks.Where(e => e.QuestItems.All(questItem => discoveredItem.Contains(questItem))).ToList();
                }
                
-               int randomIndex = Random.Range(0, possibleTasks.Count);
-               taskHolderMdl.currentTask = possibleTasks[randomIndex];
-
+               int randomIndex = Random.Range(0, possibleTasks.Count);*/
+               //taskHolderMdl.currentTask = possibleTasks[randomIndex];
+               
+               ref var allTasksMdl = ref _allTasksPool.GetComponent(_allTasksFilter.GetFirstEntity());
+               taskHolderMdl.currentTask = allTasksMdl.GetNewTask();
+               
                _ecsWorld.DelEntity(askNewTaskEntity);
             }
         }
