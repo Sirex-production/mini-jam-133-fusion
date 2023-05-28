@@ -45,6 +45,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: eeb35e4520aa4ad46b21decad72f6691, type: 3}
   - {fileID: 21300000, guid: 849ced65c1b1adb4bbda926b14135816, type: 3}
   - {fileID: 21300000, guid: 631ad456d1ee3524986c113a83855326, type: 3}
+  - {fileID: 21300000, guid: 592119c6d2cc2d642bc003ac4cd67242, type: 3}
   - {fileID: 21300000, guid: 5730e267d06f7c94f9e9862b179314c4, type: 3}
   - {fileID: 21300000, guid: b572aef7a9b8a2b4686f4f7eef23cdd4, type: 3}
   - {fileID: 21300000, guid: 4668745ab093cbb49a8541a6df226cb5, type: 3}
@@ -66,6 +67,7 @@ SpriteAtlas:
   - 7
   - arrow_example
   - 8
+  - Questionmark
   - panel_Example3
   - Alchemy
   - checkbox_check_example

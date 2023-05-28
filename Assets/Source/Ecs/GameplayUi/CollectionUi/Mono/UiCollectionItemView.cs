@@ -8,10 +8,12 @@ namespace Ingame
 	public sealed class UiCollectionItemView : MonoBehaviour
 	{
 		[Required, SerializeField] private Image itemIconImage;
-
-		public void SetItemView(ItemConfig itemConfig)
+		[Required, SerializeField] private Transform undiscoveredViewTransform;
+		
+		public void SetItemView(ItemConfig itemConfig, bool isDiscovered)
 		{
 			itemIconImage.sprite = itemConfig.ItemIcon;
+			undiscoveredViewTransform.gameObject.SetActive(isDiscovered);
 		}
 	}
 }

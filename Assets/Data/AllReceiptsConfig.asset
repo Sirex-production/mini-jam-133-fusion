@@ -65,11 +65,11 @@ MonoBehaviour:
     componentA: {fileID: 11400000, guid: 4d0df3a936f876441b280a74dea44c8e, type: 2}
     componentB: {fileID: 11400000, guid: 5826e6f1e49db714db585a7b602a44fa, type: 2}
     createdItem: {fileID: 11400000, guid: d61e88be0e3a5724c846862de6376ebf, type: 2}
-  - receiptName: storm
-    componentA: {fileID: 11400000, guid: 191dac4da6971f34a94914cda6aec035, type: 2}
-    componentB: {fileID: 11400000, guid: 5826e6f1e49db714db585a7b602a44fa, type: 2}
-    createdItem: {fileID: 11400000, guid: d61e88be0e3a5724c846862de6376ebf, type: 2}
   - receiptName: house
     componentA: {fileID: 11400000, guid: 6e711f19c4267624abb258743dc0153e, type: 2}
     componentB: {fileID: 11400000, guid: 6f4a90d1f7aae614fa743b46b9599957, type: 2}
     createdItem: {fileID: 11400000, guid: 92f06a50dd6e6c44399f29f0797d3cbb, type: 2}
+  - receiptName: lighting
+    componentA: {fileID: 11400000, guid: 6d7e78b69ed5a4943aa9d1ac655ee8d3, type: 2}
+    componentB: {fileID: 11400000, guid: 0330050dad32a5944885a8ffa8eef5f8, type: 2}
+    createdItem: {fileID: 11400000, guid: 5826e6f1e49db714db585a7b602a44fa, type: 2}
