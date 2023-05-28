@@ -8,8 +8,8 @@ namespace Ingame
 {
     public sealed class SceneService : MonoBehaviour
     {
-        private const float DELAY_BEFORE_LOADING= 1f;
-        private const float DELAY_BEFORE_FINISHING= 1f;
+        private const float DELAY_BEFORE_LOADING = 1.5f;
+        private const float DELAY_BEFORE_FINISHING= 1.5f;
         
         public event Action OnLoadingStarted;
         public event Action<float> OnLoadingInProgress;

@@ -70,6 +70,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: cbdcd8b507b3de4488ab36aaaaa3891d, type: 3}
   - {fileID: 21300000, guid: 44c13a56fbb67794a87e325596e53603, type: 3}
   - {fileID: 21300000, guid: 407eb4863b58adc4d81b74b1bbc558d9, type: 3}
+  - {fileID: 21300000, guid: e1f0b29615655254f85c62c337ce825c, type: 3}
   - {fileID: 21300000, guid: 87ef1cb6f6252dc45b24ec8d93468c2e, type: 3}
   - {fileID: 21300000, guid: 40649bd6b0b989e47a1a487cb6d97f43, type: 3}
   - {fileID: 21300000, guid: 776e9f1809840fe409ad014398d31537, type: 3}
@@ -101,6 +102,7 @@ SpriteAtlas:
   - mine
   - CardBackground
   - house
+  - WaitingGuy
   - fish
   - water
   - storm
