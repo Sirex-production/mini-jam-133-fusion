@@ -1202,7 +1202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96a2c0f69894ed7930950112bb50158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reactToInput: 1
   closeButton: {fileID: 6768843043541901891}
   soundVolumeSlider: {fileID: 7408921217840425193}
   cameraMovementSpeedSlider: {fileID: 8515368363459063296}
@@ -2027,7 +2026,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play
+  m_text: Continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 59a5322f86ce9944c8ba5b3d4aa676a2, type: 2}
   m_sharedMaterial: {fileID: 2334700881627329852, guid: 59a5322f86ce9944c8ba5b3d4aa676a2, type: 2}
