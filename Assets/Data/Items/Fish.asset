@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa4fa5bb36b4b8297f065cd405241de, type: 3}
   m_Name: Fish
   m_EditorClassIdentifier: 
-  cardBackgroundColor: {r: 0.41568628, g: 0.41960785, b: 0.47058824, a: 1}
-  cardDescriptionBackgroundColor: {r: 0.83137256, g: 0.29411766, b: 0.29411766, a: 1}
+  cardBackgroundColor: {r: 0.2784314, g: 0.3372549, b: 0.4039216, a: 1}
+  cardDescriptionBackgroundColor: {r: 0.8000001, g: 0.8000001, b: 0.83921576, a: 1}
   itemName: fish
   itemIcon: {fileID: 21300000, guid: 87ef1cb6f6252dc45b24ec8d93468c2e, type: 3}
