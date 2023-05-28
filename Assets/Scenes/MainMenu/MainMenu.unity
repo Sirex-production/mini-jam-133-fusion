@@ -629,6 +629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96a2c0f69894ed7930950112bb50158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reactToInput: 0
   closeButton: {fileID: 1314253661}
   soundVolumeSlider: {fileID: 1591891071}
   cameraMovementSpeedSlider: {fileID: 262241972}
@@ -4347,8 +4348,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 11.099976}
-  m_SizeDelta: {x: 289.6957, y: 289.6957}
+  m_AnchoredPosition: {x: 0, y: 195}
+  m_SizeDelta: {x: 290, y: 500}
   m_Pivot: {x: 0.5, y: 1.0000007}
 --- !u!114 &1380691713
 MonoBehaviour:

@@ -2,6 +2,7 @@
 using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Zenject;
 
@@ -27,6 +28,8 @@ namespace Ingame
 		[SerializeField] [Min(0f)] private float animationDuration = .3f;
 
 		private SettingsService _settingsService;
+
+		private bool _isOpened = true;
 		
 		public event Action OnSettingsClosed;
 
@@ -34,6 +37,8 @@ namespace Ingame
 		private void Construct(SettingsService settingsService)
 		{
 			_settingsService = settingsService;
+
+			Hide();
 		}
 		
 		private void Awake()
@@ -48,10 +53,8 @@ namespace Ingame
 			soundVolumeSlider.value = currentSettingsData.soundVolume;
 			cameraMovementSpeedSlider.value = currentSettingsData.cameraMovementSpeed;
 			mouseDragSensitivitySlider.value = currentSettingsData.mapMouseDraggingSpeed;
-			
-			Hide();
 		}
-
+		
 		private void OnDestroy()
 		{
 			closeButton.onClick.RemoveListener(Hide);
@@ -75,10 +78,16 @@ namespace Ingame
 		{
 			_settingsService.currentSettingsData.mapMouseDraggingSpeed = value;
 		}
-
+		
 		private void Hide()
 		{
+			if(!_isOpened)
+				return;
+			
+			_isOpened = false;
 			backgroundCanvasGroup.DOFade(0, animationDuration / 2f);
+			OnSettingsClosed?.Invoke();
+			
 			
 			frameTransform
 				.DOScale(0f, animationDuration / 2f)
@@ -86,12 +95,15 @@ namespace Ingame
 					() =>
 					{
 						gameObject.SetActive(false);
-						OnSettingsClosed?.Invoke();
 					});
 		}
 
 		public void Show()
 		{
+			if(_isOpened)
+				return;
+			
+			_isOpened = true;
 			gameObject.SetActive(true);
 
 			backgroundCanvasGroup.DOFade(1, animationDuration);

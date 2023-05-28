@@ -1,6 +1,5 @@
 ﻿using Ingame.Recipe;
 using NaughtyAttributes;
-using Secs;
 using UnityEngine;
 using Zenject;
 
@@ -18,7 +17,6 @@ namespace Ingame
 		
 		public override void InstallBindings()
 		{
-			InstallEcs();
 			InstallSaveLoadService();
 			InstallSceneService();
 			InstallSoundService();
@@ -27,16 +25,6 @@ namespace Ingame
 			InstallConfigs();
 		}
 
-		private void InstallEcs()
-		{
-			var gameplayEcsWorld = new EcsWorld();
-			var ecsWorldsProvider = new EcsWorldsProvider(gameplayEcsWorld);
-
-			Container
-				.BindInstance(ecsWorldsProvider)
-				.AsSingle();
-		}
-		
 		private void InstallSaveLoadService()
 		{
 			Container
