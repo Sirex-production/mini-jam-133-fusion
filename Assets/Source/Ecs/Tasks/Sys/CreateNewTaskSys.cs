@@ -53,8 +53,13 @@ namespace Ingame.Tasks
                var possibleItem = recipeStatusMdl.unlockedRecipe.Select(e => e.CreatedItem).ToList();
                
                var allTasks = allTasksMdl.tasksConfig.Tasks;
-
                var possibleTasks = allTasks.Where(e => e.QuestItems.All(questItem => possibleItem.Contains(questItem))).ToList();
+               
+               if (possibleTasks.Count <= 0)
+               {
+                   var discoveredItem = recipeStatusMdl.discoveredRecipe.Select(e => e.CreatedItem).ToList();
+                   possibleTasks = allTasks.Where(e => e.QuestItems.All(questItem => discoveredItem.Contains(questItem))).ToList();
+               }
                
                int randomIndex = Random.Range(0, possibleTasks.Count);
                taskHolderMdl.currentTask = possibleTasks[randomIndex];
