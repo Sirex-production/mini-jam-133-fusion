@@ -42,10 +42,10 @@ namespace Ingame
 				.Add(new CheckOfferedTaskItemValidationSys(soundService))
 				//Shop
 				.Add(new RefreshShopSystem(shopConfig, diContainer))
-				.Add(new SellItemSystem())
+				.Add(new SellItemSystem(soundService))
 				//Cards
 				.Add(new UpdateCardsViewSystem())
-				.Add(new SelectCardSystem(inputService))
+				.Add(new SelectCardSystem(inputService,soundService))
 				.Add(new MoveCardSystem(inputService, generalCardsConfig))
 				.Add(new DropCardSystem(inputService))
 				.Add(new MoveShopCardsBackToShopSystem())

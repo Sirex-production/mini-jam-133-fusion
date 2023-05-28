@@ -1,13 +1,14 @@
-﻿using Ingame.Audio;
+﻿using Ingame.Tasks;
 using Secs;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
-namespace Ingame.Tasks
+namespace Ingame.Audio
 {
-    public sealed class TaskCompleteSoundBaker : MonoBehaviour
+    public sealed class SellItemSoundBaker : MonoBehaviour
     {
-        [SerializeField] private AudioSource audioSource;
+         [SerializeField] private AudioClip audioClip;
         private EcsWorld _ecsWorld;
         
         [Inject]
@@ -20,8 +21,8 @@ namespace Ingame.Tasks
         {
             var newEntity = _ecsWorld.NewEntity();
 
-            _ecsWorld.GetPool<AudioCmp>().AddComponent(newEntity).audioSource = audioSource;
-            _ecsWorld.GetPool<TaskCompletedSoundTag>().AddComponent(newEntity);
+            _ecsWorld.GetPool<AudioCmp>().AddComponent(newEntity).audioClip = audioClip;
+            _ecsWorld.GetPool<SellItemSoundTag>().AddComponent(newEntity);
         }
     }
 }

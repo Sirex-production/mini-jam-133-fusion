@@ -1,10 +1,12 @@
-﻿using Secs;
+﻿using Ingame.Audio;
+using Secs;
 using UnityEngine;
 
 namespace Ingame
 {
 	public sealed class SelectCardSystem : IEcsRunSystem
 	{
+
 		[EcsInject(typeof(CameraMdl), typeof(MainCameraTag))]
 		private readonly EcsFilter _cameraFilter;
 		[EcsInject(typeof(IsFollowingMouseTag))]
@@ -12,6 +14,8 @@ namespace Ingame
 		private readonly EcsFilter _isFollowingMouseTagFilter;
 		[EcsInject(typeof(PlayerWalletCmp))]
 		private readonly EcsFilter _playerWalletFilter;
+		[EcsInject(typeof(AudioCmp),typeof(GrabCardSoundTag))]
+		private readonly EcsFilter _grabCardSoundFilter;
 		
 		[EcsInject]
 		private readonly EcsPool<CameraMdl> _cameraPool;
@@ -25,12 +29,15 @@ namespace Ingame
 		private readonly EcsPool<ShopSlotCmp> _shopSlotPool;
 		[EcsInject]
 		private readonly EcsPool<PlayerWalletCmp> _playerWalletPool;
+		[EcsInject]
+		private readonly EcsPool<AudioCmp> _grabCardSoundPool;
 		
 		private readonly InputService _inputService;
-
-		public SelectCardSystem(InputService inputService)
+		private SoundService _soundService;
+		public SelectCardSystem(InputService inputService, SoundService soundService)
 		{
 			_inputService = inputService;
+			_soundService = soundService;
 		}
 		
 		public void OnRun()
@@ -62,6 +69,16 @@ namespace Ingame
 					
 				if(!playerWalletCmp.HasEnoughCoins(shopSlotCmp.price))
 					return;
+			}
+			
+			if (!_grabCardSoundFilter.IsEmpty)
+			{
+				ref var audioCmp = ref _grabCardSoundPool.GetComponent(_grabCardSoundFilter.GetFirstEntity());
+                       
+				if(audioCmp.audioSource != null)
+					_soundService.StopSound(audioCmp.audioSource);
+
+				audioCmp.audioSource = _soundService.PlaySound(audioCmp.audioClip);
 			}
 
 			ref var rigidbodyMdl = ref _rigidbodyPool.GetComponent(entityReference.EntityId);
