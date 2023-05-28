@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.Tweening;
+using Ingame.Audio;
 using Ingame.Tasks;
 using Secs;
 using UnityEngine;
@@ -8,9 +9,11 @@ namespace Ingame.Npc
 {
     public sealed class MoveTaskNpcSys : IEcsRunSystem
     {
+        private SoundService _soundService;
+        
         [EcsInject] private EcsWorld _ecsWorld;
         
-        [EcsInject(typeof(WaypointsCmp),typeof(TaskNpcTag),typeof(TransformMdl),typeof(DialogMdl))] 
+        [EcsInject(typeof(WaypointsCmp),typeof(TaskNpcTag),typeof(TransformMdl),typeof(DialogMdl),typeof(AudioCmp))] 
         private EcsFilter _npcFilter;
         
         [EcsInject(typeof(MoveBackNpcEvent))] 
@@ -32,12 +35,22 @@ namespace Ingame.Npc
         private EcsPool<TaskHolderMdl> _taskHolderMdlPool;
         
         [EcsInject]
+        private EcsPool<AudioCmp> _audioClipPool;
+        
+        [EcsInject]
         private EcsPool<IsUnderDOTweenAnimationTag> _isUnderDOTweenAnimationTagPool;
 
         [EcsInject] private EcsPool<ForwardNpcEvent> _forwardNpcEventPool;
 
         [EcsInject]
         private EcsPool<DialogMdl> _dialogMdlPool;
+        
+        
+        public MoveTaskNpcSys(SoundService soundService)
+        {
+            _soundService = soundService;
+        }
+
         
         public void OnRun()
         {
@@ -66,12 +79,15 @@ namespace Ingame.Npc
 
             ref var waypoint = ref _waypointPool.GetComponent(npcEntity);
             ref var transformMdl = ref _transformMdlPool.GetComponent(npcEntity);
-
+            ref var audioCmp= ref _audioClipPool.GetComponent(npcEntity);
+            
             _isUnderDOTweenAnimationTagPool.AddComponent(npcEntity);
 
+            var audioClip = audioCmp.audioClip;
             var transform = transformMdl.transform;
             var nextWaypoint = waypoint.Next();
-
+            AudioSource audioSource;
+            
             transform.DOLookAt(nextWaypoint.position, 1f).OnComplete(() =>
             {
                 transform.DOScale(Vector3.one, 1)
@@ -100,13 +116,17 @@ namespace Ingame.Npc
                                 var textField = dialogMdl.text;
                                 var taskQuest = dialogMdl.taskText;
                                 var description = taskMdl.currentTask.Description;
-
+                                audioSource = _soundService.PlaySound(audioClip);
                                 DOTween
                                     .To(() => taskQuest, text => taskQuest = text, description,
                                         description.Length * 0.08f)
                                     .SetEase(Ease.Linear)
                                     .OnUpdate(() => textField.SetText(taskQuest))
-                                    .OnComplete(() => _isUnderDOTweenAnimationTagPool.DelComponent(npcEntity));
+                                    .OnComplete(() =>
+                                    {
+                                        _isUnderDOTweenAnimationTagPool.DelComponent(npcEntity);
+                                        _soundService.StopSound(audioSource);
+                                    });
                             });
                     });
 

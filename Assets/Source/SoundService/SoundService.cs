@@ -33,7 +33,7 @@ namespace Ingame
 
         private void OnAudioClipRelease(AudioSource clip)
         {
-            clip.Pause();
+            clip.Stop();
             clip.gameObject.SetActive(false);
         }
         

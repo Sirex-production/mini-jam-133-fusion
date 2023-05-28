@@ -20,6 +20,7 @@ namespace Ingame
 			EcsWorldsProvider ecsWorldsProvider,
 			InputService inputService,
 			SettingsService settingsService,
+			SoundService soundService,
 			GeneralCardsConfig generalCardsConfig,
 			ShopConfig shopConfig,
 			AllRecipeContainerConfig allRecipeContainerConfig
@@ -57,7 +58,7 @@ namespace Ingame
 				.Add(new UpdateCurrencyViewSystem())
 				.Add(new UpdateUiCollectionViewSystem())
 				//NPC
-				.Add(new MoveTaskNpcSys())
+				.Add(new MoveTaskNpcSys(soundService))
 				//Physics
 				.Add(new DisposeOnTickPhysicsSys())
 				.Add(new FullyDestroyObject());

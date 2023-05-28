@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using DG.Tweening;
+using Ingame.Audio;
 using Ingame.Npc;
 using NaughtyAttributes;
 using Secs;
@@ -14,6 +15,9 @@ namespace Ingame.NPC
 {
     public sealed class TaskNpcBaker : MonoBehaviour
     {
+        [Required]
+        [SerializeField] private AudioClip dialogSound;
+        
         [SerializeField]
         private List<Transform> positions;
         
@@ -51,6 +55,8 @@ namespace Ingame.NPC
             dialogMdl.text = text;
             dialogMdl.image = dialogBox;
             dialogMdl.taskText = "";
+            
+            _world.GetPool<AudioCmp>().AddComponent(entity).audioClip = dialogSound;
             
             gameObject.LinkEcsEntity(_world, entity);
             
