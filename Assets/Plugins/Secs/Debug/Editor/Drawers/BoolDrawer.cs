@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using UnityEditor;
 
 namespace Secs.Debug
@@ -9,3 +10,4 @@ namespace Secs.Debug
         object IDrawer.Draw(Type type, string objectName, object value) => EditorGUILayout.Toggle(objectName, (bool)value);
     }
 }
+#endif

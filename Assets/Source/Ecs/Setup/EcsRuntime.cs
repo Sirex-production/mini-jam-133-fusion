@@ -65,7 +65,9 @@ namespace Ingame
 				.Add(new DisposeOnTickPhysicsSys())
 				.Add(new FullyDestroyObject());
 
+#if UNITY_EDITOR
 			_ecsSystems.AttachProfiler();
+#endif
 			_ecsSystems.Inject();
 		}
 
@@ -83,7 +85,9 @@ namespace Ingame
 		private void OnDestroy()
 		{
 			_ecsSystems.FireDisposeSystems();
+#if UNITY_EDITOR
 			_ecsSystems.ReleaseProfiler();
+#endif
 			EcsPhysics.UnbindToEcsWorld();
 		}
 	}

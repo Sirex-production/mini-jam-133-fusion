@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -6,7 +8,7 @@ using UnityEngine;
 namespace Secs.Debug
 {
     [CustomEditor(typeof(EcsSystemsObserver))]
-    public sealed class EcsSystemsObserverInspector: Editor
+    public sealed class EcsSystemsObserverInspector : Editor
     {
         private EcsSystemsObserver _ecsSystemsObserver = null;
         private readonly Dictionary<EcsSystems, Dictionary<Type, List<string>>> _cashedSystems = new ();
@@ -88,3 +90,4 @@ namespace Secs.Debug
         }
     }
 }
+#endif
