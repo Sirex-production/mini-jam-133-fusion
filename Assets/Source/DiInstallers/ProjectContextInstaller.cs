@@ -14,6 +14,7 @@ namespace Ingame
 		[Required, SerializeField] private AllRecipeContainerConfig allRecipeContainerConfig;
 		[Required, SerializeField] private DefaultSettingsConfig defaultSettingsConfig;
 		[Required, SerializeField] private AllItemsConfig allItemsConfig;
+		[Required, SerializeField] private SocialMediaConfig socialMediaConfig;
 		
 		public override void InstallBindings()
 		{
@@ -93,6 +94,12 @@ namespace Ingame
 			Container
 				.Bind<AllItemsConfig>()
 				.FromInstance(allItemsConfig)
+				.AsSingle()
+				.NonLazy();
+			
+			Container
+				.Bind<SocialMediaConfig>()
+				.FromInstance(socialMediaConfig)
 				.AsSingle()
 				.NonLazy();
 		}
