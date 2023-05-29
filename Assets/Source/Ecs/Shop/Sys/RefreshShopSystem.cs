@@ -1,6 +1,8 @@
 ﻿using System.Linq;
+using Ingame.Audio;
 using Ingame.Recipe;
 using Secs;
+using UnityEngine;
 using Zenject;
 
 namespace Ingame
@@ -20,7 +22,9 @@ namespace Ingame
 		private readonly EcsFilter _unlockedItemsFilter;
 		[EcsInject(typeof(PlayerWalletCmp))]
 		private readonly EcsFilter _playerWalletFilter;
-
+		[EcsInject(typeof(AudioCmp),typeof(SellItemSoundTag))]
+		private readonly EcsFilter _soundFilter;
+		
 		[EcsInject]
 		private readonly EcsPool<RefreshShopEvent> _refreshShopEventPool;
 		[EcsInject]
@@ -39,14 +43,17 @@ namespace Ingame
 		private readonly EcsPool<UnlockedItemsMdl> _unlockedItemsPool;
 		[EcsInject]
 		private readonly EcsPool<PlayerWalletCmp> _playerWalletPool;
+		[EcsInject]
+		private readonly EcsPool<AudioCmp> _soundPool;
 
 		private readonly ShopConfig _shopConfig;
 		private readonly DiContainer _diContainer;
-		
-		public RefreshShopSystem(ShopConfig shopConfig, DiContainer diContainer)
+		private SoundService _soundService;
+		public RefreshShopSystem(ShopConfig shopConfig, DiContainer diContainer, SoundService soundService)
 		{
 			_shopConfig = shopConfig;
 			_diContainer = diContainer;
+			_soundService = soundService;
 		}
 
 		public void OnInit()
@@ -78,7 +85,10 @@ namespace Ingame
 
 			playerWalletCmp.currentAmountOfCoins -= _shopConfig.RefreshCost;
 			ref var shopCmp = ref _shopPool.GetComponent(_shopFilter.GetFirstEntity());
-			
+
+			if (!_soundFilter.IsEmpty)
+				_soundService.PlaySoundThenReturnToPool(_soundPool.GetComponent(_soundFilter.GetFirstEntity()).audioClip);
+
 			InstantiateMissingCards(ref shopCmp);
 			PlaceCardsInShop(ref shopCmp);
 			

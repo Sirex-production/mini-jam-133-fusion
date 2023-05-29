@@ -42,7 +42,7 @@ namespace Ingame
 				.Add(new CreateNewTaskSys())
 				.Add(new CheckOfferedTaskItemValidationSys(soundService))
 				//Shop
-				.Add(new RefreshShopSystem(shopConfig, diContainer))
+				.Add(new RefreshShopSystem(shopConfig, diContainer,soundService))
 				.Add(new SellItemSystem(soundService))
 				//Cards
 				.Add(new UpdateCardsViewSystem())
