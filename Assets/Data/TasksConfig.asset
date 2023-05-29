@@ -30,7 +30,7 @@ MonoBehaviour:
     money: 70
   - questItems:
     - {fileID: 11400000, guid: 5826e6f1e49db714db585a7b602a44fa, type: 2}
-    description: Did u know I am almighty Zues... I just need a LIGHTNING to prove
+    description: Did u know I am almighty Zeus... I just need a LIGHTNING to prove
       it..
     money: 45
   - questItems:
@@ -85,7 +85,7 @@ MonoBehaviour:
   - questItems:
     - {fileID: 11400000, guid: 92f06a50dd6e6c44399f29f0797d3cbb, type: 2}
     description: Finally... I found a well-built builder... How much time do you
-      need to build me a house?
+      need to build me a HOUSE?
     money: 165
   - questItems:
     - {fileID: 11400000, guid: f4c61c8ddd044304fac83a0972055351, type: 2}
