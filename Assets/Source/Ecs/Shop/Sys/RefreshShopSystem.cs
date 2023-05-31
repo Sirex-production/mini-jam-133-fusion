@@ -71,10 +71,10 @@ namespace Ingame
 		{
 			if(_unlockedItemsFilter.IsEmpty)
 				return;
-			
+
 			if(_refreshShopEventFilter.IsEmpty || _shopFilter.IsEmpty)
 				return;
-			
+
 			if(_playerWalletFilter.IsEmpty)
 				return;
 			
@@ -82,7 +82,7 @@ namespace Ingame
 			
 			if(!playerWalletCmp.HasEnoughCoins(_shopConfig.RefreshCost))
 				return;
-
+			
 			playerWalletCmp.currentAmountOfCoins -= _shopConfig.RefreshCost;
 			ref var shopCmp = ref _shopPool.GetComponent(_shopFilter.GetFirstEntity());
 
@@ -103,11 +103,13 @@ namespace Ingame
 
 			for(int i = 0; i < amountOfMissingCardsInShop; i++)
 			{
-				var shopCardEcsEntityReference = _diContainer.InstantiatePrefabForComponent<EcsEntityReference>(shopCmp.cardPrefab);
-				_shopSlotPool.AddComponent(shopCardEcsEntityReference.EntityId);
+				var shopCardEcsBaker = _diContainer.InstantiatePrefabForComponent<EcsMonoBaker>(shopCmp.cardPrefab);
+				var shopCardEntityReference = shopCardEcsBaker.GetComponent<EcsEntityReference>();
+				
+				_world.BakeSpecificBaker(shopCardEcsBaker);
+
+				_shopSlotPool.AddComponent(shopCardEntityReference.EntityId);
 			}
-			
-			_world.UpdateFilters();
 		}
 		
 		private void PlaceCardsInShop(ref ShopCmp shopCmp)

@@ -2842,7 +2842,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -86}
-  m_SizeDelta: {x: 152.0677, y: 418.6894}
+  m_SizeDelta: {x: 152.06769, y: 418.6894}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &544061071
 MonoBehaviour:
@@ -3425,7 +3425,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff18ef3f498475ea95f41fed2fe1306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 2
   startGameButton: {fileID: 477837039}
   developersButton: {fileID: 417630680}
   settingsButton: {fileID: 1976284895}

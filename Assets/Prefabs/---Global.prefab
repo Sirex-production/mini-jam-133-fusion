@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3381cb480614f1e99090d02f4de04d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 0
   audioClip: {fileID: 8300000, guid: d46277ca0fa3d684a8f99e5710e4407b, type: 3}
 --- !u!1 &840755671
 GameObject:
@@ -124,6 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5272f302a4246c2b05b6ce09991eeb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 0
   audioClip: {fileID: 8300000, guid: d326e6806e01f3b4ba4b1c3fe55e2a99, type: 3}
 --- !u!1 &1126783169
 GameObject:
@@ -169,6 +175,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c35becd75c04d0b865d3a1d55d5753d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 0
   audioClip: {fileID: 8300000, guid: b1df07da43ef41843b57f0bd257296c2, type: 3}
 --- !u!1 &1867751371
 GameObject:
@@ -214,6 +223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fe26e871974988a24054cc171cb96a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 0
   audioClip: {fileID: 8300000, guid: 5f08760ec8f93674eb5880196b0c0e7b, type: 3}
 --- !u!1 &2255750843474885812
 GameObject:
@@ -259,6 +271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b746aa2943f0402890229161c9fdb27d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 0
   allRecipeContainerConfig: {fileID: 11400000, guid: e88dfce6267e36849a12e0bc631b7c2e, type: 2}
 --- !u!1 &2255750843717071008
 GameObject:
@@ -304,6 +319,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e47ce5623f9c48219d83c3f7bbfa59d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 0
   tasksConfig: {fileID: 11400000, guid: d8b3165d562e1a94da0a438729ebc909, type: 2}
 --- !u!1 &2255750844167272314
 GameObject:

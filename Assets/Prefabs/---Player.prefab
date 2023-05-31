@@ -109,6 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a69cf41b9afc414dbf4a7fe28dcfe61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 0
 --- !u!1 &1240512680509739339
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9531bdd1c6e44ba86b339b1dc597d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 0
   startingItems:
   - {fileID: 11400000, guid: 6d7e78b69ed5a4943aa9d1ac655ee8d3, type: 2}
   - {fileID: 11400000, guid: a892cba95e26096448663ba3e624b242, type: 2}

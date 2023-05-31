@@ -8,9 +8,6 @@ namespace Ingame
 {
 	public sealed class UiMainMenuMainPanelView : MonoBehaviour
 	{
-		[BoxGroup("SceneLoading")]
-		[SerializeField] [Scene] private int sceneToLoad;
-		
 		[BoxGroup("References")]
 		[Required, SerializeField] private Button startGameButton;
 		[BoxGroup("References")]
@@ -39,7 +36,7 @@ namespace Ingame
 
 		private SoundService _soundService;
 		
-		private Vector3 _initialContentParentPos;
+		private Vector3 _initialContentParentLocalPos;
 		
 		[Inject]
 		private void Construct(SoundService soundService)
@@ -49,7 +46,7 @@ namespace Ingame
 		
 		private void Awake()
 		{
-			_initialContentParentPos = contentParent.position;
+			_initialContentParentLocalPos = contentParent.localPosition;
 			
 			startGameButton.onClick.AddListener(OnPlayButtonClicked);
 			developersButton.onClick.AddListener(OnDevelopersButtonClicked);
@@ -105,19 +102,19 @@ namespace Ingame
 			backgroundCanvasGroup.DOFade(0, animationDuration);
 			
 			contentParent
-				.DOMove(_initialContentParentPos + showOffsetAnimation, animationDuration)
+				.DOLocalMove(_initialContentParentLocalPos + showOffsetAnimation, animationDuration)
 				.OnComplete(() => gameObject.SetActive(false));
 		}
 
 		private void Show()
 		{
 			gameObject.SetActive(true);
-			contentParent.position = _initialContentParentPos + showOffsetAnimation;
+			contentParent.localPosition = _initialContentParentLocalPos + showOffsetAnimation;
 
 			backgroundCanvasGroup.DOFade(1, animationDuration);
 			
 			contentParent
-				.DOMove(_initialContentParentPos, animationDuration)
+				.DOLocalMove(_initialContentParentLocalPos, animationDuration)
 				.SetEase(Ease.OutBack);
 		}
 	}

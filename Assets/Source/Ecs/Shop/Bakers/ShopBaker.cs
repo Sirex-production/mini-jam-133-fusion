@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Ingame
 {
-	public sealed class ShopBaker : MonoBehaviour
+	public sealed class ShopBaker : EcsMonoBaker
 	{
 		[Required, SerializeField] private Button refreshButton;
 		[Required, SerializeField] private TMP_Text refreshText;
@@ -17,15 +17,17 @@ namespace Ingame
 		private EcsWorld _world;
 		
 		[Inject]
-		private void Construct(EcsWorldsProvider worldsProvider, ShopConfig shopConfig)
+		private void Construct(ShopConfig shopConfig)
 		{
 			refreshButton.onClick.AddListener(OnRefreshButtonClicked);
 			refreshText.SetText($"Refresh: {shopConfig.RefreshCost}");
+		}
+
+		protected override void Bake(EcsWorld world, int entityId)
+		{
+			_world = world;
 			
-			_world = worldsProvider.GameplayWorld;
-			int entity = _world.NewEntity();
-			
-			_world.GetPool<ShopCmp>().AddComponent(entity) = new ShopCmp
+			world.GetPool<ShopCmp>().AddComponent(entityId) = new ShopCmp
 			{
 				cardPrefab = cardPrefab,
 				slotsPositions = slotTransform

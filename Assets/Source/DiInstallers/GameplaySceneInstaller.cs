@@ -12,7 +12,7 @@ namespace Ingame
 
 		private void InstallEcs()
 		{
-			var gameplayEcsWorld = new EcsWorld();
+			var gameplayEcsWorld = new EcsWorld("gameplay");
 			var ecsWorldsProvider = new EcsWorldsProvider(gameplayEcsWorld);
 
 			Container

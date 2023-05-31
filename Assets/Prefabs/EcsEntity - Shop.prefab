@@ -308,6 +308,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f06736cb874bda97b78c4886840ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 2
   refreshButton: {fileID: 2802676271975676575}
   refreshText: {fileID: 8524646062752749702}
   cardPrefab: {fileID: 8037965169823382564, guid: 2bee46dd54c8d2f47a840bc1b4db2819, type: 3}

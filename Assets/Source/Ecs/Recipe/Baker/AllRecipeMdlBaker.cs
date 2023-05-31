@@ -1,27 +1,15 @@
-﻿using System.Collections.Generic;
-using Secs;
+﻿using Secs;
 using UnityEngine;
-using Zenject;
 
 namespace Ingame.Recipe
 {
-    public sealed class AllRecipeMdlBaker : MonoBehaviour
+    public sealed class AllRecipeMdlBaker : EcsMonoBaker
     {
         [SerializeField] private AllRecipeContainerConfig allRecipeContainerConfig;
-        private EcsWorld _ecsWorld;
 
-        [Inject]
-        private void Construct(EcsWorldsProvider ecsWorldsProvider)
+        protected override void Bake(EcsWorld world, int entityId)
         {
-            _ecsWorld = ecsWorldsProvider.GameplayWorld;
-        }
-        
-        private void Awake()
-        {
-            var entity = _ecsWorld.NewEntity();
-            _ecsWorld.GetPool<AllRecipesMdl>().AddComponent(entity).AllRecipeContainerConfig = allRecipeContainerConfig;
-
-            _ecsWorld.UpdateFilters();
+            world.GetPool<AllRecipesMdl>().AddComponent(entityId).AllRecipeContainerConfig = allRecipeContainerConfig;
         }
     }
 }

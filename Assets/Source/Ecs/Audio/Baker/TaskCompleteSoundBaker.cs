@@ -2,27 +2,17 @@
 using Secs;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Zenject;
 
 namespace Ingame.Tasks
 {
-    public sealed class TaskCompleteSoundBaker : MonoBehaviour
+    public sealed class TaskCompleteSoundBaker : EcsMonoBaker
     {
         [FormerlySerializedAs("audioSource")] [SerializeField] private AudioClip audioClip;
-        private EcsWorld _ecsWorld;
         
-        [Inject]
-        private void Construct(EcsWorldsProvider ecsWorldsProvider)
+        protected override void Bake(EcsWorld world, int entityId)
         {
-            _ecsWorld = ecsWorldsProvider.GameplayWorld;
-        }
-
-        private void Awake()
-        {
-            var newEntity = _ecsWorld.NewEntity();
-
-            _ecsWorld.GetPool<AudioCmp>().AddComponent(newEntity).audioClip = audioClip;
-            _ecsWorld.GetPool<TaskCompletedSoundTag>().AddComponent(newEntity);
+            world.GetPool<AudioCmp>().AddComponent(entityId).audioClip = audioClip;
+            world.GetPool<TaskCompletedSoundTag>().AddComponent(entityId);
         }
     }
 }

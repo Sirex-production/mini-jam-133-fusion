@@ -2,7 +2,7 @@
 
 namespace Secs
 {
-    public sealed partial class EcsPool<T> : IDisposable where T : struct, IEcsComponent
+    public sealed partial class EcsPool<T> where T : struct, IEcsComponent
     {
         internal object GetItem(int entityId)
         {

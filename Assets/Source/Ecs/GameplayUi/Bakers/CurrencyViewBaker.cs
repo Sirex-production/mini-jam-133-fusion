@@ -1,23 +1,17 @@
 ﻿using NaughtyAttributes;
+using Secs;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Zenject;
 
 namespace Ingame
 {
-	public sealed class CurrencyViewBaker : MonoBehaviour
+	public sealed class CurrencyViewBaker : EcsMonoBaker
 	{
 		[FormerlySerializedAs("currencyView")] [Required, SerializeField] private UiCurrencyView uiCurrencyView;
 		
-		[Inject]
-		private void Construct(EcsWorldsProvider worldsProvider)
+		protected override void Bake(EcsWorld world, int entityId)
 		{
-			var world = worldsProvider.GameplayWorld;
-			int entity = world.NewEntity();
-
-			world.GetPool<CurrencyViewMdl>().AddComponent(entity).uiCurrencyView = uiCurrencyView;
-			
-			Destroy(this);
+			world.GetPool<CurrencyViewMdl>().AddComponent(entityId).uiCurrencyView = uiCurrencyView;
 		}
 	}
 }

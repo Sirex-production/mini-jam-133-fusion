@@ -4,21 +4,14 @@ using Zenject;
 
 namespace Ingame.Audio
 {
-    public sealed class GrabCardSoundBaker : MonoBehaviour
+    public sealed class GrabCardSoundBaker : EcsMonoBaker
     {
         [SerializeField] private AudioClip audioClip;
-        private EcsWorld _ecsWorld;
-        
-        [Inject]
-        private void Construct(EcsWorldsProvider ecsWorldsProvider)
-        { 
-            _ecsWorld = ecsWorldsProvider.GameplayWorld;
-        }
-        private void Awake() {
-            var newEntity = _ecsWorld.NewEntity();
-            
-            _ecsWorld.GetPool<AudioCmp>().AddComponent(newEntity).audioClip = audioClip;
-            _ecsWorld.GetPool<GrabCardSoundTag>().AddComponent(newEntity);
+
+        protected override void Bake(EcsWorld world, int entityId)
+        {
+            world.GetPool<AudioCmp>().AddComponent(entityId).audioClip = audioClip;
+            world.GetPool<GrabCardSoundTag>().AddComponent(entityId);
         }
     }
 }

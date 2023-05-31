@@ -3,42 +3,32 @@ using Ingame.VfX;
 using NaughtyAttributes;
 using Secs;
 using UnityEngine;
-using Zenject;
 
 namespace Ingame
 {
 	[RequireComponent(typeof(EcsPhysicsCollisionProvider))]
-	public sealed class CardBaker : MonoBehaviour
+	public sealed class CardBaker : EcsMonoBaker
 	{
 		[Required, SerializeField] private ItemConfig itemConfig;
 		[Required, SerializeField] private Rigidbody attachedRigidbody;
 		[Required, SerializeField] private CardView cardView;
 		[Required, SerializeField] private new ParticleSystem particleSystem;
-		
-		[Inject]
-		private void Construct(EcsWorldsProvider worldsProvider)
+
+		protected override void Bake(EcsWorld world, int entityId)
 		{
-			var world = worldsProvider.GameplayWorld;
-			int entity = worldsProvider.GameplayWorld.NewEntity();
-			
-			world.GetPool<CardCmp>().AddComponent(entity) = new CardCmp
+			world.GetPool<CardCmp>().AddComponent(entityId) = new CardCmp
 			{
 				itemConfig = itemConfig
 			};
-			world.GetPool<TransformMdl>().AddComponent(entity) = new TransformMdl
+			world.GetPool<TransformMdl>().AddComponent(entityId) = new TransformMdl
 			{
 				transform = transform,
 				initialLocalPos = transform.localPosition,
 				initialLocalRot = transform.localRotation
 			};
-			world.GetPool<RigidbodyMdl>().AddComponent(entity).rigidbody = attachedRigidbody;
-			world.GetPool<CardViewMdl>().AddComponent(entity).cardView = cardView;
-			world.GetPool<ParticleSystemMdl>().AddComponent(entity).particleSystem = particleSystem;
-	 
-			this.LinkEcsEntity(world, entity);
-			
-			Destroy(this);
+			world.GetPool<RigidbodyMdl>().AddComponent(entityId).rigidbody = attachedRigidbody;
+			world.GetPool<CardViewMdl>().AddComponent(entityId).cardView = cardView;
+			world.GetPool<ParticleSystemMdl>().AddComponent(entityId).particleSystem = particleSystem;
 		}
-		
 	}
 }

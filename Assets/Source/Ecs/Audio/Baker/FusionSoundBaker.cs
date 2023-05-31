@@ -1,30 +1,18 @@
-﻿using System;
-using Ingame.Audio;
+﻿using Ingame.Audio;
 using Ingame.Cmp;
 using Secs;
 using UnityEngine;
-using Zenject;
 
 namespace Ingame.Baker
 {
-    public sealed class FusionSoundBaker : MonoBehaviour
+    public sealed class FusionSoundBaker : EcsMonoBaker
     {
         [SerializeField] private AudioClip audioClip;
         
-        private EcsWorld _world;
-        
-        [Inject]
-        private void Construct(EcsWorldsProvider ecsWorldsProvider)
+        protected override void Bake(EcsWorld world, int entityId)
         {
-            _world = ecsWorldsProvider.GameplayWorld;
-        }
-
-        private void Awake()
-        {
-            var newEntity = _world.NewEntity();
-            
-            _world.GetPool<AudioCmp>().AddComponent(newEntity).audioClip = audioClip;
-            _world.GetPool<FusionSoundTag>().AddComponent(newEntity);
+            world.GetPool<AudioCmp>().AddComponent(entityId).audioClip = audioClip;
+            world.GetPool<FusionSoundTag>().AddComponent(entityId);
         }
     }
 }

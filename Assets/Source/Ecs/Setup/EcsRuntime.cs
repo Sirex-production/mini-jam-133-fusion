@@ -1,7 +1,6 @@
 ﻿using Ingame.Recipe;
 using Ingame.Tasks;
 using Secs;
-using Ingame;
 using Ingame.Npc;
 using UnityEngine;
 using Zenject;
@@ -31,7 +30,7 @@ namespace Ingame
 			_ecsSystems = new EcsSystems(_world);
 			
 			EcsPhysics.BindToEcsWorld(_world, _ecsSystems);
-			
+
 			_ecsSystems
 				//Recipe
 				.Add(new InitRecipesSys())
@@ -42,11 +41,11 @@ namespace Ingame
 				.Add(new CreateNewTaskSys())
 				.Add(new CheckOfferedTaskItemValidationSys(soundService))
 				//Shop
-				.Add(new RefreshShopSystem(shopConfig, diContainer,soundService))
+				.Add(new RefreshShopSystem(shopConfig, diContainer, soundService))
 				.Add(new SellItemSystem(soundService))
 				//Cards
 				.Add(new UpdateCardsViewSystem())
-				.Add(new SelectCardSystem(inputService,soundService))
+				.Add(new SelectCardSystem(inputService, soundService))
 				.Add(new MoveCardSystem(inputService, generalCardsConfig))
 				.Add(new DropCardSystem(inputService))
 				.Add(new MoveShopCardsBackToShopSystem())
@@ -64,16 +63,16 @@ namespace Ingame
 				//Physics
 				.Add(new DisposeOnTickPhysicsSys())
 				.Add(new FullyDestroyObject());
-
 #if UNITY_EDITOR
 			_ecsSystems.AttachProfiler();
 #endif
 			_ecsSystems.Inject();
+			_world.BakeAllBakersInScene();
 		}
-
+		
 		private void Start()
 		{
-			_world.UpdateFilters();
+			// _world.UpdateFilters();
 			_ecsSystems.FireInitSystems();
 		}
 

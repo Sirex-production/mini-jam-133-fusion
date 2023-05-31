@@ -1,30 +1,14 @@
-﻿using System;
-using Secs;
-using UnityEngine;
-using Zenject;
+﻿using Secs;
 
 namespace Ingame.Tasks
 {
-    public sealed class TaskTableBaker : MonoBehaviour
+    public sealed class TaskTableBaker : EcsMonoBaker
     {
-        private EcsWorld _ecsWorld;
-        [Inject]
-        private void Construct(EcsWorldsProvider ecsWorldsProvider)
+        protected override void Bake(EcsWorld world, int entityId)
         {
-            _ecsWorld = ecsWorldsProvider.GameplayWorld;
-        }
-
-        private void Awake()
-        {
-            var entity = _ecsWorld.NewEntity();
-
-            _ecsWorld.GetPool<TaskTableTag>().AddComponent(entity);
-            _ecsWorld.GetPool<TransformMdl>().AddComponent(entity).transform = transform;
-            _ecsWorld.GetPool<OfferedTaskItemsCmp>().AddComponent(entity).offeredItems = new();
-            
-            this.LinkEcsEntity(_ecsWorld, entity);
-            
-            Destroy(this); 
+            world.GetPool<TaskTableTag>().AddComponent(entityId);
+            world.GetPool<TransformMdl>().AddComponent(entityId).transform = transform;
+            world.GetPool<OfferedTaskItemsCmp>().AddComponent(entityId).offeredItems = new();
         }
     }
 }

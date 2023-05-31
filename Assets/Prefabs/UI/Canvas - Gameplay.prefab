@@ -5233,6 +5233,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357a621507894a18ac56c10a504fccd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 0
   uiCollectionView: {fileID: 6632167445725249504}
 --- !u!1 &6632167445736447102
 GameObject:
@@ -7452,6 +7455,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed2bdf796a04fe6a5b40e2df2a5b7d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 0
   uiCurrencyView: {fileID: 6632167446954792139}
 --- !u!1 &6632167446957993398
 GameObject:

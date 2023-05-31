@@ -1,28 +1,15 @@
-﻿using System;
-using Secs;
+﻿using Secs;
 using UnityEngine;
-using Zenject;
 
 namespace Ingame.Tasks
 {
-    public sealed class AllTasksMdlBaker : MonoBehaviour
+    public sealed class AllTasksMdlBaker : EcsMonoBaker
     {
         [SerializeField] private TasksConfig tasksConfig;
-            
-        private EcsWorld _world;
-        
-        [Inject]
-        private void Construct(EcsWorldsProvider ecsWorldsProvider)
-        {
-            _world = ecsWorldsProvider.GameplayWorld;
-        }
 
-        private void Awake()
+        protected override void Bake(EcsWorld world, int entityId)
         {
-           var entity =  _world.NewEntity();
-           _world.GetPool<AllTasksMdl>().AddComponent(entity).tasksConfig = tasksConfig;
-
-           _world.UpdateFilters();
+            world.GetPool<AllTasksMdl>().AddComponent(entityId).tasksConfig = tasksConfig;
         }
     }
 }

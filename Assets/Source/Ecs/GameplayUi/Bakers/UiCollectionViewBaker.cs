@@ -1,22 +1,16 @@
 ﻿using NaughtyAttributes;
+using Secs;
 using UnityEngine;
-using Zenject;
 
 namespace Ingame
 {
-	public sealed class UiCollectionViewBaker : MonoBehaviour
+	public sealed class UiCollectionViewBaker : EcsMonoBaker
 	{
 		[Required, SerializeField] private UiCollectionView uiCollectionView;
-		
-		[Inject]
-		private void Construct(EcsWorldsProvider worldsProvider)
+
+		protected override void Bake(EcsWorld world, int entityId)
 		{
-			var world = worldsProvider.GameplayWorld;
-			int entity = world.NewEntity();
-			
-			world.GetPool<UiCollectionViewMdl>().AddComponent(entity).uiCollectionView = uiCollectionView;
-			
-			Destroy(this);
+			world.GetPool<UiCollectionViewMdl>().AddComponent(entityId).uiCollectionView = uiCollectionView;
 		}
 	}
 }

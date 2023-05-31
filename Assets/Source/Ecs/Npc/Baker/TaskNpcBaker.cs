@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DG.Tweening;
+﻿using System.Collections.Generic;
 using Ingame.Audio;
 using Ingame.Npc;
 using Ingame.Tasks;
@@ -9,13 +6,12 @@ using NaughtyAttributes;
 using Secs;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
 namespace Ingame.NPC
 {
-    public sealed class TaskNpcBaker : MonoBehaviour
+    public sealed class TaskNpcBaker : EcsMonoBaker
     {
         [Required]
         [SerializeField] private List<AudioClip> dialogSounds;
@@ -38,37 +34,30 @@ namespace Ingame.NPC
         {
             _world = ecsWorldsProvider.GameplayWorld;
         }
-        
-        private void Awake()
+
+        protected override void Bake(EcsWorld world, int entityId)
         {
-            var entity = _world.NewEntity();
-            ref var transformMdl = ref _world.GetPool<TransformMdl>().AddComponent(entity);
+            ref var transformMdl = ref _world.GetPool<TransformMdl>().AddComponent(entityId);
             
             transformMdl.transform = transform;
             transformMdl.initialLocalPos = transform.localPosition;
             transformMdl.initialLocalRot = transform.localRotation;
             
-            _world.GetPool<TaskNpcTag>().AddComponent(entity);
+            _world.GetPool<TaskNpcTag>().AddComponent(entityId);
             
-            ref var waypointsMdl = ref _world.GetPool<WaypointsCmp>().AddComponent(entity);
+            ref var waypointsMdl = ref _world.GetPool<WaypointsCmp>().AddComponent(entityId);
             waypointsMdl.transforms = new List<Transform>(positions);
 
-            ref var dialogMdl = ref _world.GetPool<DialogMdl>().AddComponent(entity);
+            ref var dialogMdl = ref _world.GetPool<DialogMdl>().AddComponent(entityId);
             dialogMdl.text = text;
             dialogMdl.image = dialogBox;
             dialogMdl.taskText = "";
             
-            _world.GetPool<RandomAudioCmp>().AddComponent(entity).audioClips = dialogSounds;
-            _world.GetPool<TaskHolderMdl>().AddComponent(entity);
-            
-            gameObject.LinkEcsEntity(_world, entity);
-            
-            _world.UpdateFilters();
-        
-            entity = _world.NewEntity();
-            _world.GetPool<ForwardNpcEvent>().AddComponent(entity);
-            
-            Destroy(this);
+            _world.GetPool<RandomAudioCmp>().AddComponent(entityId).audioClips = dialogSounds;
+            _world.GetPool<TaskHolderMdl>().AddComponent(entityId);
+
+            entityId = _world.NewEntity();
+            _world.GetPool<ForwardNpcEvent>().AddComponent(entityId);
         }
     }
 }

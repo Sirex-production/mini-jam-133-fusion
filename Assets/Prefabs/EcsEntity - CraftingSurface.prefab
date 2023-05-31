@@ -111,6 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb9e6b5ee4d41609b34dfbc17069834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 0
 --- !u!114 &3682253894762603436
 MonoBehaviour:
   m_ObjectHideFlags: 0

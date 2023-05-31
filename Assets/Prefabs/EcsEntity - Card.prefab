@@ -35855,6 +35855,7 @@ GameObject:
   - component: {fileID: 665006733431476447}
   - component: {fileID: 2574092972008852816}
   - component: {fileID: 8037965169823382564}
+  - component: {fileID: 1648335223981775943}
   m_Layer: 6
   m_Name: EcsEntity - Card
   m_TagString: Untagged
@@ -35957,10 +35958,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd75b1af1ea04e7c882bad240dfabc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemConfig: {fileID: 11400000, guid: 6d7e78b69ed5a4943aa9d1ac655ee8d3, type: 2}
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 0
+  itemConfig: {fileID: 11400000, guid: 2c380ec964e456545b4c470566fa349d, type: 2}
   attachedRigidbody: {fileID: 2506858035076246410}
   cardView: {fileID: 665006733431476447}
   particleSystem: {fileID: 3076082065419312253}
+--- !u!114 &1648335223981775943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7026886335144813740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec96d653c01da94ba1134a641e2d43b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7026886335351606622
 GameObject:
   m_ObjectHideFlags: 0

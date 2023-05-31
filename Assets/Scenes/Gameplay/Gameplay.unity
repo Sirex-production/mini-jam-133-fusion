@@ -2337,6 +2337,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3076082064592976198, guid: 2bee46dd54c8d2f47a840bc1b4db2819, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7026886334701455654, guid: 2bee46dd54c8d2f47a840bc1b4db2819, type: 3}
       propertyPath: m_fontSize
       value: 0.85
@@ -2397,6 +2401,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8037965169823382564, guid: 2bee46dd54c8d2f47a840bc1b4db2819, type: 3}
+      propertyPath: itemConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d7e78b69ed5a4943aa9d1ac655ee8d3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bee46dd54c8d2f47a840bc1b4db2819, type: 3}
 --- !u!1001 &128854516
@@ -20012,6 +20020,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503ea878162a41ef9325dcdcab52c536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 0
   mainCamera: {fileID: 963194227}
 --- !u!1001 &964618524
 PrefabInstance:
@@ -25615,6 +25626,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c201f6c47e4d44811dfa08ac9e4127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldId: gameplay
+  createEntityReference: 1
+  bakingProperties: 0
   virtualCamera: {fileID: 1288287191}
   cameraMovementBounds: {x: 40, y: 5, z: 50}
 --- !u!1 &1290272486
@@ -38578,10 +38592,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8037965169823382564, guid: 2bee46dd54c8d2f47a840bc1b4db2819, type: 3}
-      propertyPath: itemConfig
-      value: 
-      objectReference: {fileID: 11400000, guid: 2c380ec964e456545b4c470566fa349d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bee46dd54c8d2f47a840bc1b4db2819, type: 3}
 --- !u!1001 &1960440249
@@ -43156,6 +43166,10 @@ PrefabInstance:
     - target: {fileID: 6284610974173920202, guid: 403610dc6746dfa40b071cf69f618f7c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6632167445437740103, guid: 403610dc6746dfa40b071cf69f618f7c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 24.463379
       objectReference: {fileID: 0}
     - target: {fileID: 6632167445752422589, guid: 403610dc6746dfa40b071cf69f618f7c, type: 3}
       propertyPath: m_SizeDelta.y

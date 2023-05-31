@@ -1,24 +1,16 @@
-﻿using Secs;
+﻿using System;
+using Secs;
 using UnityEngine;
-using Zenject;
 
 namespace Ingame
 {
 	[RequireComponent(typeof(Collider))]
-	public sealed class CraftingSurfaceBaker : MonoBehaviour
+	public sealed class CraftingSurfaceBaker : EcsMonoBaker
 	{
-		[Inject]
-		private void Construct(EcsWorldsProvider ecsWorldsProvider)
+		protected override void Bake(EcsWorld world, int entityId)
 		{
-			var world = ecsWorldsProvider.GameplayWorld;
-			var entity = world.NewEntity();
-
-			world.GetPool<CraftingSurfaceTag>().AddComponent(entity);
-			world.GetPool<TransformMdl>().AddComponent(entity).transform = transform;
-			
-			this.LinkEcsEntity(world, entity);
-			
-			Destroy(this);
+			world.GetPool<CraftingSurfaceTag>().AddComponent(entityId);
+			world.GetPool<TransformMdl>().AddComponent(entityId).transform = transform;
 		}
 	}
 }

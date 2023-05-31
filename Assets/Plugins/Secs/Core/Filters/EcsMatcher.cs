@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace Secs
 {
@@ -18,14 +19,16 @@ namespace Secs
 			excludeTypeMask = new EcsTypeMask(excludeTypes);
 
 			if(includeTypeMask.HasCommonTypesWith(excludeTypeMask))
-				throw new ArgumentException("Include types overlaps with exclude types");
+				throw new EcsException(this, "Include types overlaps with exclude types");
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal bool IsIncluded(Type type)
 		{
 			return includeTypeMask.ContainsType(type);
 		}
 		
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal bool IsExcluded(Type type)
 		{
 			if(excludeTypeMask == null)
@@ -34,22 +37,20 @@ namespace Secs
 			return excludeTypeMask.ContainsType(type);
 		}
 
-		internal bool IncludesInIncludeMask(EcsTypeMask typeMask)
-		{
-			return includeTypeMask.Includes(typeMask);
-		}
-
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal bool IsSameAsIncludeMask(EcsTypeMask otherMask)
 		{
 			return includeTypeMask == otherMask;
 		}
 		
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal bool IsSameAsExcludeMask(EcsTypeMask otherMask)
 		{
 			return excludeTypeMask == otherMask;
 		}
 
 #region Comparing
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override bool Equals(object obj)
 		{
 			if(obj is not EcsMatcher ecsFilterMask)
@@ -58,6 +59,7 @@ namespace Secs
 			return Equals(ecsFilterMask);
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool Equals(EcsMatcher other)
 		{
 			if(other is null)
@@ -66,11 +68,13 @@ namespace Secs
 			return includeTypeMask == other.includeTypeMask && excludeTypeMask == other.excludeTypeMask;
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override int GetHashCode()
 		{
 			return HashCode.Combine(includeTypeMask, excludeTypeMask);
 		}
 		
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator==(EcsMatcher first, EcsMatcher second)
 		{
 			if(first is null && second is null)
@@ -82,6 +86,7 @@ namespace Secs
 			return first.Equals(second);
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator!=(EcsMatcher first, EcsMatcher second)
 		{
 			if(first is null && second is null)
@@ -95,6 +100,7 @@ namespace Secs
 #endregion
 
 #region Builder
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static EcsMatcherBuilder Include(params Type[] includeComponentTypes)
 		{
 			return new EcsMatcherBuilder(includeComponentTypes);
@@ -111,15 +117,17 @@ namespace Secs
 				_excludeComponentTypes = null;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public EcsMatcherBuilder Exclude(params Type[] excludeComponentTypes)
 			{
 				if(_excludeComponentTypes != null)
-					throw new ArgumentException("Exclude types were already assigned");
+					throw new EcsException(this, "Exclude types were already assigned");
 				
 				_excludeComponentTypes = excludeComponentTypes;
 				return this;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public EcsMatcher End()
 			{
 				return new EcsMatcher(_includeComponentTypes, _excludeComponentTypes);

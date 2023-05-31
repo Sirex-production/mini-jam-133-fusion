@@ -1,19 +1,13 @@
-﻿using UnityEngine;
-using Zenject;
+﻿using Secs;
 
 namespace Ingame
 {
-	public sealed class GameSurfaceBaker : MonoBehaviour
+	public sealed class GameSurfaceBaker : EcsMonoBaker
 	{
-		[Inject]
-		private void Construct(EcsWorldsProvider ecsWorldsProvider)
+		protected override void Bake(EcsWorld world, int entityId)
 		{
-			var world = ecsWorldsProvider.GameplayWorld;
-			
-			int entity = world.NewEntity();
-			
-			world.GetPool<GameSurfaceTag>().AddComponent(entity);
-			world.GetPool<TransformMdl>().AddComponent(entity) = new TransformMdl
+			world.GetPool<GameSurfaceTag>().AddComponent(entityId);
+			world.GetPool<TransformMdl>().AddComponent(entityId) = new TransformMdl
 			{
 				transform = transform,
 				initialLocalPos = transform.localPosition,
